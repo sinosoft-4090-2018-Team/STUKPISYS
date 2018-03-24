@@ -1,0 +1,45 @@
+spring:
+  profiles:
+    #表示所用配置文件为application-dev.yml
+    active: dev
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/kpisys?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    tomcat:
+      initialSize: 1
+      min-idle: 1
+      max-idle: 20
+      max-wait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 30000
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+  freemarker:
+    charset: UTF-8
+    cache: false
+    allow-request-override: false
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    request-context-attribute: request
+    prefer-file-system-access: true
+    suffix: .html
+    template-loader-path: classpath:/templates/
+logging:
+  file: logs/kpisys.log
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true
+#配置分页插件pagehelper
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
