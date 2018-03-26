@@ -2,12 +2,15 @@ spring:
   profiles:
     #表示所用配置文件为application-dev.yml
     active: dev
+  devtools:
+      restart:
+        enabled: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/kpisys?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://119.29.223.149:3306/kpisys?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-    password: root
+    password: FuvgiUwrXULC
     tomcat:
       initialSize: 1
       min-idle: 1
@@ -19,19 +22,19 @@ spring:
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
-  freemarker:
-    charset: UTF-8
-    cache: false
-    allow-request-override: false
-    check-template-location: true
-    content-type: text/html
-    expose-request-attributes: false
-    expose-session-attributes: false
-    expose-spring-macro-helpers: false
-    request-context-attribute: request
-    prefer-file-system-access: true
-    suffix: .html
-    template-loader-path: classpath:/templates/
+#  freemarker:
+#    charset: UTF-8
+#    cache: false
+#    allow-request-override: false
+#    check-template-location: true
+#    content-type: text/html
+#    expose-request-attributes: false
+#    expose-session-attributes: false
+#    expose-spring-macro-helpers: false
+#    request-context-attribute: request
+#    prefer-file-system-access: true
+#    suffix: .html
+#    template-loader-path: classpath:/templates/
 logging:
   file: logs/kpisys.log
 mybatis:
