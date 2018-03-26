@@ -6,6 +6,7 @@ import com.sinosoft.stukpisys.servsce.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.*;
 import java.util.Date;
 
 @Service
@@ -22,4 +23,5 @@ public class UserServiceImpl implements UserService {
         userDao.insert(user);
         return "success";
     }
+
 }

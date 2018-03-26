@@ -1,12 +1,17 @@
 package com.sinosoft.stukpisys.entity;
 
 
+import com.sun.javafx.collections.MappingChange;
+
+import java.util.Map;
 
 public class User extends BaseEntity{
+
     private Integer userId;
     private String name;
     private String password;
     private  Integer level;
+    //private Score score;//成绩嵌入类
 
     public Integer getUserId() {
         return userId;
@@ -39,6 +44,7 @@ public class User extends BaseEntity{
     public void setLevel(Integer level) {
         this.level = level;
     }
+
 
     @Override
     public String toString() {
