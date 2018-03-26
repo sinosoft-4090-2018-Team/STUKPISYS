@@ -1,22 +1,12 @@
 package com.sinosoft.stukpisys.entity;
 
-import java.util.Date;
+
 
 public class User extends BaseEntity{
     private Integer userId;
+    private String name;
     private String password;
-    private Date createTime;
-    private Integer admin;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", password='" + password + '\'' +
-                ", createTime=" + createTime +
-                ", admin=" + admin +
-                '}';
-    }
+    private  Integer level;
 
     public Integer getUserId() {
         return userId;
@@ -24,6 +14,14 @@ public class User extends BaseEntity{
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -34,19 +32,21 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Integer getLevel() {
+        return level;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
-    public Integer getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Integer admin) {
-        this.admin = admin;
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", level=" + level +
+                '}';
     }
 }
