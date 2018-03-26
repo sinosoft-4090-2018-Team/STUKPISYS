@@ -8,6 +8,8 @@ import java.util.Map;
 
 @Mapper
 public interface UserDao{
+
+    User getByName(String name);
     
     public void getEducation();//查询学历
     public void get211scale();//查询2111比例
@@ -23,6 +25,5 @@ public interface UserDao{
     public List<Map<String,Object>> getScoreBySchool(String school);//按学校查
 
 
-
-
+    void insert(User user);
 }

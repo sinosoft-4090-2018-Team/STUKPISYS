@@ -1,84 +1,130 @@
 package com.sinosoft.stukpisys.untils;
 
-import com.nimbusds.jose.*;
-import com.nimbusds.jose.crypto.MACSigner;
-import com.nimbusds.jose.crypto.MACVerifier;
-import net.minidev.json.JSONObject;
+import com.sinosoft.stukpisys.entity.JwtUser;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JWTtoken {
-
-
-    /**
-     * 秘钥
-     */
-    private static final byte[] SECRET = "https://github.com/zrtzrt04467df11fff26d".getBytes();
+/**
+ * JWT工具类
+ */
+@Component
+public class JwtToken implements Serializable {
 
     /**
-     * 初始化head部分的数据为
-     * {
-     * "alg":"HS256",
-     * "type":"JWT"
-     * }
+     * 密钥
      */
-    private static final JWSHeader header = new JWSHeader(JWSAlgorithm.HS256, JOSEObjectType.JWT, null, null, null, null, null, null, null, null, null, null, null);
+    private final String secret = "aaaaaaaa";
 
-    public static String createToken(Map<String, Object> payload) {
-        String tokenString = null;
-        // 创建一个 JWS object
-        JWSObject jwsObject = new JWSObject(header, new Payload(new JSONObject(payload)));
-        try {
-            // 将jwsObject 进行HMAC签名
-            jwsObject.sign(new MACSigner(SECRET));
-            tokenString = jwsObject.serialize();
-        } catch (JOSEException e) {
-            System.err.println("签名失败:" + e.getMessage());
-            e.printStackTrace();
-        }
-        return tokenString;
+    /**
+     * 从数据声明生成令牌
+     *
+     * @param claims 数据声明
+     * @return 令牌
+     */
+    private String generateToken(Map<String, Object> claims) {
+        Date expirationDate = new Date(System.currentTimeMillis() + 2592000L * 1000);
+        return Jwts.builder().setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
+    /**
+     * 从令牌中获取数据声明
+     *
+     * @param token 令牌
+     * @return 数据声明
+     */
+    private Claims getClaimsFromToken(String token) {
+        Claims claims;
+        try {
+            claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        } catch (Exception e) {
+            claims = null;
+        }
+        return claims;
+    }
 
     /**
-     * 校验token是否合法，返回Map集合,集合中主要包含    state状态码   data鉴权成功后从token中提取的数据
-     * 该方法在过滤器中调用，每次请求API时都校验
+     * 生成令牌
      *
-     * @param token
-     * @return Map<String, Object>
+     * @param userDetails 用户
+     * @return 令牌
      */
-    public static Map<String, Object> validToken(String token) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        try {
-            JWSObject jwsObject = JWSObject.parse(token);
-            Payload payload = jwsObject.getPayload();
-            JWSVerifier verifier = new MACVerifier(SECRET);
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>(2);
+        claims.put("sub", userDetails.getUsername());
+        claims.put("created", new Date());
+        return generateToken(claims);
+    }
 
-            if (jwsObject.verify(verifier)) {
-                JSONObject jsonOBj = payload.toJSONObject();
-                // token校验成功（此时没有校验是否过期）
-                resultMap.put("state", TokenState.VALID.toString());
-                // 若payload包含ext字段，则校验是否过期
-                if (jsonOBj.containsKey("ext")) {
-                    long extTime = Long.valueOf(jsonOBj.get("ext").toString());
-                    long curTime = new Date().getTime();
-                    // 过期了
-                    if (curTime > extTime) {
-                        resultMap.clear();
-                        resultMap.put("state", TokenState.EXPIRED.toString());
-                    }
-                }
-                resultMap.put("data", jsonOBj);
-            } else {
-                resultMap.put("state", TokenState.INVALID.toString());
-            }
+    /**
+     * 从令牌中获取用户名
+     *
+     * @param token 令牌
+     * @return 用户名
+     */
+    public String getUsernameFromToken(String token) {
+        String username;
+        try {
+            Claims claims = getClaimsFromToken(token);
+            username = claims.getSubject();
         } catch (Exception e) {
-            resultMap.clear();
-            resultMap.put("state", TokenState.INVALID.toString());
+            username = null;
         }
-        return resultMap;
+        return username;
+    }
+
+    /**
+     * 判断令牌是否过期
+     *
+     * @param token 令牌
+     * @return 是否过期
+     */
+    public Boolean isTokenExpired(String token) {
+        try {
+            Claims claims = getClaimsFromToken(token);
+            Date expiration = claims.getExpiration();
+            return expiration.before(new Date());
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * 刷新令牌
+     *
+     * @param token 原令牌
+     * @return 新令牌
+     */
+    public String refreshToken(String token) {
+        String refreshedToken;
+        try {
+            Claims claims = getClaimsFromToken(token);
+            claims.put("created", new Date());
+            refreshedToken = generateToken(claims);
+        } catch (Exception e) {
+            refreshedToken = null;
+        }
+        return refreshedToken;
+    }
+
+    /**
+     * 验证令牌
+     *
+     * @param token       令牌
+     * @param userDetails 用户
+     * @return 是否有效
+     */
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        JwtUser user = (JwtUser) userDetails;
+        String username = getUsernameFromToken(token);
+        return (username.equals(user.getUsername()) && !isTokenExpired(token));
     }
 
 }

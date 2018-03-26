@@ -1,17 +1,21 @@
 package com.sinosoft.stukpisys.entity;
 
-
-import com.sun.javafx.collections.MappingChange;
-
-import java.util.Map;
+import java.util.List;
 
 public class User extends BaseEntity{
 
     private Integer userId;
     private String name;
     private String password;
-    private  Integer level;
+    private List<String> roles;
     //private Score score;//成绩嵌入类
+
+    public User(Integer userId, String name, String password, List<String> roles) {
+        this.userId = userId;
+        this.name = name;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -37,22 +41,11 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
-    public Integer getLevel() {
-        return level;
+    public List<String> getRoles() {
+        return roles;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", level=" + level +
-                '}';
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }
