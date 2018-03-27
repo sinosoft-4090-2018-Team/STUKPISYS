@@ -1,0 +1,39 @@
+.container{
+    width:1024px;
+    margin:0 auto;
+}
+.photo{
+    width:30%;
+    height:100px;
+    background:red;
+    margin-top:71px;
+    margin-left:20px;
+}
+.enter-in{
+    margin-top:150px;
+    width:500px;
+    height:300px;
+    border:1px solid #333;
+    margin-left:248px;
+    text-align: center;
+    display:flex;
+}
+.enter{
+    width:70%;
+    padding-top:85px;
+}
+.user input{
+    margin-left:20px;
+}
+.upwd{
+    margin-top:20px;
+}
+.upwd input{
+    margin-left:20px;
+}
+.AN{
+    margin-top:20px;
+}
+.AN button{
+    width:78%;
+}
