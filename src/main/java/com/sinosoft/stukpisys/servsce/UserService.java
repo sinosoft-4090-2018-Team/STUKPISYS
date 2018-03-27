@@ -1,6 +1,10 @@
 package com.sinosoft.stukpisys.servsce;
 
+import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.User;
+import com.sinosoft.stukpisys.entity.UserInfo;
+
+import java.util.List;
 
 public interface UserService {
     /**
@@ -27,4 +31,16 @@ public interface UserService {
      * @return 新密钥
      */
     String refreshToken(String oldToken);
+
+    /**
+     * 查询所有实习生信息
+     * @return  List<UserInfo>
+     */
+    List<UserInfo> getAllInfo();
+
+    /**
+     * 查询所有实习生学历信息
+     * @return  List<UserInfo>
+     */
+    List<Education> getEduInfo();
 }
