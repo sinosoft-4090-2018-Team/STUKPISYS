@@ -2,6 +2,7 @@ package com.sinosoft.stukpisys.servsce.impl;
 
 import com.sinosoft.stukpisys.dao.UserDao;
 import com.sinosoft.stukpisys.entity.User;
+import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.UserService;
 import com.sinosoft.stukpisys.untils.JwtToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,14 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
     private UserDao userDao;
+
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
     private JwtToken jwtToken;
 
-    @Autowired
+   @Autowired
     public UserServiceImpl(UserDao userDao){
         this.userDao = userDao;
     }
@@ -34,7 +37,7 @@ public class UserServiceImpl implements UserService {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
         this.jwtToken = jwtToken;
-        this.userDao = userDao;
+       this.userDao = userDao;
     }
 
     @Override
@@ -69,6 +72,15 @@ public class UserServiceImpl implements UserService {
             return jwtToken.refreshToken(token);
         }
         return "error";
+    }
+
+    /**
+     * 查询所有信息
+     * @return
+     */
+    @Override
+    public List<UserInfo> getAllInfo() {
+        return userDao.getAllInfo();
     }
 
 }

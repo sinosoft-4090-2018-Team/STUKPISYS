@@ -1,19 +1,20 @@
 package com.sinosoft.stukpisys.dao;
 
 import com.sinosoft.stukpisys.entity.User;
+import com.sinosoft.stukpisys.entity.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.stereotype.Repository;
 
 @Mapper
 @Repository
 public interface UserDao{
 
     User getByName(String name);
-
+    
     public void getEducation();//查询学历
     public void get211scale();//查询2111比例
     public  void getSexscale();//查询男女占比
@@ -29,7 +30,7 @@ public interface UserDao{
 
 
     void insert(User user);
-    @Insert("insert into user(admin,createTime) value(#{admin},#{createTime})")
-    int insert(User user);
 
+    @Select("select * from user_info")
+    List<UserInfo> getAllInfo();
 }
