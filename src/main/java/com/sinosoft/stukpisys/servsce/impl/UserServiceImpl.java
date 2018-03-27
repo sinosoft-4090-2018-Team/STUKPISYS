@@ -1,7 +1,9 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
 import com.sinosoft.stukpisys.dao.UserDao;
+import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.User;
+import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.UserService;
 import com.sinosoft.stukpisys.untils.JwtToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,5 +68,15 @@ public class UserServiceImpl implements UserService {
         }
         return "error";
     }
+
+    public List<UserInfo> getAllInfo() {
+
+        return userDao.getAllInfo();
+    }
+
+    public List<Education> getEduInfo() {
+        return userDao.getEduInfo();
+    }
+
 
 }

@@ -1,7 +1,10 @@
 package com.sinosoft.stukpisys.dao;
 
+import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.User;
+import com.sinosoft.stukpisys.entity.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -32,4 +35,14 @@ public interface UserDao {
     List<Map<String, Object>> getScoreBySchool(String school);//按学校查
 
     void insert(User user);
+    //查询所有
+    @Select("select * from user_info")
+    List<UserInfo> getAllInfo();
+    //根据状态查询非正常状态实习生
+    @Select("select * from user_info where state=#{0}")
+    List<UserInfo> getInfoByState(String state);
+
+    @Select("select * from educate")
+    List<Education> getEduInfo();
+
 }
