@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface UserDao {
+public interface UserDao{
     @Select("select * from user where name=#{name}")
     User getByName(String name);
 
