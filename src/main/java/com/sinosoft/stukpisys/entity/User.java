@@ -1,20 +1,28 @@
 package com.sinosoft.stukpisys.entity;
 
-import java.util.List;
-
 public class User extends BaseEntity{
 
     private Integer userId;
     private String name;
     private String password;
-    private String roles;
+    private String role;
     //private Score score;//成绩嵌入类
 
-    public User(Integer userId, String name, String password, String roles) {
+    public User() {
+        super();
+    }
+
+    public User(String name, String password, String role) {
+        this.name = name;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(Integer userId, String name, String password, String role) {
         this.userId = userId;
         this.name = name;
         this.password = password;
-        this.roles = roles;
+        this.role = role;
     }
 
     public Integer getUserId() {
@@ -41,11 +49,21 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
-    public String getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

@@ -32,6 +32,7 @@ public class UserController {
     @PostMapping(value = "/login", params = {"username", "password"})
     public String getToken(String username, String password) throws AuthenticationException {
         return userService.login(username, password);
+//        return "login";
     }
 
     /**
@@ -43,6 +44,7 @@ public class UserController {
      */
     @PostMapping(value = "/register")
     public String register(User user) throws AuthenticationException {
+        System.out.println(user.toString());
         return userService.register(user);
     }
 

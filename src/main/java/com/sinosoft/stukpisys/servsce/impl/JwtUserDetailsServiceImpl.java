@@ -34,7 +34,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         } else {
             List<String> role = new ArrayList<>();
-            role.add(user.getRoles());
+            role.add(user.getRole());
             return new JwtUser(user.getName(), user.getPassword(), role.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
         }
     }

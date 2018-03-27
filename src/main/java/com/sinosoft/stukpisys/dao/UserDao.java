@@ -3,6 +3,7 @@ package com.sinosoft.stukpisys.dao;
 import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.User;
 import com.sinosoft.stukpisys.entity.UserInfo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -11,7 +12,7 @@ import java.util.Map;
 
 @Mapper
 public interface UserDao {
-
+    @Select("SELECT * FROM user WHERE name = #{name}")
     User getByName(String name);
 
     void getEducation();//查询学历
@@ -33,7 +34,7 @@ public interface UserDao {
     List<Map<String, Object>> getScoreByEdu(String edu);//按学历查
 
     List<Map<String, Object>> getScoreBySchool(String school);//按学校查
-
+    @Insert("INSERT INTO user(name,password,role) VALUES(#{name},#{password},#{role})")
     void insert(User user);
     //查询所有
     @Select("select * from user_info")

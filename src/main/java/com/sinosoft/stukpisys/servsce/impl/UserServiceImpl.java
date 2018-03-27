@@ -16,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,6 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String register(User user) {
+        System.out.println(user.getName());
         String username = user.getName();
         if (userDao.getByName(username) != null) {
             return "用户已存在";
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String rawPassword = user.getPassword();
         user.setPassword(encoder.encode(rawPassword));
-        user.setRoles("ROLE_USER");
+        user.setRole(user.getRole());
         userDao.insert(user);
         return "success";
     }
