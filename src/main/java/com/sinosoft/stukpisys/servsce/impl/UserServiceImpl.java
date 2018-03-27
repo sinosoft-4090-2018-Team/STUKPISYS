@@ -1,6 +1,7 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
 import com.sinosoft.stukpisys.dao.UserDao;
+import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.User;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.UserService;
@@ -83,4 +84,11 @@ public class UserServiceImpl implements UserService {
         return userDao.getAllInfo();
     }
 
+    /*
+    * 查询所有学历信息
+    * */
+    @Override
+    public List<Education> getEduInfo() {
+        return userDao.getEduInfo();
+    }
 }

@@ -33,4 +33,8 @@ public interface UserDao{
 
     @Select("select * from user_info")
     List<UserInfo> getAllInfo();
+
+    @Select("select * from educate")
+    List<UserInfo> getEduInfo();
+
 }
