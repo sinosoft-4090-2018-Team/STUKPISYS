@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +33,9 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         } else {
-            return new JwtUser(user.getName(), user.getPassword(), user.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+            List<String> role = new ArrayList<>();
+            role.add(user.getRoles());
+            return new JwtUser(user.getName(), user.getPassword(), role.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
         }
     }
 

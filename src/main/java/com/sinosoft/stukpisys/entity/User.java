@@ -7,10 +7,10 @@ public class User extends BaseEntity{
     private Integer userId;
     private String name;
     private String password;
-    private List<String> roles;
+    private String roles;
     //private Score score;//成绩嵌入类
 
-    public User(Integer userId, String name, String password, List<String> roles) {
+    public User(Integer userId, String name, String password, String roles) {
         this.userId = userId;
         this.name = name;
         this.password = password;
@@ -41,11 +41,11 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
-    public List<String> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 }
