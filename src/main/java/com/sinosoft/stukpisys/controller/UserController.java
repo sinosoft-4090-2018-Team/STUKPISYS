@@ -1,5 +1,6 @@
 package com.sinosoft.stukpisys.controller;
 
+import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.User;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.UserService;
@@ -65,6 +66,15 @@ public class UserController {
             System.out.println(userInfoList.get(i).toString());
         }
          return "";
+    }
+    @GetMapping(value ="/getEduInfo")
+    public String getEduInfo()
+    {
+        List<Education> userEduInfoList=userService.getEduInfo();
+        for(int i=0;i<userEduInfoList.size();i++){
+            System.out.println(userEduInfoList.get(i).toString());
+        }
+        return "";
     }
 
     }

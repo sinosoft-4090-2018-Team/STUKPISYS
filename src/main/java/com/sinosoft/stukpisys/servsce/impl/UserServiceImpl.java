@@ -1,6 +1,7 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
 import com.sinosoft.stukpisys.dao.UserDao;
+import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.User;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.UserService;
@@ -20,25 +21,19 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserDao userDao;
 
+    @Autowired
     private AuthenticationManager authenticationManager;
-    private UserDetailsService userDetailsService;
-    private JwtToken jwtToken;
-
-   @Autowired
-    public UserServiceImpl(UserDao userDao){
-        this.userDao = userDao;
-    }
 
     @Autowired
-    public UserServiceImpl(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtToken jwtToken, UserDao userDao) {
-        this.authenticationManager = authenticationManager;
-        this.userDetailsService = userDetailsService;
-        this.jwtToken = jwtToken;
-       this.userDao = userDao;
-    }
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    private JwtToken jwtToken;
+
 
     @Override
     public String login(String username, String password) {
@@ -67,20 +62,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String refreshToken(String oldToken) {
-        String token = oldToken.substring("Bearer ".length());
+        String token = oldToken.substring("".length());
         if (!jwtToken.isTokenExpired(token)) {
             return jwtToken.refreshToken(token);
         }
         return "error";
     }
 
-    /**
-     * 查询所有信息
-     * @return
-     */
-    @Override
     public List<UserInfo> getAllInfo() {
+
         return userDao.getAllInfo();
     }
+
+    public List<Education> getEduInfo() {
+        return userDao.getEduInfo();
+    }
+
 
 }
