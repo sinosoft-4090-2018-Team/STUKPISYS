@@ -2,7 +2,7 @@ package com.sinosoft.stukpisys.entity;
 
 public class UserInfo {
     private Integer infoId;
-    private Integer userId;
+    private String userName;
     private String state;
     private String hrName;
     private String job;
@@ -15,6 +15,9 @@ public class UserInfo {
     private  Integer eduId;
     private String dept;
 
+    public UserInfo() {
+    }
+
     public Integer getInfoId() {
         return infoId;
     }
@@ -23,12 +26,12 @@ public class UserInfo {
         this.infoId = infoId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getState() {
@@ -123,7 +126,7 @@ public class UserInfo {
     public String toString() {
         return "UserInfo{" +
                 "infoId=" + infoId +
-                ", userId=" + userId +
+                ", userName='" + userName + '\'' +
                 ", state='" + state + '\'' +
                 ", hrName='" + hrName + '\'' +
                 ", job='" + job + '\'' +
