@@ -68,12 +68,28 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<UserInfo> getAllInfo() {
-
         return userDao.getAllInfo();
     }
 
     public List<Education> getEduInfo() {
         return userDao.getEduInfo();
+    }
+
+    @Override
+    public UserInfo getPersonInfoByName(String name) {
+        return userDao.getPersonInfoByName(name);
+    }
+
+    @Override
+    public List<UserInfo> getInfoByState(String state) {
+        return userDao.getInfoByState(state);
+    }
+
+    @Override
+    public int distPerson(String name, String dept) {
+       int count=userDao.distPerson(name,dept);
+       return count;
+
     }
 
 

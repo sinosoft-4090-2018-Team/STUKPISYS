@@ -43,4 +43,26 @@ public interface UserService {
      * @return  List<UserInfo>
      */
     List<Education> getEduInfo();
+
+    /**
+     * 按名字获取一个人的详细信息
+     * @param name
+     * @return
+     */
+    UserInfo getPersonInfoByName(String name);
+
+    /**
+     * 按实习生状态查询实习生
+     * @param state
+     * @return
+     */
+    List<UserInfo> getInfoByState(String state);
+
+    /**
+     * 给实习生分配部门
+     * @param name
+     * @param dept
+     * @return
+     */
+    int distPerson(String name,String dept);
 }
