@@ -2,9 +2,11 @@ spring:
   profiles:
     #表示所用配置文件为application-dev.yml
     active: dev
+#    热部署
   devtools:
       restart:
         enabled: true
+#        数据库
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.jdbc.Driver
