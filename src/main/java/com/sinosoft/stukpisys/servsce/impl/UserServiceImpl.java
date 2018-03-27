@@ -19,23 +19,19 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
     private UserDao userDao;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
     private JwtToken jwtToken;
 
-    @Autowired
-    public UserServiceImpl(UserDao userDao){
-        this.userDao = userDao;
-    }
-
-    @Autowired
-    public UserServiceImpl(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtToken jwtToken, UserDao userDao) {
-        this.authenticationManager = authenticationManager;
-        this.userDetailsService = userDetailsService;
-        this.jwtToken = jwtToken;
-        this.userDao = userDao;
-    }
 
     @Override
     public String login(String username, String password) {
@@ -64,7 +60,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String refreshToken(String oldToken) {
-        String token = oldToken.substring("Bearer ".length());
+        String token = oldToken.substring("".length());
         if (!jwtToken.isTokenExpired(token)) {
             return jwtToken.refreshToken(token);
         }
