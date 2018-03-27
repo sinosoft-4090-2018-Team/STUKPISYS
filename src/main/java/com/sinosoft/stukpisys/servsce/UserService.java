@@ -65,4 +65,20 @@ public interface UserService {
      * @return
      */
     int distPerson(String name,String dept);
+
+    /**
+     * 通过hr查询实习生
+     * @param name
+     * @param dept
+     * @return
+     */
+    List<UserInfo> getUserIdByhrName(String hr);
+
+    /**
+     * 通过id查询label的index和数值
+     * @param name
+     * @param dept
+     * @return
+     */
+    List<Integer> getScoreList(Integer id);
 }

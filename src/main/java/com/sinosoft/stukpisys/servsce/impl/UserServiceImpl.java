@@ -5,7 +5,7 @@ import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.User;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.UserService;
-import com.sinosoft.stukpisys.untils.JwtToken;
+import com.sinosoft.stukpisys.untils.JWTtoken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    private JwtToken jwtToken;
+    private JWTtoken jwtToken;
 
 
     @Override
@@ -90,6 +90,16 @@ public class UserServiceImpl implements UserService {
        int count=userDao.distPerson(name,dept);
        return count;
 
+    }
+
+    @Override
+    public List<UserInfo> getUserIdByhrName(String hr) {
+        return userDao.getUserIdByhrName(hr);
+    }
+
+    @Override
+    public List<Integer> getScoreList(Integer id) {
+        return userDao.getScoreList(id);
     }
 
 

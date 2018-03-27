@@ -54,4 +54,11 @@ public interface UserDao {
     //给实习生分配部门
     @Update("update user_info set dept=#{dept} where user_name=#{name}")
     int distPerson(String name,String dept);
+    //通过hr名字查询实习生id
+    @Select("select * from user_info where hr_name=#{hr}")
+    List<UserInfo> getUserIdByhrName(String hr);
+
+    //通过实习生id查询label的index和值
+    @Select("select label_index,value_int from score_value where user_id=#{id}")
+    List<Integer> getScoreList(Integer id);
 }
