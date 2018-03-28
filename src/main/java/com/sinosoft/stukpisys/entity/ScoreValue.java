@@ -2,7 +2,7 @@ package com.sinosoft.stukpisys.entity;
 
 import java.util.Date;
 
-public class DetailValue {
+public class ScoreValue {
     private  Integer valueId;
     private Integer userId;
     private  Integer labelIndex;

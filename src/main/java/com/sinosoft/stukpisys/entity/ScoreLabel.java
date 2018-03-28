@@ -1,10 +1,11 @@
 package com.sinosoft.stukpisys.entity;
 
-public class DetailLabel {
+public class ScoreLabel {
     private Integer labelId;
     private String labelName;
     private Integer labelIndex;
     private Integer type;
+    private String stage;
 
     public Integer getLabelId() {
         return labelId;
@@ -38,13 +39,22 @@ public class DetailLabel {
         this.type = type;
     }
 
+    public String getStage() {
+        return stage;
+    }
+
+    public void setStage(String stage) {
+        this.stage = stage;
+    }
+
     @Override
     public String toString() {
-        return "DetailLabel{" +
+        return "ScoreLabel{" +
                 "labelId=" + labelId +
                 ", labelName='" + labelName + '\'' +
                 ", labelIndex=" + labelIndex +
                 ", type=" + type +
+                ", stage='" + stage + '\'' +
                 '}';
     }
 }
