@@ -39,7 +39,7 @@ public class HRServiceImpl implements HRService{
         return count;
 
     }
-
+   //通过hr查询实习生
     @Override
     public List<UserInfo> getUserIdByhrName(String hr) {
         return userDao.getUserIdByhrName(hr);

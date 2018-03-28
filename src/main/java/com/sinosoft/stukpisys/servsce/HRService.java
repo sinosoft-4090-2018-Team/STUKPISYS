@@ -48,8 +48,8 @@ public interface HRService {
 
     /**
      * 通过hr查询实习生
-     * @param name
-     * @param dept
+     * @param hr
+     * @param List<UserInfo>
      * @return
      */
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")

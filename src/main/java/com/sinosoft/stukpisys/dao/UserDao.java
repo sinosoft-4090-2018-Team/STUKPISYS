@@ -61,4 +61,17 @@ public interface UserDao{
     //通过实习生id查询label的index和值
     @Select("select label_index,value_int from score_value where user_id=#{id}")
     List<Integer> getScoreList(Integer id);
+
+    //通过应聘岗位查询实习生信息
+    @Select("select * from user_info where job=#{job}")
+    List<UserInfo> getUserByJob(String job);
+
+    //通过性别查询实习生信息
+    @Select("select * from user_info where sex=#{sex}")
+    List<UserInfo> getUserBySex(String sex);
+
+    //通过入司时间查询实习生信息
+    @Select("select * from user_info where enterTime=#{enterTime}")
+    List<UserInfo> getUserByEnterTime(String  enterTime);
+
 }
