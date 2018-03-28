@@ -1,5 +1,6 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
+import com.sinosoft.stukpisys.dao.InfoDao;
 import com.sinosoft.stukpisys.dao.UserDao;
 import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.UserInfo;
@@ -13,40 +14,20 @@ import java.util.List;
 public class HRServiceImpl implements HRService{
 
     @Autowired
-    private UserDao userDao;
-
-    public List<UserInfo> getAllInfo() {
-        return userDao.getAllInfo();
-    }
-
-    public List<Education> getEduInfo() {
-        return userDao.getEduInfo();
-    }
+    private InfoDao infoDao;
 
     @Override
     public UserInfo getPersonInfoByName(String name) {
-        return userDao.getPersonInfoByName(name);
+        return infoDao.getPersonInfoByName(name);
     }
 
     @Override
-    public List<UserInfo> getInfoByState(String state) {
-        return userDao.getInfoByState(state);
+    public List<UserInfo> getUserInfoByState(String state) {
+        return infoDao.getInfoByState(state);
     }
 
-    @Override
-    public int distPerson(String name, String dept) {
-        int count=userDao.distPerson(name,dept);
-        return count;
 
-    }
-   //通过hr查询实习生
-    @Override
-    public List<UserInfo> getUserIdByhrName(String hr) {
-        return userDao.getUserIdByhrName(hr);
-    }
 
-    @Override
-    public List<Integer> getScoreList(Integer id) {
-        return userDao.getScoreList(id);
-    }
+
+
 }

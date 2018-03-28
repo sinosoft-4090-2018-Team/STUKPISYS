@@ -19,25 +19,25 @@ public class HRController {
     @Autowired
     private HRService hrService;
 
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
-    @GetMapping(value ="/getAllInfo")
-    public String getAllInfo()
-    {
-        List<UserInfo> userInfoList=hrService.getAllInfo();
-
-        return JSON.toJSONString(userInfoList);
-    }
-
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
-    @GetMapping(value ="/getEduInfo")
-    public String getEduInfo()
-    {
-        List<Education> userEduInfoList=hrService.getEduInfo();
-        for(int i=0;i<userEduInfoList.size();i++){
-            System.out.println(userEduInfoList.get(i).toString());
-        }
-        return "";
-    }
+//    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+//    @GetMapping(value ="/getAllInfo")
+//    public String getAllInfo()
+//    {
+//        List<UserInfo> userInfoList=hrService.getAllInfo();
+//
+//        return JSON.toJSONString(userInfoList);
+//    }
+//
+//    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+//    @GetMapping(value ="/getEduInfo")
+//    public String getEduInfo()
+//    {
+//        List<Education> userEduInfoList=hrService.getEduInfo();
+//        for(int i=0;i<userEduInfoList.size();i++){
+//            System.out.println(userEduInfoList.get(i).toString());
+//        }
+//        return "";
+//    }
 
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/getPersonInfoByName")
@@ -47,24 +47,24 @@ public class HRController {
         return "";
     }
 
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
-    @GetMapping(value ="/getInfoByState")
-    public String getInfoByState(String state)
-    {
-        List<UserInfo> userInfoList=hrService.getInfoByState(state);
-        return "";
-    }
-
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
-    @GetMapping(value ="/distPerson")
-    public String distPerson(String name, String dept)
-    {
-        int count=hrService.distPerson(name,dept);
-        if (1==count){
-            return "";
-        }else{
-            return "";
-        }
-
-    }
+//    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+//    @GetMapping(value ="/getInfoByState")
+//    public String getInfoByState(String state)
+//    {
+//        List<UserInfo> userInfoList=hrService.getInfoByState(state);
+//        return "";
+//    }
+//
+//    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+//    @GetMapping(value ="/distPerson")
+//    public String distPerson(String name, String dept)
+//    {
+//        int count=hrService.distPerson(name,dept);
+//        if (1==count){
+//            return "";
+//        }else{
+//            return "";
+//        }
+//
+//    }
 }
