@@ -19,52 +19,70 @@ public class HRController {
     @Autowired
     private HRService hrService;
 
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
-    @GetMapping(value ="/getAllInfo")
-    public String getAllInfo()
-    {
-        List<UserInfo> userInfoList=hrService.getAllInfo();
-
-        return JSON.toJSONString(userInfoList);
-    }
-
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
-    @GetMapping(value ="/getEduInfo")
-    public String getEduInfo()
-    {
-        List<Education> userEduInfoList=hrService.getEduInfo();
-        for(int i=0;i<userEduInfoList.size();i++){
-            System.out.println(userEduInfoList.get(i).toString());
-        }
-        return "";
-    }
-
+    //hr通过员工名字获取员工信息
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/getPersonInfoByName")
     public String getPersonInfoByName(String name)
     {
         UserInfo userInfo=hrService.getPersonInfoByName(name);
-        return "";
+        return JSON.toJSONString(userInfo);
     }
 
+    //hr 获取自己面试的所有员工信息
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    @GetMapping(value ="/getInfoByState")
+    public String getUserIdByhrName(String hrName)
+    {
+        List<UserInfo> userInfoList=hrService.getUserIdByhrName(hrName);
+        return JSON.toJSONString(userInfoList);
+    }
+    //通过工作意愿筛选员工
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    @GetMapping(value ="/getUserByJob")
+    public String getUserByJob(String job)
+    {
+        List<UserInfo> userInfoList=hrService.getUserByJob(job);
+        return JSON.toJSONString(userInfoList);
+    }
+    //通过性别来挑选员工--------权限有变
+    @PreAuthorize("hasAnyRole( 'MG','ADMIN')")
+    @GetMapping(value ="/getUserBySex")
+    public String getUserBySex(String sex)
+    {
+        List<UserInfo> userInfoList=hrService.getUserBySex(sex);
+        return JSON.toJSONString(userInfoList);
+    }
+    //通过入职时间来筛选-------权限有变
+    @PreAuthorize("hasAnyRole( 'MG','ADMIN')")
+    @GetMapping(value ="/getUserByEnterTime")
+    public String getUserByEnterTime(String entertime)
+    {
+        List<UserInfo> userInfoList=hrService.getUserByEnterTime(entertime);
+        return JSON.toJSONString(userInfoList);
+    }
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    @GetMapping(value ="/getUserBySchool")
+    public String getUserBySchool(String  schoolName)
+    {
+        List<UserInfo> userInfoList=hrService.getUserBySchool(schoolName) ;
+        return JSON.toJSONString(userInfoList);
+    }
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    @GetMapping(value ="/getUserByHighestEducate")
+    public String getUserByHighestEducate(String educate)
+    {
+        List<UserInfo> userInfoList=hrService.getUserByHighestEducate(educate);
+        return JSON.toJSONString(userInfoList);
+    }
+
+    //hr通过状态获取所有员工信息-------权限有变
+    @PreAuthorize("hasAnyRole( 'MG','ADMIN')")
     @GetMapping(value ="/getInfoByState")
     public String getInfoByState(String state)
     {
-        List<UserInfo> userInfoList=hrService.getInfoByState(state);
-        return "";
+        List<UserInfo> userInfoList=hrService.getUserInfoByState(state);
+        return JSON.toJSONString(userInfoList);
     }
 
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
-    @GetMapping(value ="/distPerson")
-    public String distPerson(String name, String dept)
-    {
-        int count=hrService.distPerson(name,dept);
-        if (1==count){
-            return "";
-        }else{
-            return "";
-        }
 
-    }
 }

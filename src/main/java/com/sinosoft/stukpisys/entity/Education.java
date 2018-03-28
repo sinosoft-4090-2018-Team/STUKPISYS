@@ -1,6 +1,8 @@
 package com.sinosoft.stukpisys.entity;
 
 
+import java.sql.Date;
+
 public class Education {
 
   private long eduId;
@@ -11,6 +13,15 @@ public class Education {
   private long is211;
   private java.sql.Date graduationTime;
 
+  public Education(long eduId, String highestEducate, String major, String schoolName, String location, long is211, Date graduationTime) {
+    this.eduId = eduId;
+    this.highestEducate = highestEducate;
+    this.major = major;
+    this.schoolName = schoolName;
+    this.location = location;
+    this.is211 = is211;
+    this.graduationTime = graduationTime;
+  }
 
   public long getEduId() {
     return eduId;
