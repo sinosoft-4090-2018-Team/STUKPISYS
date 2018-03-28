@@ -8,6 +8,7 @@ public class ScoreLabel {
   private long labelIndex;
   private long type;
   private long stage;
+  private long isSum;
 
 
   public long getLabelId() {
@@ -52,6 +53,15 @@ public class ScoreLabel {
 
   public void setStage(long stage) {
     this.stage = stage;
+  }
+
+
+  public long getIsSum() {
+    return isSum;
+  }
+
+  public void setIsSum(long isSum) {
+    this.isSum = isSum;
   }
 
 }
