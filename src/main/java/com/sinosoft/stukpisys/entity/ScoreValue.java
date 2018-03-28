@@ -1,6 +1,5 @@
 package com.sinosoft.stukpisys.entity;
 
-
 public class ScoreValue {
 
   private long valueId;

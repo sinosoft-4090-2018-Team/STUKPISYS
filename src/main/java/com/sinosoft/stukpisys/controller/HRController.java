@@ -1,7 +1,6 @@
 package com.sinosoft.stukpisys.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -84,5 +84,26 @@ public class HRController {
         return JSON.toJSONString(userInfoList);
     }
 
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    @GetMapping(value ="/distPerson")
+    public String distPerson(String name, String dept)
+    {
+        int count=hrService.distPerson(name,dept);
+        if (1==count){
+            return "";
+        }else{
+            return "";
+        }
+
+    }
+
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    @GetMapping(value ="/getUserScoreByStageAndTime")
+    public String getUserScoreByStageAndTime(int stage, Date enterTime)
+    {
+        List<List<Object>> userInfoList=hrService.getUserScoreByStageAndTime(stage,enterTime);
+
+        return JSON.toJSONString(userInfoList);
+    }
 
 }

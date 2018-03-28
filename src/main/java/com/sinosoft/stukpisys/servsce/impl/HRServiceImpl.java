@@ -1,13 +1,12 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
 import com.sinosoft.stukpisys.dao.InfoDao;
-import com.sinosoft.stukpisys.dao.UserDao;
-import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -50,6 +49,11 @@ public class HRServiceImpl implements HRService{
     @Override
     public List<UserInfo> getUserBySchool(String name) {
         return infoDao.getUserBySchoolName(name);
+    }
+
+    @Override
+    public List<List<Object>> getUserScoreByStageAndTime(int stage, Date enter_time) {
+        return scoreDao.getUserScoreByStageAndTime(stage,enter_time);
     }
 
     @Override

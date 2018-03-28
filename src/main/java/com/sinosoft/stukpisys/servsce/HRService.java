@@ -1,6 +1,5 @@
 package com.sinosoft.stukpisys.servsce;
 
-import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import org.springframework.security.access.prepost.PreAuthorize;
 
@@ -29,6 +28,22 @@ public interface HRService {
 
 
 
+    /**
+     * 通过id查询label的index和数值
+     * @param name
+     * @param dept
+     * @return
+     */
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<Integer> getScoreList(Integer id);
 
+    /**
+     * 按阶段和时间查看总分数（排序）
+     * @param stage
+     * @param enter_time
+     * @return
+     */
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<List<Object>> getUserScoreByStageAndTime(int stage, java.sql.Date enter_time);
 
 }
