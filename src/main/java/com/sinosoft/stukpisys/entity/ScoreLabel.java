@@ -1,60 +1,57 @@
 package com.sinosoft.stukpisys.entity;
 
+
 public class ScoreLabel {
-    private Integer labelId;
-    private String labelName;
-    private Integer labelIndex;
-    private Integer type;
-    private String stage;
 
-    public Integer getLabelId() {
-        return labelId;
-    }
+  private long labelId;
+  private String labelName;
+  private long labelIndex;
+  private long type;
+  private long stage;
 
-    public void setLabelId(Integer labelId) {
-        this.labelId = labelId;
-    }
 
-    public String getLabelName() {
-        return labelName;
-    }
+  public long getLabelId() {
+    return labelId;
+  }
 
-    public void setLabelName(String labelName) {
-        this.labelName = labelName;
-    }
+  public void setLabelId(long labelId) {
+    this.labelId = labelId;
+  }
 
-    public Integer getLabelIndex() {
-        return labelIndex;
-    }
 
-    public void setLabelIndex(Integer labelIndex) {
-        this.labelIndex = labelIndex;
-    }
+  public String getLabelName() {
+    return labelName;
+  }
 
-    public Integer getType() {
-        return type;
-    }
+  public void setLabelName(String labelName) {
+    this.labelName = labelName;
+  }
 
-    public void setType(Integer type) {
-        this.type = type;
-    }
 
-    public String getStage() {
-        return stage;
-    }
+  public long getLabelIndex() {
+    return labelIndex;
+  }
 
-    public void setStage(String stage) {
-        this.stage = stage;
-    }
+  public void setLabelIndex(long labelIndex) {
+    this.labelIndex = labelIndex;
+  }
 
-    @Override
-    public String toString() {
-        return "ScoreLabel{" +
-                "labelId=" + labelId +
-                ", labelName='" + labelName + '\'' +
-                ", labelIndex=" + labelIndex +
-                ", type=" + type +
-                ", stage='" + stage + '\'' +
-                '}';
-    }
+
+  public long getType() {
+    return type;
+  }
+
+  public void setType(long type) {
+    this.type = type;
+  }
+
+
+  public long getStage() {
+    return stage;
+  }
+
+  public void setStage(long stage) {
+    this.stage = stage;
+  }
+
 }

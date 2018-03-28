@@ -1,5 +1,7 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.dao.UserDao;
 import com.sinosoft.stukpisys.entity.User;
 import com.sinosoft.stukpisys.servsce.UserService;
@@ -36,7 +38,10 @@ public class UserServiceImpl implements UserService {
         Authentication authentication = authenticationManager.authenticate(upToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        return JwtToken.generateToken(userDetails);
+        JSONObject res = new JSONObject();
+        res.put("token",JwtToken.generateToken(userDetails));
+        res.put("role",userDao.getByName(username).getRole());
+        return res.toJSONString();
     }
 
     @Override

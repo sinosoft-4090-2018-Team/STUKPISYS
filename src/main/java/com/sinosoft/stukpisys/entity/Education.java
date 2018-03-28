@@ -1,70 +1,77 @@
 package com.sinosoft.stukpisys.entity;
 
+
 public class Education {
-    private Integer eduId;
-    private String highestEdu;
-    private String major;
-    private String school;
-    private String type;
-    private String graduationTime;
 
-    public Integer getEduId() {
-        return eduId;
-    }
+  private long eduId;
+  private String highestEducate;
+  private String major;
+  private String schoolName;
+  private String location;
+  private long is211;
+  private java.sql.Date graduationTime;
 
-    public void setEduId(Integer eduId) {
-        this.eduId = eduId;
-    }
 
-    public String getHighestEdu() {
-        return highestEdu;
-    }
+  public long getEduId() {
+    return eduId;
+  }
 
-    public void setHighestEdu(String highestEdu) {
-        this.highestEdu = highestEdu;
-    }
+  public void setEduId(long eduId) {
+    this.eduId = eduId;
+  }
 
-    public String getMajor() {
-        return major;
-    }
 
-    public void setMajor(String major) {
-        this.major = major;
-    }
+  public String getHighestEducate() {
+    return highestEducate;
+  }
 
-    public String getSchool() {
-        return school;
-    }
+  public void setHighestEducate(String highestEducate) {
+    this.highestEducate = highestEducate;
+  }
 
-    public void setSchool(String school) {
-        this.school = school;
-    }
 
-    public String getType() {
-        return type;
-    }
+  public String getMajor() {
+    return major;
+  }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public void setMajor(String major) {
+    this.major = major;
+  }
 
-    public String getGraduationTime() {
-        return graduationTime;
-    }
 
-    public void setGraduationTime(String graduationTime) {
-        this.graduationTime = graduationTime;
-    }
+  public String getSchoolName() {
+    return schoolName;
+  }
 
-    @Override
-    public String toString() {
-        return "Education{" +
-                "eduId=" + eduId +
-                ", highestEdu='" + highestEdu + '\'' +
-                ", major='" + major + '\'' +
-                ", school='" + school + '\'' +
-                ", type='" + type + '\'' +
-                ", graduationTime='" + graduationTime + '\'' +
-                '}';
-    }
+  public void setSchoolName(String schoolName) {
+    this.schoolName = schoolName;
+  }
+
+
+  public String getLocation() {
+    return location;
+  }
+
+  public void setLocation(String location) {
+    this.location = location;
+  }
+
+
+  public long getIs211() {
+    return is211;
+  }
+
+  public void setIs211(long is211) {
+    this.is211 = is211;
+  }
+
+
+  public java.sql.Date getGraduationTime() {
+    return graduationTime;
+  }
+
+  public void setGraduationTime(java.sql.Date graduationTime) {
+    this.graduationTime = graduationTime;
+  }
+
 }
