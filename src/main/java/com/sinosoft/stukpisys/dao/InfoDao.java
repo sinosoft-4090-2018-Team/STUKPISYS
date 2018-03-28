@@ -23,7 +23,7 @@ public interface InfoDao {
     //给实习生分配部门
     @Update("update user_info set dept=#{dept} where user_name=#{name}")
     int distPerson(String name,String dept);
-    //通过hr名字查询实习生id
+    //通过hr名字查询实习生
     @Select("select * from user_info where hr_name=#{hr}")
     List<UserInfo> getUserIdByhrName(String hr);
 
@@ -45,7 +45,7 @@ public interface InfoDao {
 
     //查询所有
     @Select("select * from user_info")
-    List<UserInfo> getAllInfo();
+    List<UserInfo> getAllUserInfo();
     //根据状态查询非正常状态实习生
     @Select("select * from user_info where state=#{0}")
     List<UserInfo> getInfoByState(String state);

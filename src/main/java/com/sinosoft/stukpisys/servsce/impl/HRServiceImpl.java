@@ -26,8 +26,36 @@ public class HRServiceImpl implements HRService{
         return infoDao.getInfoByState(state);
     }
 
+    @Override
+    public List<UserInfo> getUserIdByhrName(String hrName) {
+        return infoDao.getUserIdByhrName(hrName);
+    }
 
 
+    @Override
+    public List<UserInfo> getUserByJob(String job) {
+        return infoDao.getUserByJob(job);
+    }
+
+    @Override
+    public List<UserInfo> getUserBySex(String sex) {
+        return infoDao.getUserBySex(sex);
+    }
+
+    @Override
+    public List<UserInfo> getUserByEnterTime(String enterTime) {
+        return infoDao.getUserByEnterTime(enterTime);
+    }
+
+    @Override
+    public List<UserInfo> getUserBySchool(String name) {
+        return infoDao.getUserBySchoolName(name);
+    }
+
+    @Override
+    public List<UserInfo> getUserByHighestEducate(String educate) {
+        return infoDao.getUserByHighestEducate(educate);
+    }
 
 
 }
