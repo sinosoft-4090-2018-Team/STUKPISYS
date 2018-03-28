@@ -21,7 +21,7 @@
         <div class="enter">
             <div class="user">
                 <span>用户姓名:</span>
-                <input type="text" placeholder="请输入用户名"/>
+                <input type="text" value="请输入关键字" onfocus="if(this.value == '请输入关键字') this.value = ''" onblur="if(this.value =='') this.value = '请输入关键字'" />
             </div>
             <div class="upwd">
                 <span>登录密码:</span>
