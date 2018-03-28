@@ -1,72 +1,67 @@
 package com.sinosoft.stukpisys.entity;
 
-import java.util.Date;
 
 public class ScoreValue {
-    private  Integer valueId;
-    private Integer userId;
-    private  Integer labelIndex;
-    private Integer valueInt;
-    private String valueString;
-    private Date valueDate;
 
-    public Integer getValueId() {
-        return valueId;
-    }
+  private long valueId;
+  private long userId;
+  private long labelIndex;
+  private long valueInt;
+  private String valueString;
+  private java.sql.Date valueDate;
 
-    public void setValueId(Integer valueId) {
-        this.valueId = valueId;
-    }
 
-    public Integer getUserId() {
-        return userId;
-    }
+  public long getValueId() {
+    return valueId;
+  }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+  public void setValueId(long valueId) {
+    this.valueId = valueId;
+  }
 
-    public Integer getLabelIndex() {
-        return labelIndex;
-    }
 
-    public void setLabelIndex(Integer labelIndex) {
-        this.labelIndex = labelIndex;
-    }
+  public long getUserId() {
+    return userId;
+  }
 
-    public Integer getValueInt() {
-        return valueInt;
-    }
+  public void setUserId(long userId) {
+    this.userId = userId;
+  }
 
-    public void setValueInt(Integer valueInt) {
-        this.valueInt = valueInt;
-    }
 
-    public String getValueString() {
-        return valueString;
-    }
+  public long getLabelIndex() {
+    return labelIndex;
+  }
 
-    public void setValueString(String valueString) {
-        this.valueString = valueString;
-    }
+  public void setLabelIndex(long labelIndex) {
+    this.labelIndex = labelIndex;
+  }
 
-    public Date getValueDate() {
-        return valueDate;
-    }
 
-    public void setValueDate(Date valueDate) {
-        this.valueDate = valueDate;
-    }
+  public long getValueInt() {
+    return valueInt;
+  }
 
-    @Override
-    public String toString() {
-        return "DetailValue{" +
-                "valueId=" + valueId +
-                ", userId=" + userId +
-                ", labelIndex=" + labelIndex +
-                ", valueInt=" + valueInt +
-                ", valueString='" + valueString + '\'' +
-                ", valueDate=" + valueDate +
-                '}';
-    }
+  public void setValueInt(long valueInt) {
+    this.valueInt = valueInt;
+  }
+
+
+  public String getValueString() {
+    return valueString;
+  }
+
+  public void setValueString(String valueString) {
+    this.valueString = valueString;
+  }
+
+
+  public java.sql.Date getValueDate() {
+    return valueDate;
+  }
+
+  public void setValueDate(java.sql.Date valueDate) {
+    this.valueDate = valueDate;
+  }
+
 }
