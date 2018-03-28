@@ -53,12 +53,18 @@ public class HRServiceImpl implements HRService{
 
     @Override
     public List<List<Object>> getUserScoreByStageAndTime(int stage, Date enter_time) {
-        return scoreDao.getUserScoreByStageAndTime(stage,enter_time);
+//        return scoreDao.getUserScoreByStageAndTime(stage,enter_time);
+        return null;
     }
 
     @Override
     public List<UserInfo> getUserByHighestEducate(String educate) {
         return infoDao.getUserByHighestEducate(educate);
+    }
+
+    @Override
+    public List<Integer> getScoreList(Integer id) {
+        return null;
     }
 
 
