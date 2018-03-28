@@ -1,6 +1,6 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
-import com.sinosoft.stukpisys.dao.UserDao;
+import com.sinosoft.stukpisys.dao.InfoDao;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +12,8 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService{
 
     @Autowired
-    UserDao userDao;
-    @Override
-    public List<UserInfo> getUserByJob(String job) {
-        return userDao.getUserByJob(job);
-    }
+    InfoDao infoDao;
 
-    @Override
-    public List<UserInfo> getUserBySex(String sex) {
-        return userDao.getUserBySex(sex);
-    }
 
-    @Override
-    public List<UserInfo> getUserByEnterTime(String enterTime) {
-        return userDao.getUserByEnterTime(enterTime);
-    }
+
 }
