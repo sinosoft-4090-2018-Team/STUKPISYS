@@ -84,5 +84,12 @@ public class Education {
   public void setGraduationTime(java.sql.Date graduationTime) {
     this.graduationTime = graduationTime;
   }
-
+  public Education(String highestEducate, String major, String schoolName, String location, long is211, Date graduationTime) {
+    this.highestEducate = highestEducate;
+    this.major = major;
+    this.schoolName = schoolName;
+    this.location = location;
+    this.is211 = is211;
+    this.graduationTime = graduationTime;
+  }
 }

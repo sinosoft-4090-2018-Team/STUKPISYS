@@ -8,7 +8,7 @@ public class ScoreLabel {
   private long labelIndex;
   private long type;
   private long stage;
-  private long isSum;
+  private String belong;
 
 
   public long getLabelId() {
@@ -56,12 +56,19 @@ public class ScoreLabel {
   }
 
 
-  public long getIsSum() {
-    return isSum;
+  public String getBelong() {
+    return belong;
   }
 
-  public void setIsSum(long isSum) {
-    this.isSum = isSum;
+  public void setBelong(String belong) {
+    this.belong = belong;
   }
 
+  public ScoreLabel(String labelName, long labelIndex, long type, long stage, String belong) {
+    this.labelName = labelName;
+    this.labelIndex = labelIndex;
+    this.type = type;
+    this.stage = stage;
+    this.belong = belong;
+  }
 }
