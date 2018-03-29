@@ -104,6 +104,6 @@ public interface ScoreDao {
             "FROM score_label l JOIN score_value v\n" +
             "ON l.label_index=v.label_index\n" +
             "where user_id=#{0} AND l.stage=#{1}")
-     List<List<Object>> getScoreFromFirstStageByUser_id(int userId,int stage);
+     List<List<Object>> getScoreFromStageByUser_id(int userId,int stage);
 
 }

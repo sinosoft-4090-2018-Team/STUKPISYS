@@ -1,7 +1,10 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
 import com.sinosoft.stukpisys.dao.InfoDao;
+import com.sinosoft.stukpisys.dao.ScoreDao;
+import com.sinosoft.stukpisys.dao.UserDao;
 import com.sinosoft.stukpisys.entity.Education;
+import com.sinosoft.stukpisys.entity.User;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.apache.ibatis.annotations.Param;
@@ -17,6 +20,10 @@ public class HRServiceImpl implements HRService{
 
     @Autowired
     private InfoDao infoDao;
+    @Autowired
+    private ScoreDao scoreDao;
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public UserInfo getPersonInfoByName(String name) {
@@ -127,6 +134,16 @@ public class HRServiceImpl implements HRService{
     @Override
     public Education getEduInfoByUserName(String userName) {
         return  infoDao.getEduInfoByUserName(userName);
+    }
+
+    @Override
+    public List<List<Object>> getScoreFromStageByUser_id(int userId, int stage) {
+        return scoreDao.getScoreFromStageByUser_id(userId,stage);
+    }
+
+    @Override
+    public User getByName(String name) {
+        return userDao.getByName(name);
     }
 
     @Override
