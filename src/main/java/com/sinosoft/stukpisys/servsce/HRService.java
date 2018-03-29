@@ -2,7 +2,9 @@ package com.sinosoft.stukpisys.servsce;
 
 import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.UserInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -36,6 +38,8 @@ public interface HRService {
     List<List<Object>> getUserInfoByParam(String HRName,String job,String school,String education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211);
     //3-29 服务traineeController
     Education getEduInfoByUserName(String userName);
+    List<List<Object>> getUserInfoByParam(@Param("HRName")String HRName, String job, String school, String education, String major, boolean sex, boolean isFired, boolean isNew, boolean hasErr, boolean is211);
+
 
 
 
