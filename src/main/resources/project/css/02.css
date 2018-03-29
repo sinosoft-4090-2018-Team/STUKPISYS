@@ -1,0 +1,18 @@
+.container{
+    margin:0 auto;
+}
+.nav{
+    height:100px;
+    border:1px solid #000;
+}
+.content{
+    text-align:center;
+}
+.select{
+    border:1px solid #000;
+    height:500px;
+}
+.pics{
+    height:500px;
+    border:1px solid #000;
+}
