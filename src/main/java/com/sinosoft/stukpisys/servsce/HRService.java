@@ -23,8 +23,15 @@ public interface HRService {
     List<UserInfo> getUserByEnterTime(String  enterTime);
     List<UserInfo> getUserBySchool(String name);
     List<UserInfo> getUserByHighestEducate(String educate);
-
-
+    //3-29
+    int getPopulationBySexDiffer(int gender);
+    int getPopulationByEducationDiffer(String education);
+    List<String> getDifferEducateName();
+    int getPopulationByMajorDiffer(String major);
+    List<String> getDifferMajorName();
+    int getPopulationByIs211(int is211);
+    int getPopulationByLocationDiffer(String location);
+    List<String> getDifferLocationName();
 
 
 

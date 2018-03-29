@@ -38,6 +38,7 @@ public class HRServiceImpl implements HRService{
 
     @Override
     public List<UserInfo> getUserBySex(String sex) {
+
         return infoDao.getUserBySex(sex);
     }
 
@@ -62,6 +63,47 @@ public class HRServiceImpl implements HRService{
         return infoDao.getUserByHighestEducate(educate);
     }
 
+    @Override
+    public int getPopulationBySexDiffer(int gender) {
+        return  infoDao.getPopulationBySexDiffer(gender);
+    }
+
+    @Override
+    public int getPopulationByEducationDiffer(String education) {
+        return infoDao.getPopulationByEducationDiffer(education);
+    }
+
+    @Override
+    public List<String> getDifferEducateName() {
+        return infoDao.getDifferEducateName();
+    }
+
+    @Override
+    public int getPopulationByMajorDiffer(String major) {
+        return infoDao.getPopulationByMajorDiffer(major);
+    }
+
+    @Override
+    public List<String> getDifferMajorName() {
+        return infoDao.getDifferMajorName();
+    }
+
+    @Override
+    public int getPopulationByIs211(int is211) {
+        return infoDao.getPopulationByIs211(is211);
+    }
+
+    @Override
+    public int getPopulationByLocationDiffer(String location) {
+        return infoDao.getPopulationByLocationDiffer(location);
+    }
+
+    @Override
+    public List<String> getDifferLocationName() {
+        return infoDao.getDifferLocationName();
+    }
+
+    //未知方法
     @Override
     public List<Integer> getScoreList(Integer id) {
         return null;
