@@ -32,6 +32,9 @@ public interface HRService {
     int getPopulationByIs211(int is211);
     int getPopulationByLocationDiffer(String location);
     List<String> getDifferLocationName();
+    List<List<Object>> getUserInfoByParam(String HRName,String job,String school,String education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211);
+
+
 
 
 

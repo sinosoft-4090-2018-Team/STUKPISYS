@@ -79,4 +79,31 @@ public interface InfoDao {
     List<String> getDifferLocationName();
 
 
+
+   @Select("\t<script> \" +\n" +
+           "            \"SELECT education.*,d.* \" +\n" +
+           "            \"from education,\n" +
+           "\t\t\t\t\t\t(SELECT user_info.*,c.* FROM user_info ,\n" +
+           "\t\t\t\t\t\t(SELECT user.name,b.* from user, \n" +
+           "\t\t\t\t\t\t(select score_value.user_id,a.* from score_value,\n" +
+           "\t\t\t\t\t\t(select * from score_label where belong='err') a\n" +
+           "\t\t\t\t\t\t\twhere a.label_index=score_value.label_index) b\n" +
+           "\t\t\t\t\t\t\twhere user.user_id=b.user_id) c\n" +
+           "\t\t\t\t\t\t\twhere user_info.user_name=c.name) d\" +\n" +
+           "            \" <where> \" +\n" +
+           "            \" <if test=\\\"hr_name != null\\\">hr_name=#{HRName}</if> \" +\n" +
+           "            \" <if test=\\\"job != null\\\"> AND job=#{job}</if> \" +\n" +
+           "            \" <if test=\\\"school_name != null\\\"> AND school_name=#{school}</if> \" +\n" +
+           "\t\t\t\t\t\t\" <if test=\\\"highest_educate != null\\\"> AND highest_educate=#{education}</if> \" +\n" +
+           "\t\t\t\t\t\t\" <if test=\\\"major != null\\\"> AND major=#{major}</if> \" +\n" +
+           "\t\t\t\t\t\t\" <if test=\\\"sex != null\\\"> AND sex=#{sex}</if> \" +\n" +
+           "\t\t\t\t\t\t\" <if test=\\\"state != null\\\"> AND state=#{state }</if> \" +\n" +
+           "\t\t\t\t\t\t\" <if test=\\\"is211 != null\\\"> AND is211=#{is211}</if> \" +\n" +
+           "\t\t\t      \" <if test=\\\"belong != null\\\"> AND belong=#{belong}</if> \" +\n" +
+           "\t\t\t\t\t\t\"  and education.edu_id=d.edu_id\"\n" +
+           "            \" </where> \" +\n" +
+           "            \n" +
+           "            \" </script> ")
+    List<List<Object>> getUserInfoByParam(String HRName, String job, String school, String education, String major, boolean sex, String state, String belong, boolean is211);
+
 }
