@@ -86,6 +86,8 @@ public class FileServiceImpl implements FileService{
 
     private String saveScore(List<List<Object>> excel){
         //todo
+
+        //插入表头信息
         int a=0,b=0,c=0,d=0;
         String str1="",str2="",str3="",str4="";
         ScoreLabel scoreLabel=new ScoreLabel("",1,0,0,"");
@@ -105,23 +107,17 @@ public class FileServiceImpl implements FileService{
                 str4="评价阶段";
             }
         }
-//        for(int i=0;i<a;i++){
-//            String labelName=(String)excel.get(0).get(i)+(String)excel.get(1).get(i)+(String)excel.get(2).get(i);
-//            ScoreLabel
-//
-//        }
+
         //第一阶段信息
-        long labelIndex=1;
         for(int j=a;j<b;j++){
             String labelName=(String)excel.get(1).get(j)+(String)excel.get(2).get(j);
             if(((String)excel.get(1).get(j)).equals("第一阶段成绩")){
-                scoreLabel=new ScoreLabel(labelName,labelIndex,0,1,"sum");
+                scoreLabel=new ScoreLabel(labelName,j,0,1,"sum");
             }else if(((String)excel.get(1).get(j)).contains("评价")){
-                scoreLabel=new ScoreLabel(labelName,labelIndex,0,1,"judge");
+                scoreLabel=new ScoreLabel(labelName,j,0,1,"judge");
             }else{
-                scoreLabel=new ScoreLabel(labelName,labelIndex,0,1,"");
+                scoreLabel=new ScoreLabel(labelName,j,0,1,"");
             }
-            labelIndex++;
             //调用插入score_label表中
             //insert(scoreLabel);
         }
@@ -129,13 +125,12 @@ public class FileServiceImpl implements FileService{
         for(int j=b;j<c;j++){
             String labelName=(String)excel.get(1).get(j)+(String)excel.get(2).get(j);
             if(((String)excel.get(1).get(j)).equals("第二阶段成绩")){
-                scoreLabel=new ScoreLabel(labelName,labelIndex,0,2,"sum");
+                scoreLabel=new ScoreLabel(labelName,j,0,2,"sum");
             }else if(((String)excel.get(1).get(j)).contains("评价")){
-                scoreLabel=new ScoreLabel(labelName,labelIndex,0,2,"judge");
+                scoreLabel=new ScoreLabel(labelName,j,0,2,"judge");
             }else{
-                scoreLabel=new ScoreLabel(labelName,labelIndex,0,2,"");
+                scoreLabel=new ScoreLabel(labelName,j,0,2,"");
             }
-            labelIndex++;
             //调用插入score_label表中
             //insert(scoreLabel);
         }
@@ -144,13 +139,12 @@ public class FileServiceImpl implements FileService{
             String labelName=(String)excel.get(1).get(j)+(String)excel.get(2).get(j);
 
             if(((String)excel.get(1).get(j)).equals("第三阶段成绩")){
-                scoreLabel=new ScoreLabel(labelName,labelIndex,0,3,"sum");
+                scoreLabel=new ScoreLabel(labelName,j,0,3,"sum");
             }else if(((String)excel.get(1).get(j)).contains("评价")){
-                scoreLabel=new ScoreLabel(labelName,labelIndex,0,3,"judge");
+                scoreLabel=new ScoreLabel(labelName,j,0,3,"judge");
             }else{
-                scoreLabel=new ScoreLabel(labelName,labelIndex,0,3,"");
+                scoreLabel=new ScoreLabel(labelName,j,0,3,"");
             }
-            labelIndex++;
             //调用插入score_label表中
             //insert(scoreLabel);
 
@@ -159,14 +153,24 @@ public class FileServiceImpl implements FileService{
         for(int j=d;j<excel.get(0).size();j++){
             String labelName=(String)excel.get(1).get(j)+(String)excel.get(2).get(j);
             if(((String)excel.get(1).get(j)).equals("严重不符合项")){
-                scoreLabel=new ScoreLabel(labelName,labelIndex,0,0,"err");
+                scoreLabel=new ScoreLabel(labelName,j,0,0,"err");
             }else{
-                scoreLabel=new ScoreLabel(labelName,labelIndex,0,0,"judge");
+                scoreLabel=new ScoreLabel(labelName,j,0,0,"judge");
             }
-            labelIndex++;
             //调用插入score_label表中
             //insert(scoreLabel);
         }
+
+        //插入表内容
+        for(int i=3;i<excel.size();i++){
+            String userId="";
+            String userName=(String)excel.get(i).get(1);
+            //调用根据username得出userId方法
+
+
+
+        }
+
         return null;
     }
 
