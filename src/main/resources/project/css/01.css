@@ -1,45 +1,33 @@
 .container{
     margin:0 auto;
 }
-.DL{
-    text-align:center;
-    font-size:30px;
-}
-.photo{
-    width:30%;
-    height:100px;
-    background:red;
-    margin-top:71px;
-    margin-left:20px;
-    float:left;
-}
-.enter-in{
-    margin-top:150px;
-    width:500px;
-    height:300px;
-    border:1px solid #333;
-    margin-left:300px;
-    text-align: center;
-}
 .enter{
-    width:70%;
-    padding-top:85px;
-    float:right;
-    margin-right:-20px;
+    height:600px;
+    background:url("../img/bg.jpg") no-repeat;
+    background-size:cover;
 }
-.user input{
-    margin-left:20px;
+.passin{
+    height:300px;
+    background:rgba(255,255,255,0.8);
+    margin-top:150px;
 }
-.upwd{
+.top-input{
+    margin-top:80px;
+    width:80%;
+    border-bottom:1px solid #000;
+}
+.top-input input{
+    width:80%;
+    border:0;
+    background:rgba(255,255,255,0.8);
+}
+.next-input{
     margin-top:20px;
+    width:80%;
+    border-bottom:1px solid #000;
 }
-.upwd input{
-    margin-left:20px;
-}
-.AN{
-    margin-top:20px;
-    margin-right:2px;
-}
-.AN button{
-    width:76%;
+.next-input input{
+    width:80%;
+    border:0;
+    background:rgba(255,255,255,0.8);
 }

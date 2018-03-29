@@ -3,6 +3,7 @@ package com.sinosoft.stukpisys.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.entity.Education;
+import com.sinosoft.stukpisys.entity.User;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class traineeController {
     @GetMapping(value ="/leave")//请假先不写
     public String getTraineeLeave(String name)
     {
+
         //todo
         return null;
     }
@@ -55,7 +57,14 @@ public class traineeController {
     @GetMapping(value ="/score")//总成绩 sum
     public String getTraineeScore(String name)
     {
-        //todo
+        User user=hrService.getByName(name);
+        Long userId=user.getUserId();
+        int score1=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,1).get(0))) ;
+        int score2=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,2).get(0))) ;
+        int score3=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,3).get(0))) ;
+        int score4=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,4).get(0))) ;
+        //还未完成----------------------今晚继续
+
         return null;
     }
 

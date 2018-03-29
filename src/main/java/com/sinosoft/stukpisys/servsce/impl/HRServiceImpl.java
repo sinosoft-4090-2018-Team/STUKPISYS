@@ -137,7 +137,7 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public List<List<Object>> getScoreFromStageByUser_id(int userId, int stage) {
+    public List<List<Object>> getScoreFromStageByUser_id(long userId, int stage) {
         return scoreDao.getScoreFromStageByUser_id(userId,stage);
     }
 
