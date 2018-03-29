@@ -23,6 +23,7 @@ public interface HRService {
     List<UserInfo> getUserByEnterTime(String  enterTime);
     List<UserInfo> getUserBySchool(String name);
     List<UserInfo> getUserByHighestEducate(String educate);
+    List<List<Object>> getUserInfoByParam(String HRName,String job,String school,String education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211);
 
 
 
