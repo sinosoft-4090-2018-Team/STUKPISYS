@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,7 +39,7 @@ public class siftController {
      */
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/judge")
-    public String siftUserJudge(String HRName,String job,String school,String education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211)
+    public String siftUserJudge(@RequestParam(value="HRName",required=false) String HRName,@RequestParam(value="job",required=false)  String job,@RequestParam(value="school",required=false)  String school,@RequestParam(value="education",required=false)  String education,@RequestParam(value="major",required=false)  String major,@RequestParam(value="sex",required=false)  boolean sex,@RequestParam(value="isFired",required=false)  boolean isFired,@RequestParam(value="isNew",required=false)  boolean isNew,@RequestParam(value="hasErr",required=false)  boolean hasErr,@RequestParam(value="is211",required=false)  boolean is211 )
     {
         //todo
        List<List<Object>> list=hrService.getUserInfoByParam(HRName,job,school,education,major,sex,isFired, isNew,hasErr,is211);
