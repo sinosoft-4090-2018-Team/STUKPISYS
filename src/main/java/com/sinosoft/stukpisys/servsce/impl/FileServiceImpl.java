@@ -2,10 +2,7 @@ package com.sinosoft.stukpisys.servsce.impl;
 
 import com.sinosoft.stukpisys.dao.InfoDao;
 import com.sinosoft.stukpisys.dao.UserDao;
-import com.sinosoft.stukpisys.entity.Education;
-import com.sinosoft.stukpisys.entity.ScoreLabel;
-import com.sinosoft.stukpisys.entity.User;
-import com.sinosoft.stukpisys.entity.UserInfo;
+import com.sinosoft.stukpisys.entity.*;
 import com.sinosoft.stukpisys.servsce.FileService;
 import com.sinosoft.stukpisys.untils.ExcelReader;
 import com.sinosoft.stukpisys.untils.GetExcelMessage;
@@ -163,10 +160,38 @@ public class FileServiceImpl implements FileService{
 
         //插入表内容
         for(int i=3;i<excel.size();i++){
-            String userId="";
+            long userId=0;
             String userName=(String)excel.get(i).get(1);
             //调用根据username得出userId方法
 
+
+            for(int j=2;j<excel.get(i).size();j++){
+                long labelIndex=j;
+                long valueInt=0;
+                String valueString="";
+                String value=(String)excel.get(i).get(j);
+                boolean isIntOrString=false;
+                for (int z=0;z<value.length();z++){
+                    if(value.charAt(z)>=48 && value.charAt(z)<=57){
+                        isIntOrString=true;
+                    }
+                }
+
+                if(isIntOrString=true){
+                    valueInt=Long.parseLong(value);
+                    valueString=null;
+                }else{
+                    //update label表中的type类型为1，即type为String  根据labelIndex
+
+
+                    valueInt=0;//接口搜索时应该搜索valueString不是nul
+                    valueString=value;
+                }
+                ScoreValue scoreValue=new ScoreValue(userId,labelIndex,valueInt,valueString,null);
+                //调用插入value表信息
+
+
+            }
 
 
         }

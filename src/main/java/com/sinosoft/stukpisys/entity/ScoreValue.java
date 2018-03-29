@@ -1,5 +1,7 @@
 package com.sinosoft.stukpisys.entity;
 
+import java.sql.Date;
+
 public class ScoreValue {
 
   private long valueId;
@@ -63,4 +65,11 @@ public class ScoreValue {
     this.valueDate = valueDate;
   }
 
+  public ScoreValue(long userId, long labelIndex, long valueInt, String valueString, Date valueDate) {
+    this.userId = userId;
+    this.labelIndex = labelIndex;
+    this.valueInt = valueInt;
+    this.valueString = valueString;
+    this.valueDate = valueDate;
+  }
 }
