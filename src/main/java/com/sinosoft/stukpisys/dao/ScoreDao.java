@@ -43,7 +43,7 @@ public interface ScoreDao {
             "\t\t\t\t\tuser .user_id = n.user_id\n" +
             "\t\t\t) c\n" +
             "\t\tWHERE\n" +
-            "\t\t\tuser_info.enter_time = '2018-03-28'\n" +
+            "\t\t\tuser_info.enter_time = #{enter_time}\n" +
             ")m\n" +
             "\t\tGROUP BY\n" +
             "\t\t\tm.user_id\n")
@@ -104,6 +104,6 @@ public interface ScoreDao {
             "FROM score_label l JOIN score_value v\n" +
             "ON l.label_index=v.label_index\n" +
             "where user_id=#{0} AND l.stage=#{1}")
-     List<List<Object>> getScoreFromFirstStageByUser_id(int userId,int stage);
+     List<List<Object>> getScoreFromStageByUser_id(int userId,int stage);
 
 }

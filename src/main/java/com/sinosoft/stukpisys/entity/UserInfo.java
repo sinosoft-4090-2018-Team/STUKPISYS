@@ -8,7 +8,7 @@ public class UserInfo {
   private String state;
   private String hrName;
   private String job;
-  private long gender;
+  private long gender;//0为男，1为女
   private String email;
   private java.sql.Date birth;
   private String nativePlace;

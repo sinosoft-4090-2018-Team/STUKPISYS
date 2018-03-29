@@ -56,7 +56,29 @@ public interface InfoDao {
             "WHERE edu_id=(SELECT edu_id\n" +
             "FROM user_info\n" +
             "where user_name= #{0})")
-    List<Education> getEduInfoByUserName(String userName);
+    Education getEduInfoByUserName(String userName);
+    //根据性别差异来查询人数
+    @Select("SELECT COUNT(*) FROM user_info WHERE gender=#{0};")
+    int getPopulationBySexDiffer(int gender);
+    //更具学历来差异来查询人数
+    @Select("SELECT COUNT(*) FROM education WHERE highest_educate=#{0}")
+    int getPopulationByEducationDiffer(String education);
+    @Select("SELECT DISTINCT highest_educate FROM education ")
+    List<String> getDifferEducateName();
+    //更具专业来差异来查询人数
+    @Select("SELECT COUNT(*) FROM education WHERE  major=#{0}")
+    int getPopulationByMajorDiffer(String major);
+    @Select("SELECT DISTINCT major FROM education ")
+    List<String> getDifferMajorName();
+    //获取211学校的数量
+    @Select("SELECT COUNT(*) FROM education WHERE  is211=#{0};")
+    int getPopulationByIs211(int is211);
+    //更具地点来差异来查询人数
+    @Select("SELECT COUNT(*) FROM education WHERE  location=#{0}")
+    int getPopulationByLocationDiffer(String location);
+    @Select("SELECT DISTINCT location FROM education")
+    List<String> getDifferLocationName();
+
 
 
    @Select("\t<script> \" +\n" +
