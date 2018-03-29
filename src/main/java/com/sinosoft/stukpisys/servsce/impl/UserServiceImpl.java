@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
         if (userDao.getByName(username) != null) {
             return "用户已存在";
         }
+        //加密
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String rawPassword = user.getPassword();
         user.setPassword(encoder.encode(rawPassword));

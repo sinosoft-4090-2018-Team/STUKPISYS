@@ -42,7 +42,7 @@ public class FileController {
      * @param file 前台上传的文件对象
      * @return
      */
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/upload", params = {"type"})
     public String upload(HttpServletRequest request,MultipartFile file,String type)
     {
