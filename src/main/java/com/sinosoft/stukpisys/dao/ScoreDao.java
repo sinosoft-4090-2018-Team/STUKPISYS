@@ -43,7 +43,7 @@ public interface ScoreDao {
             "\t\t\t\t\tuser .user_id = n.user_id\n" +
             "\t\t\t) c\n" +
             "\t\tWHERE\n" +
-            "\t\t\tuser_info.enter_time = '2018-03-28'\n" +
+            "\t\t\tuser_info.enter_time = #{enter_time}\n" +
             ")m\n" +
             "\t\tGROUP BY\n" +
             "\t\t\tm.user_id\n")

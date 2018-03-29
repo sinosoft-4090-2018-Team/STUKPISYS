@@ -1,5 +1,6 @@
 package com.sinosoft.stukpisys.servsce;
 
+import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import org.springframework.security.access.prepost.PreAuthorize;
 
@@ -14,7 +15,7 @@ public interface HRService {
 
     //按名字获取一个人的详细信息
     UserInfo getPersonInfoByName(String name);
-    //按实习生状态查询实习生-转到admin
+    //按实习生状态查询实习生-转到adm
     List<UserInfo> getUserInfoByState(String state);
     // 通过hr查询实习生
     List<UserInfo> getUserIdByhrName(String hrName);
@@ -23,7 +24,7 @@ public interface HRService {
     List<UserInfo> getUserByEnterTime(String  enterTime);
     List<UserInfo> getUserBySchool(String name);
     List<UserInfo> getUserByHighestEducate(String educate);
-    //3-29
+    //3-29 服务statisticsController
     int getPopulationBySexDiffer(int gender);
     int getPopulationByEducationDiffer(String education);
     List<String> getDifferEducateName();
@@ -33,7 +34,8 @@ public interface HRService {
     int getPopulationByLocationDiffer(String location);
     List<String> getDifferLocationName();
     List<List<Object>> getUserInfoByParam(String HRName,String job,String school,String education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211);
-
+    //3-29 服务traineeController
+    Education getEduInfoByUserName(String userName);
 
 
 

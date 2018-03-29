@@ -56,7 +56,7 @@ public interface InfoDao {
             "WHERE edu_id=(SELECT edu_id\n" +
             "FROM user_info\n" +
             "where user_name= #{0})")
-    List<Education> getEduInfoByUserName(String userName);
+    Education getEduInfoByUserName(String userName);
     //根据性别差异来查询人数
     @Select("SELECT COUNT(*) FROM user_info WHERE gender=#{0};")
     int getPopulationBySexDiffer(int gender);

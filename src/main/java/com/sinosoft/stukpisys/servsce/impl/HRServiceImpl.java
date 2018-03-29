@@ -1,6 +1,7 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
 import com.sinosoft.stukpisys.dao.InfoDao;
+import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +104,7 @@ public class HRServiceImpl implements HRService{
         return infoDao.getDifferLocationName();
     }
 
-    //未知方法
+
     @Override
     public List<List<Object>> getUserInfoByParam(String HRName, String job, String school, String education, String major, boolean sex, boolean isFired,boolean isNew,boolean hasErr, boolean is211) {
         String state=null;
@@ -119,6 +120,11 @@ public class HRServiceImpl implements HRService{
             belong="err";
         }
         return infoDao.getUserInfoByParam(HRName,job,school, education, major,sex, state, belong,is211);
+    }
+
+    @Override
+    public Education getEduInfoByUserName(String userName) {
+        return  infoDao.getEduInfoByUserName(userName);
     }
 
     @Override
