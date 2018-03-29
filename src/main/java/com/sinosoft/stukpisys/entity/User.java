@@ -8,6 +8,9 @@ public class User {
   private String password;
   private String role;
 
+  public User() {
+    super();
+  }
 
   public long getUserId() {
     return userId;
@@ -44,4 +47,9 @@ public class User {
     this.role = role;
   }
 
+  public User(String name, String password, String role) {
+    this.name = name;
+    this.password = password;
+    this.role = role;
+  }
 }
