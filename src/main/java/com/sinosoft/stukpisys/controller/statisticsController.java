@@ -83,6 +83,7 @@ public class statisticsController {
             int locationNumber=hrService.getPopulationByLocationDiffer(locaton);
             jsonObject.put(locaton,locationNumber);
         }
+
         return JSON.toJSONString(jsonObject);
     }
 }
