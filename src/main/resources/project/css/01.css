@@ -1,5 +1,4 @@
 .container{
-    width:1024px;
     margin:0 auto;
 }
 .DL{
@@ -19,7 +18,7 @@
     width:500px;
     height:300px;
     border:1px solid #333;
-    margin-left:248px;
+    margin-left:300px;
     text-align: center;
 }
 .enter{
