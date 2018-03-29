@@ -2,6 +2,7 @@ package com.sinosoft.stukpisys.dao;
 
 import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.UserInfo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -83,5 +84,6 @@ public interface InfoDao {
            "            \n" +
            "            \" </script> ")
     List<List<Object>> getUserInfoByParam(String HRName, String job, String school, String education, String major, boolean sex, String state, String belong, boolean is211);
+
 
 }
