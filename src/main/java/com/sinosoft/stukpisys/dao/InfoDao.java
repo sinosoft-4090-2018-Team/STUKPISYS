@@ -85,8 +85,6 @@ public interface InfoDao {
     @Select("SELECT DISTINCT location FROM education")
     List<String> getDifferLocationName();
 
-
-
    @SelectProvider(type = SqlProvider.class, method = "getUserParam")
     List<ScoreValue> getJudgeByParam(String HRName ,String job,String school,String Education,String major,boolean sex, String state,String belong,boolean is211);
 

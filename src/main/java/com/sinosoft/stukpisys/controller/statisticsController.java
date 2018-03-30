@@ -68,4 +68,5 @@ public class statisticsController {
         List<Map<String,Integer>>map=hrService.getPopulationByLocationDiffer();
         return JSON.toJSONString(map);
     }
+
 }

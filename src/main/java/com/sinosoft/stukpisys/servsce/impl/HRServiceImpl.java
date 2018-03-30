@@ -147,6 +147,7 @@ public class HRServiceImpl implements HRService{
         return scoreDao.getScoreFromStageByUser_id(userId,stage);
     }*/
 
+
     @Override
     public User getByName(String name) {
         return userDao.getByName(name);

@@ -15,7 +15,6 @@ import java.util.Map;
 public interface HRService {
 
 
-
     //按名字获取一个人的详细信息
     UserInfo getPersonInfoByName(String name);
     //按实习生状态查询实习生-转到adm

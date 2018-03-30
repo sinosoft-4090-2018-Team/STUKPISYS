@@ -59,11 +59,11 @@ public class traineeController {
     {
         User user=hrService.getByName(name);
         Long userId=user.getUserId();
-        int score1=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,1).get(0))) ;
-        int score2=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,2).get(0))) ;
-        int score3=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,3).get(0))) ;
-        int score4=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,4).get(0))) ;
-        //还未完成----------------------明天继续
+//        int score1=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,1).get(0))) ;
+//        int score2=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,2).get(0))) ;
+//        int score3=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,3).get(0))) ;
+//        int score4=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,4).get(0))) ;
+//        //还未完成----- 
 
         return null;
     }
