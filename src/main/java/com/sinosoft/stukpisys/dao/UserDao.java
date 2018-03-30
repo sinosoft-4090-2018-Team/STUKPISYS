@@ -18,10 +18,13 @@ public interface UserDao{
     @Insert("INSERT INTO user(name,password,role) VALUES(#{name},#{password},#{role})")
     void insert(User user);
     //将读取到的信息插入到education表中  --米晓锐
-    @Insert("INSERT INTO education(highest_educate,major,school_name,location,is211,graduation_time) VALUES(#{highest_educate},#{major},#{school_name},#{location},#{is211},#{graduation_time})")
+    @Insert("INSERT INTO education(highest_educate,major,school_name,location,is211,graduation_time) VALUES(#{highestEducate},#{major},#{schoolName},#{location},#{is211},#{graduationTime})")
     void insertEducation(Education education);
     //将读取到的信息插入到UserInfo表中——米晓锐
-    @Insert("INSERT INTO user_info(user_name,state,hr_name,job,gender,email,birth,native_place,phone,enter_time,dept) VALUES(#{user_name},#{state},#{hr_name},#{job},#{gender},#{email},#{birth},#{native_place},#{phone},#{enter_time},#{dept})")
+    @Insert("INSERT INTO user_info(user_name,state,hr_name,job,gender,email,birth,native_place,phone,enter_time,edu_id,dept) VALUES(#{userName},#{state},#{hrName},#{job},#{gender},#{email},#{birth},#{nativePlace},#{phone},#{enterTime},#{eduId},#{dept})")
     void insertUserInfo(UserInfo userInfo);
+    //--米晓锐
+    @Select("SELECT user_id FROM user WHERE name=#{name}")
+    long selectIdByName(String name);
 
 }

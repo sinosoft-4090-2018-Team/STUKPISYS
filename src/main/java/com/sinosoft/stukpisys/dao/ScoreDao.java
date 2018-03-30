@@ -1,7 +1,12 @@
 package com.sinosoft.stukpisys.dao;
 
+import com.sinosoft.stukpisys.entity.ScoreLabel;
+import com.sinosoft.stukpisys.entity.ScoreValue;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+import sun.reflect.generics.tree.VoidDescriptor;
 
 import java.util.List;
 @Mapper
@@ -104,6 +109,22 @@ public interface ScoreDao {
             "FROM score_label l JOIN score_value v\n" +
             "ON l.label_index=v.label_index\n" +
             "where user_id=#{0} AND l.stage=#{1}")
-     List<List<Object>> getScoreFromStageByUser_id(long userId,int stage);
+     List<List<Object>> getScoreFromStageByUser_id(int userId,int stage);
+    //插入Score_label表--米晓锐
+    @Insert("INSERT INTO score_label(label_name,label_index,type,stage,belong) VALUES(#{labelName},#{labelIndex},#{type},#{stage},#{belong})")
+    void insertScore_label(ScoreLabel scoreLabel);
+    //--米晓锐
+    @Update("UPDATE score_label SET type=1 WHERE label_index=#{labelIndex}")
+    void updateScoreLabel(long labelIndex);
+    //--米晓锐
+    @Insert("INSERT INTO score_value(user_id,label_index,value_int,value_string,value_date) VALUES(#{userId},#{labelIndex},#{valueInt},#{valueString},#{valueDate})")
+    void insertScoreValue(ScoreValue scoreValue);
+    @Select("SELECT * FROM score_label WHERE label_name=#{labelName},type=#{type}")
+    ScoreLabel selectLabelByLabelNameAndType(String labelName,long type);
+
+
+
+
+    // List<List<Object>> getScoreFromStageByUser_id(long userId,int stage);
 
 }

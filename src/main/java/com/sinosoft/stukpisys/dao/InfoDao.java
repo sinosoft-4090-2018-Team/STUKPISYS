@@ -81,7 +81,7 @@ public interface InfoDao {
 
 
 
-   @Select("\t<script> \" +\n" +
+  /* @Select("\t<script> \" +\n" +
            "            \"SELECT education.*,d.* \" +\n" +
            "            \"from education,\n" +
            "\t\t\t\t\t\t(SELECT user_info.*,c.* FROM user_info ,\n" +
@@ -107,5 +107,7 @@ public interface InfoDao {
            "            \" </script> ")
     List<List<Object>> getUserInfoByParam(String HRName, String job, String school, String education, String major, boolean sex, String state, String belong, boolean is211);
 
-
+*/
+    @Select("SELECT edu_id FROM education WHERE school_name=#{schoolName}")
+    long selectEduIdBySchoolName(String schoolName);
 }
