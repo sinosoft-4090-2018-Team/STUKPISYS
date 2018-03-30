@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface InfoDao {
@@ -60,24 +61,27 @@ public interface InfoDao {
             "where user_name= #{0})")
     Education getEduInfoByUserName(String userName);
     //根据性别差异来查询人数
-    @Select("SELECT COUNT(*) FROM user_info WHERE gender=#{0};")
-    int getPopulationBySexDiffer(int gender);
+    @Select("SELECT gender,COUNT(gender) FROM user_info GROUP BY gender")
+    Map<String,Integer> getPopulationBySexDiffer();
     //更具学历来差异来查询人数
-    @Select("SELECT COUNT(*) FROM education WHERE highest_educate=#{0}")
-    int getPopulationByEducationDiffer(String education);
+    @Select("SELECT highest_educate,COUNT(highest_educate) FROM education GROUP BY highest_educate ")
+    List<Map<String,Integer>> getPopulationByEducationDiffer();
+    //输出所有学历名称
     @Select("SELECT DISTINCT highest_educate FROM education ")
     List<String> getDifferEducateName();
     //更具专业来差异来查询人数
-    @Select("SELECT COUNT(*) FROM education WHERE  major=#{0}")
-    int getPopulationByMajorDiffer(String major);
-    @Select("SELECT DISTINCT major FROM education ")
+    @Select("SELECT major,COUNT(major) FROM education GROUP BY major  ")
+    List<Map<String,Integer>> getPopulationByMajorDiffer();
+    //获取所有不同专业的名称
+    @Select("SELECT DISTINCT major FROM education")
     List<String> getDifferMajorName();
     //获取211学校的数量
-    @Select("SELECT COUNT(*) FROM education WHERE  is211=#{0};")
-    int getPopulationByIs211(int is211);
+    @Select("SELECT is211,COUNT(is211) FROM education GROUP BY is211 ;")
+    Map<String,Integer>  getPopulationByIs211();
     //更具地点来差异来查询人数
-    @Select("SELECT COUNT(*) FROM education WHERE  location=#{0}")
-    int getPopulationByLocationDiffer(String location);
+    @Select("SELECT location,COUNT(location) FROM education GROUP BY location ")
+    List<Map<String,Integer>> getPopulationByLocationDiffer();
+    //获取不同的学校的地点
     @Select("SELECT DISTINCT location FROM education")
     List<String> getDifferLocationName();
 

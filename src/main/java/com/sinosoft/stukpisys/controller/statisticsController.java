@@ -3,13 +3,16 @@ package com.sinosoft.stukpisys.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.servsce.HRService;
+import freemarker.ext.beans.HashAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.swing.text.html.HTMLDocument;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -29,61 +32,40 @@ public class statisticsController {
     @GetMapping(value ="/sex")
     public String sexStatistics()
     {
-        int menNumber=hrService.getPopulationBySexDiffer(0);
-        int madamNumber=hrService.getPopulationBySexDiffer(1);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("男",menNumber);
-        jsonObject.put("女",madamNumber);
-        return JSON.toJSONString(jsonObject);
+        Map<String,Integer>map=hrService.getPopulationBySexDiffer();
+        return JSON.toJSONString(map);
     }
 
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
-    @GetMapping(value ="/education")
+    @GetMapping(value ="/education")//OK
     public String educationStatistics()
     {
-        List<String> educationlist=hrService.getDifferEducateName();
-        JSONObject jsonObject=new JSONObject();
-        for (String education:educationlist){
-            int educationNumber=hrService.getPopulationByEducationDiffer(education);
-            jsonObject.put(education,educationNumber);
-        }
-        return JSON.toJSONString(jsonObject);
+        List<Map<String,Integer>>map=hrService.getPopulationByEducationDiffer();
+
+        return JSON.toJSONString(map);
     }
 
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
-    @GetMapping(value ="/major")
+    @GetMapping(value ="/major")//OK
     public String majorStatistics()
     {
-        List<String> majorlist=hrService.getDifferMajorName();
-        JSONObject jsonObject = new JSONObject();
-        for (String major:majorlist){
-            int majorNumber=hrService.getPopulationByMajorDiffer(major);
-            jsonObject.put(major,majorNumber);
-        }
-        return JSON.toJSONString(jsonObject);
+        List<Map<String,Integer>>map=hrService.getPopulationByMajorDiffer();
+        return JSON.toJSONString(map);
     }
 
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
-    @GetMapping(value ="/211")
+    @GetMapping(value ="/211")//ok
     public String schoolStatistics()
     {
-        int is211Number=hrService.getPopulationByIs211(1);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("is211", is211Number);
-        return JSON.toJSONString(jsonObject);
+        Map<String,Integer>map=hrService.getPopulationByIs211();
+        return JSON.toJSONString(map);
     }
 
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
-    @GetMapping(value ="/locat")
+    @GetMapping(value ="/locat")//OK
     public String locationStatistics()
     {
-        List<String> locationList=hrService.getDifferLocationName();
-        JSONObject jsonObject = new JSONObject();
-        for (String locaton: locationList){
-            int locationNumber=hrService.getPopulationByLocationDiffer(locaton);
-            jsonObject.put(locaton,locationNumber);
-        }
-
-        return JSON.toJSONString(jsonObject);
+        List<Map<String,Integer>>map=hrService.getPopulationByLocationDiffer();
+        return JSON.toJSONString(map);
     }
 }

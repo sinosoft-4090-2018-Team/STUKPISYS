@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class HRServiceImpl implements HRService{
@@ -73,13 +74,13 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public int getPopulationBySexDiffer(int gender) {
-        return  infoDao.getPopulationBySexDiffer(gender);
+    public Map<String,Integer> getPopulationBySexDiffer() {
+        return  infoDao.getPopulationBySexDiffer();
     }
 
     @Override
-    public int getPopulationByEducationDiffer(String education) {
-        return infoDao.getPopulationByEducationDiffer(education);
+    public List<Map<String,Integer>> getPopulationByEducationDiffer() {
+        return infoDao.getPopulationByEducationDiffer();
     }
 
     @Override
@@ -88,8 +89,8 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public int getPopulationByMajorDiffer(String major) {
-        return infoDao.getPopulationByMajorDiffer(major);
+    public List<Map<String,Integer>> getPopulationByMajorDiffer() {
+        return infoDao.getPopulationByMajorDiffer();
     }
 
     @Override
@@ -98,13 +99,13 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public int getPopulationByIs211(int is211) {
-        return infoDao.getPopulationByIs211(is211);
+    public Map<String,Integer>  getPopulationByIs211() {
+        return infoDao.getPopulationByIs211( );
     }
 
     @Override
-    public int getPopulationByLocationDiffer(String location) {
-        return infoDao.getPopulationByLocationDiffer(location);
+    public List<Map<String,Integer>> getPopulationByLocationDiffer() {
+        return infoDao.getPopulationByLocationDiffer();
     }
 
     @Override
