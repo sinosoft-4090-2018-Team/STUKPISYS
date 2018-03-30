@@ -1,13 +1,16 @@
 package com.sinosoft.stukpisys.dao;
 
 import com.sinosoft.stukpisys.entity.Education;
+import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.UserInfo;
-import org.apache.ibatis.annotations.Insert;
+import com.sinosoft.stukpisys.servsce.SqlProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface InfoDao {
@@ -110,4 +113,7 @@ public interface InfoDao {
 */
     @Select("SELECT edu_id FROM education WHERE school_name=#{schoolName}")
     long selectEduIdBySchoolName(String schoolName);
+    @SelectProvider(type = SqlProvider.class, method = "getUserScoreParam")
+    List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,boolean sex, String state,String belong,boolean is211);
+
 }

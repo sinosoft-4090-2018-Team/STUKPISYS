@@ -4,16 +4,16 @@ import com.sinosoft.stukpisys.dao.InfoDao;
 import com.sinosoft.stukpisys.dao.ScoreDao;
 import com.sinosoft.stukpisys.dao.UserDao;
 import com.sinosoft.stukpisys.entity.Education;
+import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.User;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class HRServiceImpl implements HRService{
@@ -74,13 +74,13 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public int getPopulationBySexDiffer(int gender) {
-        return  infoDao.getPopulationBySexDiffer(gender);
+    public Map<String,Integer> getPopulationBySexDiffer() {
+        return  infoDao.getPopulationBySexDiffer();
     }
 
     @Override
-    public int getPopulationByEducationDiffer(String education) {
-        return infoDao.getPopulationByEducationDiffer(education);
+    public List<Map<String,Integer>> getPopulationByEducationDiffer() {
+        return infoDao.getPopulationByEducationDiffer();
     }
 
     @Override
@@ -89,8 +89,8 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public int getPopulationByMajorDiffer(String major) {
-        return infoDao.getPopulationByMajorDiffer(major);
+    public List<Map<String,Integer>> getPopulationByMajorDiffer() {
+        return infoDao.getPopulationByMajorDiffer();
     }
 
     @Override
@@ -99,13 +99,13 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public int getPopulationByIs211(int is211) {
-        return infoDao.getPopulationByIs211(is211);
+    public Map<String,Integer>  getPopulationByIs211() {
+        return infoDao.getPopulationByIs211( );
     }
 
     @Override
-    public int getPopulationByLocationDiffer(String location) {
-        return infoDao.getPopulationByLocationDiffer(location);
+    public List<Map<String,Integer>> getPopulationByLocationDiffer() {
+        return infoDao.getPopulationByLocationDiffer();
     }
 
     @Override
@@ -115,7 +115,8 @@ public class HRServiceImpl implements HRService{
 
 
     @Override
-    public List<List<Object>> getUserInfoByParam(@Param("HRName")String HRName, String job, String school, String education, String major, boolean sex, boolean isFired, boolean isNew, boolean hasErr, boolean is211) {
+    public List<ScoreValue> getJudgeByParam(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211)
+    {
         String state=null;
         if (isFired==true){
              state="淘汰";
@@ -128,18 +129,40 @@ public class HRServiceImpl implements HRService{
         if(hasErr==true){
             belong="err";
         }
-        return infoDao.getUserInfoByParam(HRName,job,school, education, major,sex, state, belong,is211);
+        return infoDao.getJudgeByParam( HRName,job,school,Education,major, sex,state,belong,is211);
     }
 
+    @Override
+    public List<ScoreValue> getUserScoreParam(String HRName, String job, String school, String Education, String major, boolean sex, boolean isFired, boolean isNew, boolean hasErr, boolean is211) {
+        String state=null;
+        if (isFired==true){
+            state="淘汰";
+        }else if(isNew==true){
+            state="特殊";
+        }else{
+            state="正常";
+        }
+        String belong=null;
+        if(hasErr==true){
+            belong="err";
+        }
+        return infoDao.getUserScoreParam( HRName,job,school,Education,major, sex,state,belong,is211);
+    }
     @Override
     public Education getEduInfoByUserName(String userName) {
         return  infoDao.getEduInfoByUserName(userName);
     }
 
     @Override
+    public List<List<Object>> getScoreFromStageByUser_id(int userId, int stage) {
+        return null;
+    }
+
+   /* @Override
     public List<List<Object>> getScoreFromStageByUser_id(long userId, int stage) {
         return scoreDao.getScoreFromStageByUser_id(userId,stage);
-    }
+    }*/
+
 
     @Override
     public User getByName(String name) {

@@ -29,7 +29,6 @@ function fakeMainData() {
 function showMainView(data) {
     var chart = echarts.init(document.getElementById("mainView"),'macarons');
     chart.setOption({
-        backgroundColor: '#eee',
         legend: {
             data: ['bar', 'bar2', 'bar3', 'bar4'],
             align: 'left',
@@ -40,10 +39,18 @@ function showMainView(data) {
                 magicType: {
                     type: ['line', 'bar','stack', 'tiled']
                 },
-                dataView: {}
+                dataView: {},
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                restore: {},
+                saveAsImage: {}
             }
         },
         dataZoom: [
+            {
+                show:true
+            },
             {
                 type: 'inside'
             }
@@ -77,7 +84,7 @@ function showMainView(data) {
             top: 60,
             left: 10,
             inRange: {
-                colorLightness: [0.4, 0.8]
+                colorLightness: [0.7, 0.7]
             },
             outOfRange: {
                 color: '#bbb'
@@ -93,6 +100,11 @@ function showMainView(data) {
                 name: 'bar',
                 type: 'bar',
                 stack: 'one',
+                markLine: {
+                    data: [
+                        {yAxis:200, name: '平均值'}
+                    ]
+                },
                 data: data.a
             },
             {
@@ -107,12 +119,12 @@ function showMainView(data) {
                 stack: 'one',
                 data: data.c
             },
-            {
-                name: 'bar4',
-                type: 'bar',
-                stack: 'one',
-                data: data.d
-            }
+            // {
+            //     name: 'bar4',
+            //     type: 'bar',
+            //     stack: 'one',
+            //     data: data.d
+            // }
         ]
     });
 
