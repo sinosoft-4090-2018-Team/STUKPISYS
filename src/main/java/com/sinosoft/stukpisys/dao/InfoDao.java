@@ -88,5 +88,7 @@ public interface InfoDao {
    @SelectProvider(type = SqlProvider.class, method = "getUserParam")
     List<ScoreValue> getJudgeByParam(String HRName ,String job,String school,String Education,String major,boolean sex, String state,String belong,boolean is211);
 
+    @SelectProvider(type = SqlProvider.class, method = "getUserScoreParam")
+    List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,boolean sex, String state,String belong,boolean is211);
 
 }

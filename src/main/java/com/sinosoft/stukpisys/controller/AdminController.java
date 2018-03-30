@@ -22,21 +22,24 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value = "/changeScore")
-    public String changeScore(int userId,int index,String value){
+    public String changeScore(String userName,String labelName,int value){
         //todo
         return null;
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value = "/changeJudge")
-    public String changeJudge(int userId,int index,String judge){
-        //todo
-        return null;
+    public String changeJudge(String userName,String labelName,String judge){
+        int count=adminService.changeJudgeByUserNameAndLabelName(userName,labelName,judge);
+        if(count!=0){
+            return "error";
+        }
+       return  "success";
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value = "/changeInfo")
-    public String changeInfo(int userId,String key,String value){
+    public String changeInfo(String userName,String key,String value){
         //todo
         return null;
     }

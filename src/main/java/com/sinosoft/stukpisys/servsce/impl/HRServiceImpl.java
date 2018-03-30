@@ -133,6 +133,22 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
+    public List<ScoreValue> getUserScoreParam(String HRName, String job, String school, String Education, String major, boolean sex, boolean isFired, boolean isNew, boolean hasErr, boolean is211) {
+        String state=null;
+        if (isFired==true){
+            state="淘汰";
+        }else if(isNew==true){
+            state="特殊";
+        }else{
+            state="正常";
+        }
+        String belong=null;
+        if(hasErr==true){
+            belong="err";
+        }
+        return infoDao.getUserScoreParam( HRName,job,school,Education,major, sex,state,belong,is211);
+    }
+    @Override
     public Education getEduInfoByUserName(String userName) {
         return  infoDao.getEduInfoByUserName(userName);
     }
