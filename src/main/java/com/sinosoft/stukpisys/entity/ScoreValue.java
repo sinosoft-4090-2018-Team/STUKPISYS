@@ -10,7 +10,24 @@ public class ScoreValue {
   private long valueInt;
   private String valueString;
   private java.sql.Date valueDate;
+  private String userName;
+  private String labelName;
 
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getLabelName() {
+    return labelName;
+  }
+
+  public void setLabelName(String labelName) {
+    this.labelName = labelName;
+  }
 
   public long getValueId() {
     return valueId;
@@ -65,11 +82,36 @@ public class ScoreValue {
     this.valueDate = valueDate;
   }
 
+  public ScoreValue(){}
   public ScoreValue(long userId, long labelIndex, long valueInt, String valueString, Date valueDate) {
     this.userId = userId;
     this.labelIndex = labelIndex;
     this.valueInt = valueInt;
     this.valueString = valueString;
     this.valueDate = valueDate;
+  }
+  public ScoreValue(long userId, long labelIndex, long valueInt, String valueString, Date valueDate,String userName,String labelName) {
+    this.userId = userId;
+    this.labelIndex = labelIndex;
+    this.valueInt = valueInt;
+    this.valueString = valueString;
+    this.valueDate = valueDate;
+    this.userName=userName;
+    this.labelName=labelName;
+  }
+
+
+  @Override
+  public String toString() {
+    return "ScoreValue{" +
+            "valueId=" + valueId +
+            ", userId=" + userId +
+            ", labelIndex=" + labelIndex +
+            ", valueInt=" + valueInt +
+            ", valueString='" + valueString + '\'' +
+            ", valueDate=" + valueDate +
+            ", userName='" + userName + '\'' +
+            ", labelName='" + labelName + '\'' +
+            '}';
   }
 }
