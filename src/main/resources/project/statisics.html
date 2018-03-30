@@ -36,16 +36,198 @@
         </div>
     </div>
     <div class="row content">
-        <div class="col-xs-2  content-L">
-            <div class="row ">
-                <div class="col-xs-12 L-top">
+        <div class="col-xs-4  content-L">
+            <div class="top">
+                <span>查看汇总图标</span>
+                <span> > </span>
+            </div>
+            <!--<div class="name">-->
+                <!--<span>姓名</span>-->
+                <!--<input type="text" placeholder="请输入实习生名字"/>-->
+            <!--</div>-->
+            <div class="row sex-all">
+                <div class="col-xs-6 sex">
+                   <span>性别</span>
+                   <div class="input-group">
+                       <div class="input-group-btn">
+                           <select name=""  class="form-control style1">
+                               <option value="">男</option>
+                               <option value="">女</option>
+                           </select>
+                           <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
+                       </div>
+                   </div>
+               </div>
+                <div class="col-xs-6 sex">
+                    <span>面试官</span>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <select name=""  class="form-control style1">
+                                <option value="">面试官A</option>
+                                <option value="">面试官B</option>
+                            </select>
+                            <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" row school-all">
+                <div class="col-xs-6 sex">
+                    <span>学校</span>
+                    <div class="input-group ">
+                        <div class="input-group-btn">
+                            <select name=""  class="form-control style1">
+                                <option value="">学校A</option>
+                                <option value="">学校B</option>
+                            </select>
+                            <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 sex">
+                    <span>专业</span>
+                    <div class="input-group right-go">
+                        <div class="input-group-btn ">
+                            <select name=""  class="form-control style1">
+                                <option value="">计算机专业</option>
+                                <option value="">软件工程</option>
+                                <option value="">其他</option>
+                            </select>
+                            <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" row kinds-all">
+                <div class="Y211 col-xs-6">
+                    <input type="checkbox"/>
+                    211院校
+                </div>
+                <div class="col-xs-6 sex">
+                    <span>学历</span>
+                    <div class="input-group right-go">
+                        <div class="input-group-btn ">
+                            <select name=""  class="form-control style1">
+                                <option value="">本科</option>
+                                <option value="">专科</option>
+                                <option value="">研究生</option>
+                            </select>
+                            <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row job">
+                <span>应聘岗位</span>
+                <div class="input-group right-go1">
+                    <div class="input-group-btn ">
+                        <select name=""  class="form-control style1">
+                            <option value="">研发</option>
+                            <option value="">运维</option>
+                            <option value="">项目助理</option>
+                        </select>
+                        <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row time">
+                <span>入司时间</span>
+                <div class="input-group right-go1">
+                    <div class="input-group-btn ">
+                        <select name=""  class="form-control style1">
+                            <option value="">2017-10</option>
+                            <option value="">2017-3</option>
+                            <option value="">2018-4</option>
+                        </select>
+                        <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row student">
+                <div class="col-xs-6">
+                    <input type="checkbox"/> 淘太实习生
+                </div>
+                <div class="col-xs-6">
+                    <input type="checkbox"/> 特殊实习生
+                </div>
+            </div>
+            <div class="row low-student">
+                <div class="col-xs-6">
+                    <input type="checkbox"/>存在严重不符合项
+                </div>
+            </div>
+            <div class="row rank">
+                <div class="col-xs-6">
+                    <input type="radio"/> 三阶段排名第五
+                </div>
+                <div class="col-xs-6">
+                    <input type="radio"/> 三阶段排名倒五
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 L-bottom"></div>
+                <button class="btn staistic  col-xs-offset-1 col-xs-10 "> 筛选</button>
             </div>
         </div>
-        <div class=" col-xs-8 content-M"></div>
+        <div class="col-xs-8 content-M">
+            <div class="row">
+                <div class="col-xs-offset-7 col-xs-4 doit">
+                    <button class="btn">编辑</button>
+                    <button class="btn">查看可视图表</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <table>
+                    <tr>
+                        <th>面试官所在部门</th>
+                        <th>阶段一成绩↓</th>
+                        <th>阶段二成绩↓</th>
+                        <th>阶段一成绩↓</th>
+                        <th>个人信息</th>
+                        <th>详细信息</th>
+                    </tr>
+                    <tr>
+                        <td>电子政务</td>
+                        <td>89</td>
+                        <td>91</td>
+                        <td>90</td>
+                        <td><button class="btn">查看</button></td>
+                        <td><button class="btn">查看</button></td>
+                    </tr>
+                    <tr>
+                        <td>电子政务</td>
+                        <td>89</td>
+                        <td>91</td>
+                        <td>90</td>
+                        <td><button class="btn">查看</button></td>
+                        <td><button class="btn">查看</button></td>
+                    </tr>
+                    <tr>
+                        <td>电子政务</td>
+                        <td>89</td>
+                        <td>91</td>
+                        <td>90</td>
+                        <td><button class="btn">查看</button></td>
+                        <td><button class="btn">查看</button></td>
+                    </tr>
+                    <tr>
+                        <td>电子政务</td>
+                        <td>89</td>
+                        <td>91</td>
+                        <td>90</td>
+                        <td><button class="btn">查看</button></td>
+                        <td><button class="btn">查看</button></td>
+                    </tr>
+                    <tr>
+                        <td>电子政务</td>
+                        <td>89</td>
+                        <td>91</td>
+                        <td>90</td>
+                        <td><button class="btn">查看</button></td>
+                        <td><button class="btn">查看</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 </div>
 <script src="js/jquery-1.11.3.js"></script>
 <script src="js/echarts.min.js"></script>
