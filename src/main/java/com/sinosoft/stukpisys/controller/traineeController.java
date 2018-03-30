@@ -63,7 +63,7 @@ public class traineeController {
 //        int score2=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,2).get(0))) ;
 //        int score3=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,3).get(0))) ;
 //        int score4=Integer.parseInt(String.valueOf(hrService.getScoreFromStageByUser_id(userId,4).get(0))) ;
-//        //还未完成----- 
+//        //还未完成-----
 
         return null;
     }
