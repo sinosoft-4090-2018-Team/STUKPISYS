@@ -81,4 +81,17 @@ public class siftController {
         //todo
         return null;
     }
+
+    /***
+     * 获取筛选条件
+     * @return
+     * [{'HR':[]},{'job':[]},{'school':[]},{'Education':[]},{'major':[]}]
+     */
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    @GetMapping(value ="/getSiftTerms")
+    public String getSiftTerms()
+    {
+        //todo
+        return null;
+    }
 }
