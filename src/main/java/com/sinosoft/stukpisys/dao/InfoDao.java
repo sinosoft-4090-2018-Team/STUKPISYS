@@ -116,4 +116,6 @@ public interface InfoDao {
     @SelectProvider(type = SqlProvider.class, method = "getUserScoreParam")
     List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,boolean sex, String state,String belong,boolean is211);
 
+    @Update("update user_info set dept=#{dept} where user_id=#{userId}")
+    int setDept(int userId,String dept);
 }

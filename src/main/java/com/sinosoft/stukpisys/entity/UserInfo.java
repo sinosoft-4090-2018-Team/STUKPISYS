@@ -7,6 +7,7 @@ public class UserInfo {
   private String userName;
   private String state;
   private String hrName;
+
   private String job;
   private long gender;//0为男，1为女
   private String email;

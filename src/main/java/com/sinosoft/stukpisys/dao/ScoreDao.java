@@ -1,14 +1,12 @@
 package com.sinosoft.stukpisys.dao;
 
-import com.sinosoft.stukpisys.entity.ScoreLabel;
-import com.sinosoft.stukpisys.entity.ScoreValue;
-import org.apache.ibatis.annotations.Insert;
 import com.sinosoft.stukpisys.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import sun.reflect.generics.tree.VoidDescriptor;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 @Mapper
@@ -134,6 +132,6 @@ public interface ScoreDao {
     User getUserIdByUserName(String name);
     //修改评价
     @Update("update score_value set value_string=#{judge} where user_id=#{userId} and label_name=#{labelName}")
-    int changeJudgeByUserNameAndLabelName(int userId,String labelName,String judge);
+    int changeJudgeByUserNameAndLabelName(@RequestParam String judge,@RequestParam int userId,@RequestParam String labelName);
 
 }
