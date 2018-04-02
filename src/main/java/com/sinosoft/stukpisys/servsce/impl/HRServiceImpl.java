@@ -146,7 +146,7 @@ public class HRServiceImpl implements HRService{
         if(hasErr==true){
             belong="err";
         }
-        return infoDao.getUserScoreParam( HRName,job,school,Education,major, sex,state,belong,is211);
+         return infoDao.getUserScoreParam( HRName,job,school,Education,major, sex,state,belong,is211);
     }
     @Override
     public Education getEduInfoByUserName(String userName) {
