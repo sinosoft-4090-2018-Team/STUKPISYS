@@ -43,7 +43,7 @@ public class siftController {
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/judge" )
     public String siftUserJudge(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211)  {
-        //todo
+
 
        List<ScoreValue> list=hrService.getJudgeByParam(HRName,job,school,Education,major, sex,isFired,isNew, hasErr, is211);
 
@@ -55,17 +55,18 @@ public class siftController {
 
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/score")
-    public String siftUserScore(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211)
-    {
+    public String siftUserScore(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211) {
         //todo
-        return null;
+        List<ScoreValue> list = hrService.getUserScoreParam(HRName, job, school, Education, major, sex, isFired, isNew, hasErr, is211);
+        return JSON.toJSONString(list);
+        // return "success";
     }
 
-    /***
-     * 筛选两个或三个阶段排名倒五的
-     * @param stage 阶段数
-     * @return  成绩和评价
-     */
+        /***
+         * 筛选两个或三个阶段排名倒五的
+         * @param stage 阶段数
+         * @return  成绩和评价
+         */
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
     @GetMapping(value ="/judgeInBack")
     public String getJudgeInBack(int stage)

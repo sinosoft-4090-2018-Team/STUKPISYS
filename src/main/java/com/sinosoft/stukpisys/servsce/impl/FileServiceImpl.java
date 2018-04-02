@@ -1,10 +1,8 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
-import com.sinosoft.stukpisys.dao.InfoDao;
 import com.sinosoft.stukpisys.dao.UserDao;
 import com.sinosoft.stukpisys.entity.*;
 import com.sinosoft.stukpisys.servsce.FileService;
-import com.sinosoft.stukpisys.untils.ExcelReader;
 import com.sinosoft.stukpisys.untils.GetExcelMessage;
 import com.sinosoft.stukpisys.untils.Is211;
 import org.springframework.beans.factory.annotation.Autowired;
