@@ -1,6 +1,12 @@
 body{
     background:#f2f1f0;
 }
+.none1{
+    display:none;
+}
+.show1{
+    display:block;
+}
 .container{
     width:100%;
 }
@@ -211,9 +217,46 @@ margin-left:16px;
 .doit button:focus,.doit button:hover{
     color:#fff;
 }
+.table1{
+    height:565px;
+    overflow: scroll;
+}
 table{
     margin-top:40px;
+    border-collapse: separate;
+    /*border-spacing: 15px;*/
 }
 th:not(:first-child){
-    margin-left:20px;
+    padding-left:60px;
 }
+th:last-child{
+    padding-left:55px;
+}
+td:not(:first-child){
+    padding-left:60px;
+}
+tr:nth-child(2),tr:nth-child(4){
+    background:#fff6ee;
+}
+td{
+    height:40px;
+}
+td:last-child{
+    padding-right:30px;
+    padding-left:55px;
+}
+
+.see1{
+    width:56px;
+    height:25px;
+    border:1px solid #ffa478;
+    cursor:pointer;
+}
+#mainView{
+    background:#000;
+    width:850px;
+    height:565px;
+    margin-top:6px;
+}
+
+

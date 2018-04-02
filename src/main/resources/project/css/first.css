@@ -72,6 +72,7 @@ margin-left:2%;
     margin-top:35px;
 }
 .pwd{
+    display:inline-block;
     width:100%;
     background:#ffab66;
     border:0;
@@ -79,9 +80,12 @@ margin-left:2%;
     height:35px;
     line-height: 35px;
     color:#fff;
+
 }
 .pwd:hover{
     cursor:pointer;
+    color:#fff;
+    text-decoration: none;
 }
 .rember{
     text-align:center;
