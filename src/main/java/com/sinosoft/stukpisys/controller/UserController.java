@@ -30,6 +30,12 @@ public class UserController {
 //        return "login";
     }
 
+    @PutMapping(value = "/changePassword", params = {"username", "password"})
+    public String changePassword(String username, String password) throws AuthenticationException {
+        //todo
+        return null;
+    }
+
     /**
      * 用户注册
      *
