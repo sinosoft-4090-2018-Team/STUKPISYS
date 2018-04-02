@@ -60,24 +60,24 @@ body{
     height:100px;
 }
 .left-top{
-    height:300px;
-    background:#000;
+    height:450px;
+    /*background:#000;*/
 }
 .left-bot{
-    height:300px;
-    background:red;
+    height:450px;
+    /*background:red;*/
     margin-top:10px;
 }
 .middle{
-    height:610px;
-    background:blue
+    height:900px;
+    /*background:blue*/
 }
 .right-top{
-    height:300px;
-    background:pink;
+    height:450px;
+    /*background:pink;*/
 }
 .right-bot{
-    height:300px;
+    height:450px;
     margin-top:10px;
-    background:yellow;
+    /*background:yellow;*/
 }

@@ -24,19 +24,19 @@ spring:
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
-  freemarker:
-    charset: UTF-8
-    cache: false
-    allow-request-override: false
-    check-template-location: true
-    content-type: text/html
-    expose-request-attributes: false
-    expose-session-attributes: false
-    expose-spring-macro-helpers: false
-    request-context-attribute: request
-    prefer-file-system-access: true
-    suffix: .html
-    template-loader-path: classpath:/templates/
+#  freemarker:
+#    charset: UTF-8
+#    cache: false
+#    allow-request-override: false
+#    check-template-location: true
+#    content-type: text/html
+#    expose-request-attributes: false
+#    expose-session-attributes: false
+#    expose-spring-macro-helpers: false
+#    request-context-attribute: request
+#    prefer-file-system-access: true
+#    suffix: .html
+#    template-loader-path: classpath:/templates/
 logging:
   file: logs/kpisys.log
 mybatis:
