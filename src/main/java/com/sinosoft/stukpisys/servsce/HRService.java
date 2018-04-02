@@ -39,7 +39,7 @@ public interface HRService {
     //3-29 服务traineeController
     Education getEduInfoByUserName(String userName);
     List<List<Object>> getScoreFromStageByUser_id(int userId,int stage);
-    List<ScoreValue> getJudgeByParam(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211);
+    List<ScoreValue>  getJudgeByParam(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211);
     List<ScoreValue> getUserScoreParam(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211);
     User getByName(String name);
 
