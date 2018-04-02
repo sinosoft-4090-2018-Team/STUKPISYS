@@ -28,7 +28,7 @@ public class siftController {
      * @param HRName 面试官
      * @param job   应聘岗位
      * @param school    学校
-     * @param Education 学历
+     * @param education 学历
      * @param major 专业
      * @param sex   性别
      * @param isFired   淘汰
@@ -41,8 +41,9 @@ public class siftController {
      * 责任心、主动性、抗压性、团队意识、学习能力、沟通、严重不符合项、中途退出-淘汰实习生、淘汰阶段、淘汰原因、中途进入-特殊实习生
      */
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
-    @GetMapping(value ="/judge" )
-    public String siftUserJudge(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211)  {
+    @GetMapping(value ="/judge")
+    public String siftUserJudge(@RequestParam(value="HRName",required=false) String HRName,@RequestParam(value="job",required=false)  String job,@RequestParam(value="school",required=false)  String school,@RequestParam(value="education",required=false)  String education,@RequestParam(value="major",required=false)  String major,@RequestParam(value="sex",required=false)  boolean sex,@RequestParam(value="isFired",required=false)  boolean isFired,@RequestParam(value="isNew",required=false)  boolean isNew,@RequestParam(value="hasErr",required=false)  boolean hasErr,@RequestParam(value="is211",required=false)  boolean is211 )
+    {
         //todo
 
        List<ScoreValue> list=hrService.getJudgeByParam(HRName,job,school,Education,major, sex,isFired,isNew, hasErr, is211);
@@ -51,6 +52,8 @@ public class siftController {
      //   System.out.println(list.get(0).getUserId());
        return JSON.toJSONString(list);
        // return "success";
+      // List<List<Object>> list=hrService.getUserInfoByParam(HRName,job,school,education,major,sex,isFired, isNew,hasErr,is211);
+        return "";
     }
 
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
