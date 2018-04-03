@@ -8,6 +8,7 @@ body{
     height:40px;
     background:#ffc28f;
     display:flex;
+    justify-content: space-between;
 }
 .nav1 ul{
     display:flex;
@@ -45,10 +46,10 @@ body{
     text-decoration: none;
     color:#fff;
 }
-.xiaTing{
-  margin-left:25%;
+/*.xiaTing{*/
+  /*margin-left:25%;*/
 
-}
+/*}*/
 .xiaTing li{
     height:40px;
     width:30px;
@@ -94,7 +95,7 @@ body{
 .bg-white{
     background:#fff;
     margin-top:20px;
-    height:900px;
+    height:865px;
 }
 .info-nav span:first-child{
     float:left;
@@ -155,8 +156,13 @@ body{
     text-align: center;
 }
 .bg-color3{
-    height:900px;
+    height:863px;
     background:#fff;
     margin-top:20px;
     margin-left:32px;
+}
+#traineeView{
+    margin-top:15px;
+    width:750px;
+    height:920px;
 }

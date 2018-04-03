@@ -45,7 +45,7 @@ function fakeGeoData() {
         {name: '澳门',value: randomData() }
     ];
     creatGeoView(data);
-    console.log(Object.keys(name));
+    // console.log(Object.keys(name));
 }
 function creatGeoView(data) {
     initGeo( echarts.init(document.getElementById("mapView"),'macarons'),data);
@@ -84,6 +84,7 @@ function initGeo(chart,data) {
             }
         },
         series: {
+            name:'地区分布',
             type: 'map',
             mapType: 'china',
             roam: true,

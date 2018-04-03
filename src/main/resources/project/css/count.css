@@ -8,6 +8,7 @@ body{
     height:40px;
     background:#ffc28f;
     display:flex;
+    justify-content: space-between;
 }
 .nav1 ul{
     display:flex;
@@ -45,9 +46,9 @@ body{
     text-decoration: none;
     color:#fff;
 }
-.xiaTing{
-    margin-left:28%;
-}
+/*.xiaTing{*/
+    /*!*margin-left:28%;*!*/
+/*!*}*!*/
 .xiaTing li{
     height:40px;
     width:30px;
