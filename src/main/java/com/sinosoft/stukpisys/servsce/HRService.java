@@ -36,8 +36,8 @@ public interface HRService {
     //3-29 服务traineeController
     Education getEduInfoByUserName(String userName);
     List<List<Object>> getScoreFromStageByUser_id(int userId,int stage);
-    List<ScoreValue>  getJudgeByParam(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211);
-    List<ScoreValue> getUserScoreParam(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211);
+    List<ScoreValue>  getJudgeByParam(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211);
+    List<ScoreValue> getUserScoreParam(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple, boolean isFired,boolean isNew,boolean hasErr,String is211);
     User getByName(String name);
 
 
@@ -110,4 +110,11 @@ public interface HRService {
 
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<ScoreLabel> getTraineeJudge(String name);
+
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<ScoreValue> getFirstSealScore();
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<ScoreValue> getGoodSealScore();
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<ScoreValue> getUsualPerformance();
 }

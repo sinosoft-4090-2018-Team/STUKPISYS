@@ -121,6 +121,21 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
+    public List<ScoreValue> getFirstSealScore() {
+        return scoreDao.getFirstSealScore();
+    }
+
+    @Override
+    public List<ScoreValue> getGoodSealScore() {
+        return scoreDao.getGoodSealScore();
+    }
+
+    @Override
+    public List<ScoreValue> getUsualPerformance() {
+        return scoreDao.getUsualPerformance();
+    }
+
+    @Override
     public List<UserInfo> getUserByHighestEducate(String educate) {
         return infoDao.getUserByHighestEducate(educate);
     }
@@ -167,15 +182,17 @@ public class HRServiceImpl implements HRService{
 
 
     @Override
-    public List<ScoreValue> getJudgeByParam(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211)
+    public List<ScoreValue> getJudgeByParam(String HRName,String job,String school,String Education,String major,String sex,boolean isFired,boolean isSimple,boolean isNew,boolean hasErr,String is211)
     {
         String state=null;
         if (isFired==true){
-             state="淘汰";
+            state="淘汰";
         }else if(isNew==true){
             state="特殊";
-        }else{
+        }else if(isSimple==true) {
             state="正常";
+        }else{
+            state=null;
         }
         String belong=null;
         if(hasErr==true){
@@ -185,14 +202,16 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public List<ScoreValue> getUserScoreParam(String HRName, String job, String school, String Education, String major, boolean sex, boolean isFired, boolean isNew, boolean hasErr, boolean is211) {
+    public List<ScoreValue> getUserScoreParam(String HRName, String job, String school, String Education, String major, String sex,boolean isSimple, boolean isFired, boolean isNew, boolean hasErr, String is211) {
         String state=null;
         if (isFired==true){
             state="淘汰";
         }else if(isNew==true){
             state="特殊";
-        }else{
+        }else if(isSimple==true) {
             state="正常";
+        }else{
+            state=null;
         }
         String belong=null;
         if(hasErr==true){

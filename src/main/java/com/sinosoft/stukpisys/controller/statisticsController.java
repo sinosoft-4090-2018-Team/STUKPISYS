@@ -2,17 +2,15 @@ package com.sinosoft.stukpisys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.servsce.HRService;
-import freemarker.ext.beans.HashAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.swing.text.html.HTMLDocument;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -67,6 +65,36 @@ public class statisticsController {
     {
         List<Map<String,Integer>>map=hrService.getPopulationByLocationDiffer();
         return JSON.toJSONString(map);
+    }
+
+
+    @PreAuthorize("hasAnyRole('MG','ADMIN')")
+    @GetMapping(value ="/calculate")//OK
+    public String calculateScore()
+    {
+       List<ScoreValue> listFirstSeal=hrService.getFirstSealScore();
+       List<ScoreValue> listGoodSeal=hrService.getGoodSealScore();
+       List<ScoreValue> listUsualPerformance=hrService.getUsualPerformance();
+       long sum=0;
+       JSONObject jsonObject=new JSONObject();
+       List<JSONObject> jsonObjectList=new LinkedList<>();
+        for (int i=0;i<listFirstSeal.size();i++){
+            for (int j=0;j<listGoodSeal.size();j++){
+                for (int k=0;k<listUsualPerformance.size();k++){
+                    if(listFirstSeal.get(i).getUserId()==listGoodSeal.get(j).getUserId()&&listFirstSeal.get(i).getUserId()==listUsualPerformance.get(k).getUserId()&&listUsualPerformance.get(k).getUserId()==listGoodSeal.get(j).getUserId()){
+                        sum=listFirstSeal.get(i).getScore()+listFirstSeal.get(j).getScore()+listUsualPerformance.get(k).getScore();
+                        jsonObject.put("userId",listFirstSeal.get(i).getUserId());
+                        jsonObject.put("sum",sum);
+                        jsonObjectList.add(jsonObject);
+                    }
+
+            }
+
+           }
+
+        }
+
+        return jsonObjectList.toString();
     }
 
 }

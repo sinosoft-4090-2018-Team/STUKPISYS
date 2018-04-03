@@ -12,6 +12,15 @@ public class ScoreValue {
   private java.sql.Date valueDate;
   private String userName;
   private String labelName;
+  private long score;
+
+  public long getScore() {
+    return score;
+  }
+
+  public void setScore(long score) {
+    this.score = score;
+  }
 
   public String getUserName() {
     return userName;

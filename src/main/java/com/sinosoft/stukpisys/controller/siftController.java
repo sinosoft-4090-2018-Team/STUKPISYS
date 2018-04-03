@@ -46,10 +46,10 @@ public class siftController {
      */
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/judge" )
-    public String siftUserJudge(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211)  {
+    public String siftUserJudge(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211)  {
 
 
-       List<ScoreValue> list=hrService.getJudgeByParam(HRName,job,school,Education,major, sex,isFired,isNew, hasErr, is211);
+       List<ScoreValue> list=hrService.getJudgeByParam(HRName,job,school,Education,major, sex,isSimple,isFired,isNew, hasErr, is211);
 
 
      //   System.out.println(list.get(0).getUserId());
@@ -59,9 +59,9 @@ public class siftController {
 
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/score")
-    public String siftUserScore(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211) {
+    public String siftUserScore(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211) {
 
-        List<ScoreValue> list = hrService.getUserScoreParam(HRName, job, school, Education, major, sex, isFired, isNew, hasErr, is211);
+        List<ScoreValue> list = hrService.getUserScoreParam(HRName, job, school, Education, major, sex,isSimple, isFired, isNew, hasErr, is211);
         return JSON.toJSONString(list);
         // return "success";
     }

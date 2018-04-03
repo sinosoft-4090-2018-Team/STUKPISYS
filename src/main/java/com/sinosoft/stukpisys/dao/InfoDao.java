@@ -84,10 +84,10 @@ public interface InfoDao {
     List<String> getDifferLocationName();
    //获取评价
    @SelectProvider(type = SqlProvider.class, method = "getUserParam")
-    List<ScoreValue> getJudgeByParam(String HRName ,String job,String school,String Education,String major,boolean sex, String state,String belong,boolean is211);
+    List<ScoreValue> getJudgeByParam(String HRName ,String job,String school,String Education,String major,String sex, String state,String belong,String is211);
    //获取分数
     @SelectProvider(type = SqlProvider.class, method = "getUserScoreParam")
-    List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,boolean sex, String state,String belong,boolean is211);
+    List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,String sex, String state,String belong,String is211);
     //分配部门
     @Update("update user_info set dept=#{dept} where user_name=#{userName}")
     int setDept(@Param("userName")String userName,@Param("dept") String dept);

@@ -1,6 +1,7 @@
 package com.sinosoft.stukpisys.dao;
 
 import com.sinosoft.stukpisys.entity.ScoreLabel;
+import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -138,7 +139,27 @@ public interface ScoreDao {
     List<Object> getScoreById(long id);
 
 
+
+
     //根据id的返回
     @Select("")
     List<List<Object>> getJudgeById(long id);
+
+   //获取第一名章的得分（个数*2）
+    @Select("select score_value.*,value_int*2 as score from score_value,\n" +
+            "(SELECT * from  score_label  where label_name like '%第一名章%')a\n" +
+            "where score_value.label_index=a.label_index")
+    List<ScoreValue> getFirstSealScore();
+    //获取good章的得分（个数*1）
+    @Select("select score_value.*,value_int as score from score_value,\n" +
+            "(SELECT * from  score_label  where label_name like '%good章%')a\n" +
+            "where score_value.label_index=a.label_index")
+    List<ScoreValue> getGoodSealScore();
+    //获取第一阶段出勤和平时成绩
+    @Select("select score_value.*,sum(value_int) as score from score_value,\n" +
+            "(select * from score_label where stage=1 and belong ='score' ) a \n" +
+            "where score_value.label_index=a.label_index  \n" +
+            " GROUP BY score_value.user_id")
+    List<ScoreValue> getUsualPerformance();
+
 }
