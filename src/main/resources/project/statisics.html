@@ -49,9 +49,8 @@
                    <span>性别</span>
                    <div class="input-group">
                        <div class="input-group-btn">
-                           <select name=""  class="form-control style1 " style="font-size:10px">
-                               <option value="">男</option>
-                               <option value="">女</option>
+                           <select id="sexs" class="form-control style1 " style="font-size:10px">
+                               <option v-for="item in items">{{sex}}}</option>
                            </select>
                            <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
                        </div>
@@ -237,5 +236,6 @@
 <script src="js/macarons.js"></script>
 <script src="js/statistic.js"></script>
 <script src="js/mainView.js"></script>
+<script src="js/vue.min.js"></script>
 </body>
 </html>
