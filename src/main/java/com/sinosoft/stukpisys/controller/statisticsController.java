@@ -32,7 +32,7 @@ public class statisticsController {
     @GetMapping(value ="/sex")
     public String sexStatistics()
     {
-        Map<String,Integer>map=hrService.getPopulationBySexDiffer();
+        List<Map<String,Integer>> map=hrService.getPopulationBySexDiffer();
         return JSON.toJSONString(map);
     }
 

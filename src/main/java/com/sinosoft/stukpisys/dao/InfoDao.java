@@ -60,7 +60,7 @@ public interface InfoDao {
     Education getEduInfoByUserName(String userName);
     //根据性别差异来查询人数
     @Select("SELECT gender name,COUNT(gender) value FROM user_info GROUP BY gender")
-    Map<String,Integer> getPopulationBySexDiffer();
+    List<Map<String,Integer>> getPopulationBySexDiffer();
     //更具学历来差异来查询人数
     @Select("SELECT highest_educate name ,COUNT(highest_educate) value  FROM education GROUP BY highest_educate ")
     List<Map<String,Integer>> getPopulationByEducationDiffer();

@@ -126,7 +126,7 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public Map<String,Integer> getPopulationBySexDiffer() {
+    public List<Map<String,Integer>> getPopulationBySexDiffer() {
         return  infoDao.getPopulationBySexDiffer();
     }
 

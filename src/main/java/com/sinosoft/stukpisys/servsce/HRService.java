@@ -24,7 +24,7 @@ public interface HRService {
     List<UserInfo> getUserBySchool(String name);
     List<UserInfo> getUserByHighestEducate(String educate);
     //3-29 服务statisticsController
-    Map<String,Integer> getPopulationBySexDiffer();
+    List<Map<String,Integer>> getPopulationBySexDiffer();
     List<Map<String,Integer>> getPopulationByEducationDiffer();
     List<String> getDifferEducateName();
     List<Map<String,Integer>> getPopulationByMajorDiffer();
@@ -52,8 +52,6 @@ public interface HRService {
 
     /**
      * 通过id查询label的index和数值
-     * @param name
-     * @param dept
      * @return
      */
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
