@@ -81,7 +81,7 @@ public class JwtToken implements Serializable {
     }
 
     /**
-     * 判断令牌是否过期
+     * 判断令牌是否过期,
      *
      * @param token 令牌
      * @return 是否过期
