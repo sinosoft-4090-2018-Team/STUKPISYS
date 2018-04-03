@@ -1,9 +1,6 @@
 package com.sinosoft.stukpisys.servsce;
 
-import com.sinosoft.stukpisys.entity.Education;
-import com.sinosoft.stukpisys.entity.ScoreValue;
-import com.sinosoft.stukpisys.entity.User;
-import com.sinosoft.stukpisys.entity.UserInfo;
+import com.sinosoft.stukpisys.entity.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
@@ -44,6 +41,13 @@ public interface HRService {
     User getByName(String name);
 
 
+    List<UserInfo> gethrName();
+    List<UserInfo> getJob();
+    List<Education> getschoolName();
+    List<Education> getHighestEducate();
+    List<Education> getMajor();
+
+
 
 
     /**
@@ -64,4 +68,46 @@ public interface HRService {
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<List<Object>> getUserScoreByStageAndTime(int stage, java.sql.Date enter_time);
 
+    /**
+     * 按2或3阶段查看在后5的人员的id
+     * @param stage
+     * @return
+     */
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<Long> getScoreInbackByStage2(int stage);
+    /**
+     * 根据id查成绩,返回姓名和各个阶段的成绩
+     * @param id
+     * @return
+     */
+    /**
+     * 按阶段查看在后5的人员的id
+     * @param stage
+     * @return
+     */
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<Long> getScoreInbackByStage(int stage);
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<Object> getScoreById(long id);
+
+    /**
+     * 按阶段数查看成绩都在后5的人员的成绩
+     * @param stages
+     * @return
+     */
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<ScoreValue> getScoreInback(int stages);
+    /**
+     * 通过id查三个阶段评价
+     * @param id
+     * @return
+     */
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<List<Object>> getJudgeInback(long id);
+
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<ScoreLabel> getTraineeScore(String name);
+
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<ScoreLabel> getTraineeJudge(String name);
 }

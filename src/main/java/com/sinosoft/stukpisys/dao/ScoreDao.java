@@ -1,11 +1,13 @@
 package com.sinosoft.stukpisys.dao;
 
+import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Date;
 import java.util.List;
 @Mapper
 public interface ScoreDao {
@@ -112,8 +114,31 @@ public interface ScoreDao {
     //根据名字查id
     @Select("select user_id from user where name=#{name}")
     User getUserIdByUserName(String name);
+    //根据labelName找label_index
+    @Select("select label_index from score_label where label_name=#{labelName}")
+    ScoreLabel getLabelIndexByLabelName(String labelName);
     //修改评价
-    @Update("update score_value set value_string=#{judge} where user_id=#{userId} and label_name=#{labelName}")
-    int changeJudgeByUserNameAndLabelName(@RequestParam String judge,@RequestParam int userId,@RequestParam String labelName);
+    @Update("update score_value set value_string=#{judge} where user_id=#{userId} and label_index=#{labelIndex}")
+    int changeJudgeByUserNameAndLabelName(@Param("userId")long  userId, @Param("labelIndex") long labelIndex, @Param("judge") String judge);
 
+    //修改实习生信息
+    @Update("UPDATE user_info set state=#{state},hr_name=#{hrName},job=#{job},gender=#{gender},email=#{email},birth=#{birth},native_place=#{nativePlace},phone=#{phone},enter_time=#{enterTime},edu_id=#{eduId},dept=#{dept}\n" +
+            "\n" +
+            "where user_name=#{userName} ")
+    int changeInfoByUsernameAndKeyValue(@Param("state")String  state, @Param("hrName")String  hrName, @Param("job")String  job, @Param("gender")long  gender, @Param("email")String  email, @Param("birth")Date birth, @Param("nativePlace")String  nativePlace, @Param("phone")String  phone, @Param("enterTime")Date  enterTime, @Param("eduId")long  eduId, @Param("dept")String  dept, @Param("userName")String  userName);
+
+    //根据阶段查成绩倒5的人的id
+    @Select("select user_id from score_value where label_index=(select label_index from score_label where belong='sum' and stage=#{stage}) order by value_int limit 5")
+    List<Long> getScoreInbackByStage(int stage);
+    //根据id查三阶段的成绩
+    @Select("(select name from user where user_id=#{id})\n" +
+            "union all\n" +
+            "(select value_int from score_value where user_id=#{id} and (label_index=(select label_index from score_label where belong='sum' and stage=1) \n" +
+            "or label_index=(select label_index from score_label where belong='sum' and stage=2) or label_index=(select label_index from score_label where belong='sum' and stage=3)))")
+    List<Object> getScoreById(long id);
+
+
+    //根据id的返回
+    @Select("")
+    List<List<Object>> getJudgeById(long id);
 }

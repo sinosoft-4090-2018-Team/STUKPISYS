@@ -24,4 +24,7 @@ public interface UserDao{
     @Insert("INSERT INTO user_info(user_name,state,hr_name,job,gender,email,birth,native_place,phone,enter_time,dept) VALUES(#{user_name},#{state},#{hr_name},#{job},#{gender},#{email},#{birth},#{native_place},#{phone},#{enter_time},#{dept})")
     void insertUserInfo(UserInfo userInfo);
 
+    //修改用户密码
+    @Update("update user set password=#{password} where name=#{username}")
+    void UpdatePassword(String username,String password);
 }

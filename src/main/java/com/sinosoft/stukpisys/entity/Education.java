@@ -13,6 +13,8 @@ public class Education {
   private long is211;
   private java.sql.Date graduationTime;
 
+  public Education(){}
+
   public Education(long eduId, String highestEducate, String major, String schoolName, String location, long is211, Date graduationTime) {
     this.eduId = eduId;
     this.highestEducate = highestEducate;

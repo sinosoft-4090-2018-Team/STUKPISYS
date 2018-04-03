@@ -1,6 +1,7 @@
 package com.sinosoft.stukpisys.servsce;
 
 import com.sinosoft.stukpisys.entity.User;
+import org.springframework.security.access.method.P;
 
 public interface UserService {
     /**
@@ -27,4 +28,12 @@ public interface UserService {
      * @return 新密钥
      */
     String refreshToken(String oldToken);
+    /**
+     * 用户修改密码
+     *
+     * @param username 用户名
+     * @para
+     * @return 操作结果
+     */
+    String changePassword(String username, String password);
 }
