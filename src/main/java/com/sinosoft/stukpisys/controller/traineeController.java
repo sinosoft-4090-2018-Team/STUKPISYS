@@ -81,7 +81,7 @@ public class traineeController {
     @GetMapping(value ="/judge")
     public String getTraineeJudge(String name)
     {
-        List<ScoreLabel> listList= hrService.getTraineeScore(name);
+        List<ScoreLabel> listList= hrService.getTraineeJudge(name);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("judge",listList);
