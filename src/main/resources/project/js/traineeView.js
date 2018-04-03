@@ -31,6 +31,10 @@ function traineeView (chart,data) {
         yAxis: {
             type: 'value'
         },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{b} :{c}"
+        },
         series: [{
             data: data.bar,
             type: 'bar'
