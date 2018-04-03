@@ -120,6 +120,7 @@ public class HRServiceImpl implements HRService{
         return infoDao.getTraineeJudge(name);
     }
 
+
     @Override
     public List<ScoreValue> getFirstSealScore() {
         return scoreDao.getFirstSealScore();
