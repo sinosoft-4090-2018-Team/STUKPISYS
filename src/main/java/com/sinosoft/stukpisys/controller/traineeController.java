@@ -3,12 +3,15 @@ package com.sinosoft.stukpisys.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.entity.Education;
+import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @program: stukpisys
@@ -53,25 +56,21 @@ public class traineeController {
         return null;
     }
 
-    @GetMapping(value ="/score")//总成绩 sum
+    @GetMapping(value ="/score")//小分，阶段总成绩 sum
     public String getTraineeScore(String name)
     {
+         List<ScoreLabel> listList= hrService.getTraineeScore(name);
 
-        return null;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("score",listList);
+
+     //   listList.set("")
+
+
+        return  jsonObject.toJSONString();
     }
 
-    /***
-     * 查态度
-     * @param name
-     * @return
-     * 主动性-第一名章、主动性-good章、灵活度、责任心与沉稳度、展示评价
-     */
-    @GetMapping(value ="/attitude")
-    public String getTraineeAttitude(String name)
-    {
-        //todo
-        return null;
-    }
+
 
     /***
      * 查评价
@@ -82,8 +81,11 @@ public class traineeController {
     @GetMapping(value ="/judge")
     public String getTraineeJudge(String name)
     {
-        //todo
-        return null;
+        List<ScoreLabel> listList= hrService.getTraineeScore(name);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("judge",listList);
+        return jsonObject.toJSONString();
     }
 
 

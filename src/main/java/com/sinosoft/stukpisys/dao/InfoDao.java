@@ -1,6 +1,7 @@
 package com.sinosoft.stukpisys.dao;
 
 import com.sinosoft.stukpisys.entity.Education;
+import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.SqlProvider;
@@ -107,4 +108,19 @@ public interface InfoDao {
     //获取筛选条件(major)
      @Select("select major from education GROUP BY major")
      List<Education> getMajor();
+
+     @Select("SELECT score_label.*,b.value_int from score_label,\n" +
+             "(select score_value.label_index,score_value.value_int from  score_value,(select user.user_id from user where name=#{name}) a\n" +
+             "where score_value.user_id=a.user_id)b\n" +
+             "WHERE score_label.label_index=b.label_index and belong in('','sum')\n" +
+             "and score_label.type='0'")
+      List<ScoreLabel> getTraineeScore(String name);
+
+
+     @Select("SELECT score_label.*,b.value_string from score_label,\n" +
+             "(select score_value.label_index,score_value.value_string from  score_value,(select user.user_id from user where name=#{name}) a\n" +
+             "where score_value.user_id=a.user_id)b\n" +
+             "WHERE score_label.label_index=b.label_index and belong='judge'\n" +
+             "and score_label.type='1'")
+     List<ScoreLabel> getTraineeJudge(String name);
 }

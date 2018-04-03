@@ -1,9 +1,6 @@
 package com.sinosoft.stukpisys.servsce;
 
-import com.sinosoft.stukpisys.entity.Education;
-import com.sinosoft.stukpisys.entity.ScoreValue;
-import com.sinosoft.stukpisys.entity.User;
-import com.sinosoft.stukpisys.entity.UserInfo;
+import com.sinosoft.stukpisys.entity.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
@@ -108,4 +105,9 @@ public interface HRService {
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<List<Object>> getJudgeInback(long id);
 
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<ScoreLabel> getTraineeScore(String name);
+
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    List<ScoreLabel> getTraineeJudge(String name);
 }

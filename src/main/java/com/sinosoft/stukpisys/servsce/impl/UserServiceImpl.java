@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.dao.UserDao;
 import com.sinosoft.stukpisys.entity.User;
 import com.sinosoft.stukpisys.servsce.UserService;
-import com.sinosoft.stukpisys.untils.JWTtoken;
+import com.sinosoft.stukpisys.untils.JwtToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    private JWTtoken JwtToken;
+    private JwtToken JwtToken;
 
 
     @Override

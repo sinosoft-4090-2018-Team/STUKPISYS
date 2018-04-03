@@ -10,6 +10,24 @@ public class ScoreLabel {
   private long stage;
   private String belong;
 
+   private long valueInt;
+   private String valueString;
+
+  public String getValueString() {
+    return valueString;
+  }
+
+  public void setValueString(String valueString) {
+    this.valueString = valueString;
+  }
+
+  public long getValueInt() {
+    return valueInt;
+  }
+
+  public void setValueInt(long valueInt) {
+    this.valueInt = valueInt;
+  }
 
   public long getLabelId() {
     return labelId;

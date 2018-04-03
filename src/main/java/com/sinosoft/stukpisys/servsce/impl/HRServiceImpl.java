@@ -3,10 +3,7 @@ package com.sinosoft.stukpisys.servsce.impl;
 import com.sinosoft.stukpisys.dao.InfoDao;
 import com.sinosoft.stukpisys.dao.ScoreDao;
 import com.sinosoft.stukpisys.dao.UserDao;
-import com.sinosoft.stukpisys.entity.Education;
-import com.sinosoft.stukpisys.entity.ScoreValue;
-import com.sinosoft.stukpisys.entity.User;
-import com.sinosoft.stukpisys.entity.UserInfo;
+import com.sinosoft.stukpisys.entity.*;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,6 +108,16 @@ public class HRServiceImpl implements HRService{
     @Override
     public List<List<Object>> getJudgeInback(long id) {
         return scoreDao.getJudgeById(id);
+    }
+
+    @Override
+    public List<ScoreLabel> getTraineeScore(String name) {
+        return infoDao.getTraineeScore(name);
+    }
+
+    @Override
+    public List<ScoreLabel> getTraineeJudge(String name) {
+        return infoDao.getTraineeJudge(name);
     }
 
     @Override
