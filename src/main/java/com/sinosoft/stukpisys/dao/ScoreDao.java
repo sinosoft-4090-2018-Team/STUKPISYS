@@ -1,5 +1,6 @@
 package com.sinosoft.stukpisys.dao;
 
+import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -116,4 +117,18 @@ public interface ScoreDao {
     @Update("update score_value set value_string=#{judge} where user_id=#{userId} and label_name=#{labelName}")
     int changeJudgeByUserNameAndLabelName(@RequestParam String judge,@RequestParam int userId,@RequestParam String labelName);
 
+    //根据阶段查成绩倒5的人的id
+    @Select("select user_id from score_value where label_index=(select label_index from score_label where belong='sum' and stage=#{stage}) order by value_int limit 5")
+    List<Long> getScoreInbackByStage(int stage);
+    //根据id查三阶段的成绩
+    @Select("(select name from user where user_id=#{id})\n" +
+            "union all\n" +
+            "(select value_int from score_value where user_id=#{id} and (label_index=(select label_index from score_label where belong='sum' and stage=1) \n" +
+            "or label_index=(select label_index from score_label where belong='sum' and stage=2) or label_index=(select label_index from score_label where belong='sum' and stage=3)))")
+    List<Object> getScoreById(long id);
+
+
+    //根据id的返回
+    @Select("")
+    List<List<Object>> getJudgeById(long id);
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,25 +63,72 @@ public class siftController {
         // return "success";
     }
 
-        /***
-         * 筛选两个或三个阶段排名倒五的
-         * @param stage 阶段数
-         * @return  成绩和评价
-         */
+    /***
+     * 筛选两个或三个阶段排名倒五的
+     * @param stage 阶段数
+     * @return  评价
+     */
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
     @GetMapping(value ="/judgeInBack")
     public String getJudgeInBack(int stage)
     {
+
+        List<List<Object>> lll=new ArrayList<>();
+        List<Long> l2=new ArrayList<>();
+
+        if(stage==2) {
+            l2=hrService.getScoreInbackByStage2(2);
+            if (l2.size() != 0) {
+                for (int i = 0; i < l2.size(); i++) {
+
+                    lll.addAll(hrService.getJudgeInback(l2.get(i)));
+
+                }
+            }
+        }else if(stage==3){
+            l2=hrService.getScoreInbackByStage(3);
+            if (l2.size() != 0) {
+                for (int i = 0; i < l2.size(); i++) {
+
+                    lll.addAll(hrService.getJudgeInback(l2.get(i)));
+
+                }
+            }
+
+        }
         //todo
-        return null;
+        return JSON.toJSONString(lll);
     }
 
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
     @GetMapping(value ="/scoreInBack")
-    public String getScoreInBack(int stage)
+    public String getScoreInBack(int stages)
     {
-        //todo
-        return null;
+        List<List<Object>> ll=new ArrayList<>();
+        List<Long> l1=new ArrayList<>();
+        if(stages==3){
+        l1=hrService.getScoreInbackByStage(stages);
+        if(l1.size()!=0) {
+            for (int i = 0; i < l1.size(); i++) {
+
+                ll.add( hrService.getScoreById(l1.get(i)));
+            }
+        }else{
+            System.out.println("无");
+        }
+
+        }else if(stages==2) {
+            l1=hrService.getScoreInbackByStage2(stages);
+            if(l1.size()!=0) {
+                for (int i = 0; i < l1.size(); i++) {
+
+                    ll.add( hrService.getScoreById(l1.get(i)));
+                }
+            }else{
+                System.out.println("无");
+            }
+        }
+        return JSON.toJSONString(ll);
     }
 
     /***
@@ -95,4 +143,14 @@ public class siftController {
         //todo
         return null;
     }
+    //测试用的接口
+    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
+    @GetMapping(value ="/getScoreById")
+    public String getScoreById(int id)
+    {
+        List<Object> list=hrService.getScoreById(id);
+        //todo
+        return JSON.toJSONString(list);
+    }
+
 }

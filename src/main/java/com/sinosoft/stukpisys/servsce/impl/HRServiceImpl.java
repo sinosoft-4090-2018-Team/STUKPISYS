@@ -8,12 +8,12 @@ import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.User;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class HRServiceImpl implements HRService{
@@ -66,6 +66,51 @@ public class HRServiceImpl implements HRService{
     public List<List<Object>> getUserScoreByStageAndTime(int stage, Date enter_time) {
 //        return scoreDao.getUserScoreByStageAndTime(stage,enter_time);
         return null;
+    }
+
+    @Override
+    public List<Long> getScoreInbackByStage2(int stage) {
+        List<Long> l1=scoreDao.getScoreInbackByStage(1);
+        List<Long> l2=scoreDao.getScoreInbackByStage(2);
+        List<Long> l3=scoreDao.getScoreInbackByStage(3);
+
+        List<Long> l4=new ArrayList();
+        l4.addAll(l1);
+        l4.addAll(l2);
+        l4.addAll(l3);
+        Set<Long> set = new HashSet<>(l4);
+        Collection rs = CollectionUtils.disjunction(l4,set);
+        List<Long> list1 = new ArrayList<>(rs);
+        Set<Long> set2 = new HashSet<>(list1);
+        List<Long> list2 = new ArrayList<>(set2);
+        return list2;
+    }
+
+    @Override
+    public List<Long> getScoreInbackByStage(int stage) {
+        List<Long> l1=scoreDao.getScoreInbackByStage(1);
+        List<Long> l2=scoreDao.getScoreInbackByStage(2);
+        List<Long> l3=scoreDao.getScoreInbackByStage(3);
+        l1.retainAll(l2);
+        l1.retainAll(l3);
+
+
+        return l1;
+    }
+
+    @Override
+    public List<Object> getScoreById(long id) {
+        return scoreDao.getScoreById(id);
+    }
+
+    @Override
+    public List<ScoreValue> getScoreInback(int stages) {
+        return null;
+    }
+
+    @Override
+    public List<List<Object>> getJudgeInback(long id) {
+        return scoreDao.getJudgeById(id);
     }
 
     @Override

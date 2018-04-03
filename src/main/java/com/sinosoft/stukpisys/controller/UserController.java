@@ -33,7 +33,7 @@ public class UserController {
     @PutMapping(value = "/changePassword", params = {"username", "password"})
     public String changePassword(String username, String password) throws AuthenticationException {
         //todo
-        return null;
+        return userService.changePassword(username, password);
     }
 
     /**
