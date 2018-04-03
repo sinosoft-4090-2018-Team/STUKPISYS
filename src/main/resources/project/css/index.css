@@ -46,15 +46,13 @@ body{
     color:#fff;
 }
 .xiaTing{
-    margin-left:28%;
+  margin-left:25%;
+
 }
 .xiaTing li{
     height:40px;
     width:30px;
     line-height: 40px;
-}
-.xiaTing li:not(:first-child){
-    margin-left:5px;
 }
 .nav{
     height:100px;
@@ -96,10 +94,11 @@ body{
 .bg-white{
     background:#fff;
     margin-top:20px;
-    height:300px;
+    height:900px;
 }
 .info-nav span:first-child{
     float:left;
+    color:#fff;
 }
 .info-nav span:last-child{
     float:right;
@@ -109,7 +108,9 @@ body{
 }
 .info-content span{
     display:inline-block;
-    width:32%;
+    width:38%;
+    word-wrap: break-word;
+    font-size:10px;
 }
 .info-content input{
     display:inline-block;
@@ -118,6 +119,7 @@ body{
     margin-left:10px;
     text-align: center;
     float:right;
+    font-size: 10px;
 }
 .left-content{
     width:48%;
@@ -127,4 +129,34 @@ body{
     width:48%;
     margin-left:8%;
     margin-top:15px;
+}
+.bg-white1{
+    margin-top:30px;
+}
+.tech-say{
+    margin-top:20px;
+}
+.say-content{
+    display:flex;
+    justify-content: space-around;
+}
+.tech-say span{
+    font-size:10px;
+    display:inline-block;
+    width:56%;
+    word-wrap: break-word;
+}
+.tech-say input{
+    font-size:10px;
+    display:inline-block;
+    width:40%;
+    height:20px;
+    margin-left:10px;
+    text-align: center;
+}
+.bg-color3{
+    height:900px;
+    background:#fff;
+    margin-top:20px;
+    margin-left:32px;
 }
