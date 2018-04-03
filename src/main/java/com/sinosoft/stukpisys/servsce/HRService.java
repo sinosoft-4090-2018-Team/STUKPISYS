@@ -44,6 +44,13 @@ public interface HRService {
     User getByName(String name);
 
 
+    List<UserInfo> gethrName();
+    List<UserInfo> getJob();
+    List<Education> getschoolName();
+    List<Education> getHighestEducate();
+    List<Education> getMajor();
+
+
 
 
     /**

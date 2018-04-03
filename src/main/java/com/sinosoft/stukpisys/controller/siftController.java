@@ -1,7 +1,10 @@
 package com.sinosoft.stukpisys.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.ScoreValue;
+import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -57,7 +60,7 @@ public class siftController {
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/score")
     public String siftUserScore(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211) {
-        //todo
+
         List<ScoreValue> list = hrService.getUserScoreParam(HRName, job, school, Education, major, sex, isFired, isNew, hasErr, is211);
         return JSON.toJSONString(list);
         // return "success";
@@ -140,8 +143,20 @@ public class siftController {
     @GetMapping(value ="/getSiftTerms")
     public String getSiftTerms()
     {
-        //todo
-        return null;
+        List<UserInfo> listHr=hrService.gethrName();
+        List<UserInfo>  listJob=hrService.getJob();
+        List<Education> listSchoolName=hrService.getschoolName();
+        List<Education> listHighestEducate=hrService.getHighestEducate();
+        List<Education> listMajor=hrService.getMajor();
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("hr",listHr);
+        jsonObject.put("job",listJob);
+        jsonObject.put("school_name",listSchoolName);
+        jsonObject.put("highest_educate",listHighestEducate);
+        jsonObject.put("major",listMajor);
+
+        return jsonObject.toJSONString();
     }
     //测试用的接口
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")

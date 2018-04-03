@@ -215,6 +215,31 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
+    public List<UserInfo> gethrName() {
+        return infoDao.gethrName();
+    }
+
+    @Override
+    public List<UserInfo> getJob() {
+        return infoDao.getJob();
+    }
+
+    @Override
+    public List<Education> getschoolName() {
+        return infoDao.getschoolName();
+    }
+
+    @Override
+    public List<Education> getHighestEducate() {
+        return infoDao.getHighestEducate();
+    }
+
+    @Override
+    public List<Education> getMajor() {
+        return infoDao.getMajor();
+    }
+
+    @Override
     public List<Integer> getScoreList(Integer id) {
         return null;
     }

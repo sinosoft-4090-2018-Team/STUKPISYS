@@ -4,10 +4,7 @@ import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.SqlProvider;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -84,13 +81,30 @@ public interface InfoDao {
     //获取不同的学校的地点
     @Select("SELECT DISTINCT location FROM education")
     List<String> getDifferLocationName();
-
+   //获取评价
    @SelectProvider(type = SqlProvider.class, method = "getUserParam")
     List<ScoreValue> getJudgeByParam(String HRName ,String job,String school,String Education,String major,boolean sex, String state,String belong,boolean is211);
-
+   //获取分数
     @SelectProvider(type = SqlProvider.class, method = "getUserScoreParam")
     List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,boolean sex, String state,String belong,boolean is211);
+    //分配部门
+    @Update("update user_info set dept=#{dept} where user_name=#{userName}")
+    int setDept(@Param("userName")String userName,@Param("dept") String dept);
 
-    @Update("update user_info set dept=#{dept} where user_id=#{userId}")
-    int setDept(int userId,String dept);
+
+    //获取筛选条件(hr_name)
+    @Select("select hr_name from user_info GROUP BY hr_name")
+    List<UserInfo> gethrName();
+    //获取筛选条件(job)
+    @Select("select job from user_info GROUP BY job")
+    List<UserInfo> getJob();
+    //获取筛选条件(school_name)
+    @Select("select school_name from education GROUP BY school_name")
+    List<Education> getschoolName();
+    //获取筛选条件(highest_education)
+    @Select("select highest_educate from education GROUP BY highest_educate")
+    List<Education> getHighestEducate();
+    //获取筛选条件(major)
+     @Select("select major from education GROUP BY major")
+     List<Education> getMajor();
 }

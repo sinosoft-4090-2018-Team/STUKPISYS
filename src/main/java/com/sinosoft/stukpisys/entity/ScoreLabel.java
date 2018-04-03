@@ -64,6 +64,8 @@ public class ScoreLabel {
     this.belong = belong;
   }
 
+  public  ScoreLabel(){}
+
   public ScoreLabel(String labelName, long labelIndex, long type, long stage, String belong) {
     this.labelName = labelName;
     this.labelIndex = labelIndex;
