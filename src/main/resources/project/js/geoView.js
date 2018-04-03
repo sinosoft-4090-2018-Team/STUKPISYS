@@ -61,9 +61,9 @@ function initGeo(chart,data) {
         tooltip: {
             trigger: 'item'
         },
-        legend: {
-            left: 'left'
-        },
+        // legend: {
+        //     left: 'left'
+        // },
         toolbox: {
             show: true,
             orient: 'vertical',

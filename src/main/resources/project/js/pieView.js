@@ -17,6 +17,26 @@ function fakeSexData() {
     ]
     creatSexView(data);
 }
+function getRealSex() {
+    $.get({
+        url:"/statistics/sex",
+        headers: {
+            token: localStorage.getItem("token")
+        },
+        success: function (data) {
+            var res = Object.keys(data).map(function (key) {
+                var sex;
+                if(data[key].name)
+                    sex='女';
+                return {
+                    name: sex,
+                    value: data[key].value
+                }
+            });
+            creatSexView(res);
+        }
+    });
+}
 function creatSexView(data) {
     initPie( echarts.init(document.getElementById("sexView"),'macarons'),data);
 }
