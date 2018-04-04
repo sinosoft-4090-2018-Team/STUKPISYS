@@ -93,5 +93,5 @@ public class Education {
     this.location = location;
     this.is211 = is211;
     this.graduationTime = graduationTime;
-  }
+}
 }
