@@ -137,6 +137,9 @@ public interface ScoreDao {
     //--mixiaorui
     @Select("SELECT * FROM score_label")
     List<ScoreLabel> selectScoreLabel();
+    //--mixiaorui
+    @Update("UPDATE score_label SET label_name=#{newLabelName} WHERE label_name=#{labelName}")
+    int updateLabelName(@Param("newLabelName") String newLabelName,@Param("labelName") String labelName);
 
 
     // List<List<Object>> getScoreFromStageByUser_id(long userId,int stage);

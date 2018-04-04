@@ -124,4 +124,6 @@ public interface HRService {
     int insertScoreLabel(ScoreLabel scoreLabel);
     @PreAuthorize("hasAnyRole('ADMIN')")
     List<ScoreLabel> selectScoreLabel();
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    int updateLabelName(String newLabelName,String labelName);
 }

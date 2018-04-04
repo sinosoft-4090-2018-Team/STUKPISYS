@@ -5,10 +5,7 @@ import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +122,15 @@ public class HRController {
         List<ScoreLabel> scoreLabelsList = new ArrayList<ScoreLabel>();
         scoreLabelsList = hrService.selectScoreLabel();
         return JSON.toJSONString(scoreLabelsList);
+    }
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PutMapping(value ="/updateLabelName")
+    public String updateLabelName(String newLabelName, String labelName) {
+        int count=hrService.updateLabelName(newLabelName,labelName);
+        if (count==1){
+            return "修改成功";
+        }else
+            return "修改失败";
     }
 
 }
