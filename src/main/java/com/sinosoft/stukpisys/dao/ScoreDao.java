@@ -6,12 +6,16 @@ import com.sinosoft.stukpisys.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
+import sun.reflect.generics.tree.VoidDescriptor;
 import org.apache.ibatis.annotations.Update;
 
 import java.sql.Date;
 import java.util.List;
 @Mapper
 public interface ScoreDao {
+
     //按阶段和时间查看总分数（排序）
     @Select("SELECT\n" +
             "\tm. NAME,\n" +
@@ -110,7 +114,33 @@ public interface ScoreDao {
             "FROM score_label l JOIN score_value v\n" +
             "ON l.label_index=v.label_index\n" +
             "where user_id=#{0} AND l.stage=#{1}")
-     List<List<Object>> getScoreFromStageByUser_id(long userId,int stage);
+     List<List<Object>> getScoreFromStageByUser_id(int userId,int stage);
+    //插入Score_label表--米晓锐
+    @Insert("INSERT INTO score_label(label_name,label_index,type,stage,belong) VALUES(#{labelName},#{labelIndex},#{type},#{stage},#{belong})")
+    void insertScore_label(ScoreLabel scoreLabel);
+    //--米晓锐
+    @Update("UPDATE score_label SET type=1 WHERE label_index=#{labelIndex}")
+    void updateScoreLabel(long labelIndex);
+    //--米晓锐
+    @Select("SELECT type FROM score_label WHERE label_index=#{labelIndex}")
+    long selectTypeis1(long labelIndex);
+    //--米晓锐
+    @Insert("INSERT INTO score_value(user_id,label_index,value_int,value_string,value_date) VALUES(#{userId},#{labelIndex},#{valueInt},#{valueString},#{valueDate})")
+    void insertScoreValue(ScoreValue scoreValue);
+    @Select("SELECT * FROM score_label WHERE label_name=#{labelName} and stage=#{stage}")
+    ScoreLabel selectLabelByLabelNameAndType(@Param("labelName") String labelName,@Param("stage")long stage);
+    //--mxr
+    @Select("SELECT IFNULL(MAX(label_index),1) FROM score_label")
+    long selectMaxLabelIndex();
+    //--mxr
+    @Select("SELECT label_index FROM score_label WHERE label_name=#{labelName}")
+    long selectLabelIndexByLabelName(String labelName);
+//    @Select("SELECT * FROM score_label WHERE label_name=#{labelName}")
+//    ScoreLabel selectByLabelName(String labelName);
+
+
+
+    // List<List<Object>> getScoreFromStageByUser_id(long userId,int stage);
 
     //根据名字查id
     @Select("select user_id from user where name=#{name}")
