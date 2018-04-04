@@ -15,8 +15,17 @@
 			success:function(data){
 			},
 			error:function(data){
-				alert("ÍøÂç³öÏÖ¹ÊÕÏ£¬Çë¼ì²é");
+				alert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½Ï£ï¿½ï¿½ï¿½ï¿½ï¿½");
 			}
 		})
+	});
+	var sex1 = new Vue({
+		el: '#sexs',
+		data: {
+			items: [
+				{ message: 'ï¿½ï¿½' },
+				{ message: 'Å®' }
+			]
+		}
 	});
 })();

@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>个人页面</title>
+    <title>首页</title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/first.css"/>
     <!--&lt;!&ndash;[if lt IE 9]>-->
     <!--<script src="js/html5shiv.min.js"></script>-->
     <!--<script src="js/respond.min.js"></script>-->
@@ -15,391 +15,43 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="nav1 col-xs-12">
-            <ul class="T4090">
-                <li>
-                    <img src="img/4090_03.png" alt=""/>
-                </li>
-                <li>4090培训评价系统</li>
-            </ul>
-            <ul class="info-select">
-                <li class="show1"><a href="">信息筛选</a></li>
-                <li><a href="">可视化统计</a></li>
-            </ul>
-            <ul class="xiaTing">
-                <li><img src="img/peo.png" alt=""/></li>
-                <li>夏婷</li>
-                <li><img src="img/bot.png" alt=""/></li>
-            </ul>
-        </div>
-    </div>
-    <div class="row content">
-        <div class="col-xs-7 select">
-            <div class="row">
-                <div class="col-xs-12 man-work">
-                    <span><</span>
-                    <span>小明</span>
-                    <span>分配部门</span>
-                </div>
+    <div id="top-all">
+        <div class="row sky">
+            <div class="col-xs-12">
+                <img src="img/sky.png" alt=""/>
+                <span>擎天培训评价系统</span>
             </div>
-            <div class="row man-info">
-                <div class="col-xs-7 bg-white ">
-                    <div class="row">
-                        <div class="col-xs-12 info-nav">
-                            <span>个人信息</span>
-                            <span><img src="img/write.png" alt=""/></span>
-                        </div>
+        </div>
+        <div class="row enter">
+            <div class="col-xs-offset-4 col-xs-4 passin">
+                <div class="row">
+                    <div class="col-xs-offset-1 col-xs-3 pic">
                     </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>目前状态</span>
-                                    <input type="text" value="正常"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>籍贯</span>
-                                    <input type="text" value="江苏南京"/>
-                                </div>
-                            </div>
+                    <div id="login" class="col-xs-offset-1 col-xs-7 text">
+                        <div  class="top-input" >
+                            <input v-model="name" type="text" :value="name" name="uname" onfocus="if(this.value == '用户名') this.value = ''" onblur="if(this.value =='') this.value = '用户名'" />
+                            <span><img src="img/user.png" alt=""/></span>
                         </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>应聘方向</span>
-                                    <input type="text" value="开发"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>最高学历</span>
-                                    <input type="text" value="本科"/>
-                                </div>
-                            </div>
+                        <div class="next-input">
+                            <input v-model="password"  type="password" name="upwd" placeholder="密码"/>
+                            <span><img src="img/pwd.png" alt=""/></span>
                         </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>面试官</span>
-                                    <input type="text" value="王周文"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>专业</span>
-                                    <input type="text" value="计算机"/>
-                                </div>
-                            </div>
+                        <div class="enter-in">
+                            <a class="pwd" @click="doLogin()">登录</a>
                         </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>面试官部门</span>
-                                    <input type="text" value="电子政务中心"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>毕业学校</span>
-                                    <input type="text" value="南京大学"/>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>性别</span>
-                                    <input type="text" value="男"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>毕业时间</span>
-                                    <input type="text" value="2018-06-30"/>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                        <div class="col-xs-12 info-content">
-                            <div class="left-content">
-                                <span>内网邮箱</span>
-                                <input type="text" value="123@123.com"/>
-                            </div >
-                            <div class="right-content">
-                                <span>联系电话</span>
-                                <input type="text" value="13800008888"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 info-content">
-                            <div class="left-content">
-                                <span>出生日期</span>
-                                <input type="text" value="1996-05-6"/>
-                            </div >
-                            <div class="right-content">
-                                <span>入司时间</span>
-                                <input type="text" value="2018-03-05"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-nav bg-white1">
-                                <span>各阶段成绩</span>
-                                <span><img src="img/write.png" alt=""/></span>
-                            </div>
-                        </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>第一阶成绩</span>
-                                    <input type="text" value="99"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>ISO9001</span>
-                                    <input type="text" value="99"/>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>第二阶段成绩</span>
-                                    <input type="text" value="99"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>ISO27001(ISMS</span>
-                                    <input type="text" value="99"/>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>第三阶段成绩</span>
-                                    <input type="text" value="王周文"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>公司安全管理规定</span>
-                                    <input type="text" value="99"/>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>第一阶段考试结束</span>
-                                    <input type="text" value="99"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>研发管理流程及CMMI技基础知识</span>
-                                    <input type="text" value="99"/>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>公司概况及管理制度</span>
-                                    <input type="text" value="99"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>配置管理及VSS测试</span>
-                                    <input type="text" value="99"/>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>OA等公司常用流程</span>
-                                    <input type="text" value="99"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>文档规范与文档专业化训练</span>
-                                    <input type="text" value="99"/>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>复印机等设备操作</span>
-                                    <input type="text" value="99"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>数据统计分析工具应用</span>
-                                    <input type="text" value="99"/>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>挫折教育与团队建设</span>
-                                    <input type="text" value="99"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>演讲辅助工具应用</span>
-                                    <input type="text" value="99"/>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>职场礼仪与沟通技巧</span>
-                                    <input type="text" value="99"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>演讲与表达</span>
-                                    <input type="text" value="99"/>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>如何完成角色转换</span>
-                                    <input type="text" value="99"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>请假天数</span>
-                                    <input type="text" value="99"/>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="col-xs-4 bg-color3">
-                    <div class="row">
-                            <div class="col-xs-12 info-nav info-right">
-                                <span>导师观察评价</span>
-                                <span><img src="img/write.png" alt=""/></span>
-                            </div>
-                        </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                   <span>主动性-第一章</span>
-                                   <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>主动性-good章</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>灵活章</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>责任心与沉稳度</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>展示评价</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>第一阶段观察与评价</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>第二阶段观察与评价</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>第三阶段观察与评价</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>责任心</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>主动性</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>抗压性</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>团队意识</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>学习能力</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>沟通</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                <span>严重不符合项</span>
-                                <input type="text" value="99"/>
-                            </div>
-                        </div>
+                        <p class="rember"><span v-model="remember" class="box"></span>
+                            <span>记住密码</span></p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="traineeView" class=" col-xs-5 pics">
         </div>
     </div>
 </div>
 <script src="js/jquery-1.11.3.js"></script>
-<script src="js/echarts.min.js"></script>
-<script src="js/ecStat.min.js"></script>
-<script src="js/macarons.js"></script>
-<script src="js/traineeView.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/login.js"></script>
+
 </body>
 </html>
