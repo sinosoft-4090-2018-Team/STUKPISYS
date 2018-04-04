@@ -34,9 +34,9 @@ public class AdminController {
     public String changeJudge( String userName,  String labelName, String judge){
         int count=adminService.changeJudgeByUserNameAndLabelName(userName,labelName,judge);
         if(count!=0){
-            return "error";
+            return "success";
         }
-       return  "success";
+       return  "error";
     }
 
     @PreAuthorize("hasRole('ADMIN')")
