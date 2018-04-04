@@ -1,27 +1,3 @@
-package com.sinosoft.stukpisys.untils;
-
-import com.sinosoft.stukpisys.entity.JwtUser;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * JWT工具类
- */
-@Component
-public class JwtToken implements Serializable {
-
-    /**
-     * 密钥
-     */
-    private final String secret = "aaaaaaaa";
 
     /**
      * 从数据声明生成令牌
