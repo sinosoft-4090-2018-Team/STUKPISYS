@@ -12,6 +12,7 @@ public class ScoreValue {
   private java.sql.Date valueDate;
   private String userName;
   private String labelName;
+
   private long score;
 
   public long getScore() {
@@ -92,6 +93,7 @@ public class ScoreValue {
   }
 
   public ScoreValue(){}
+
   public ScoreValue(long userId, long labelIndex, long valueInt, String valueString, Date valueDate) {
     this.userId = userId;
     this.labelIndex = labelIndex;
