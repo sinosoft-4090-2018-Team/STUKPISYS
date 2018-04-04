@@ -136,3 +136,10 @@ public class GetExcelMessage {
         return date;
     }
 }
+//事务返回之前的状态  @Transactional --完成
+//tpye类型 分开写表头和表内容
+//判断该阶段是否有此label 如果没有则插入。--完成
+//修改label_index的生成方式--完成
+//修改获得label_index的方法，根据labelname获得。  --完成
+//完成导入测试数据
+//

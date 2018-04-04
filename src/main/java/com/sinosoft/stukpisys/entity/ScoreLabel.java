@@ -71,4 +71,8 @@ public class ScoreLabel {
     this.stage = stage;
     this.belong = belong;
   }
+
+  public ScoreLabel() {
+    super();
+  }
 }

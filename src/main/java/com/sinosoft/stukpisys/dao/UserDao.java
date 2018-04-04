@@ -26,5 +26,7 @@ public interface UserDao{
     //--米晓锐
     @Select("SELECT user_id FROM user WHERE name=#{name}")
     long selectIdByName(String name);
-
+    //--mxr
+    @Select("SELECT edu_id FROM education WHERE highest_educate=#{highestEducate} and major=#{major} and school_name=#{schoolName} and location=#{location} and is211=#{is211} and graduation_time=#{graduationTime}" )
+    Long selectEduIdByEMessage(Education education);
 }

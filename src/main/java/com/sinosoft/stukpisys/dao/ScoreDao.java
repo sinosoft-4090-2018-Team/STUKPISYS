@@ -1,9 +1,10 @@
 package com.sinosoft.stukpisys.dao;
 
+import com.sinosoft.stukpisys.entity.ScoreLabel;
+import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 import sun.reflect.generics.tree.VoidDescriptor;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 @Mapper
 public interface ScoreDao {
+
     //按阶段和时间查看总分数（排序）
     @Select("SELECT\n" +
             "\tm. NAME,\n" +
@@ -117,11 +119,21 @@ public interface ScoreDao {
     @Update("UPDATE score_label SET type=1 WHERE label_index=#{labelIndex}")
     void updateScoreLabel(long labelIndex);
     //--米晓锐
+    @Select("SELECT type FROM score_label WHERE label_index=#{labelIndex}")
+    long selectTypeis1(long labelIndex);
+    //--米晓锐
     @Insert("INSERT INTO score_value(user_id,label_index,value_int,value_string,value_date) VALUES(#{userId},#{labelIndex},#{valueInt},#{valueString},#{valueDate})")
     void insertScoreValue(ScoreValue scoreValue);
-    @Select("SELECT * FROM score_label WHERE label_name=#{labelName},type=#{type}")
-    ScoreLabel selectLabelByLabelNameAndType(String labelName,long type);
-
+    @Select("SELECT * FROM score_label WHERE label_name=#{labelName} and stage=#{stage}")
+    ScoreLabel selectLabelByLabelNameAndType(@Param("labelName") String labelName,@Param("stage")long stage);
+    //--mxr
+    @Select("SELECT IFNULL(MAX(label_index),1) FROM score_label")
+    long selectMaxLabelIndex();
+    //--mxr
+    @Select("SELECT label_index FROM score_label WHERE label_name=#{labelName}")
+    long selectLabelIndexByLabelName(String labelName);
+//    @Select("SELECT * FROM score_label WHERE label_name=#{labelName}")
+//    ScoreLabel selectByLabelName(String labelName);
 
 
 

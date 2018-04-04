@@ -111,8 +111,8 @@ public interface InfoDao {
     List<List<Object>> getUserInfoByParam(String HRName, String job, String school, String education, String major, boolean sex, String state, String belong, boolean is211);
 
 */
-    @Select("SELECT edu_id FROM education WHERE school_name=#{schoolName}")
-    long selectEduIdBySchoolName(String schoolName);
+//    @Select("SELECT edu_id FROM education WHERE school_name=#{schoolName}")
+//    long selectEduIdBySchoolName(String schoolName);
     @SelectProvider(type = SqlProvider.class, method = "getUserScoreParam")
     List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,boolean sex, String state,String belong,boolean is211);
 

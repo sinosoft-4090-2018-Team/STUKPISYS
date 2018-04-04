@@ -5,15 +5,14 @@ import com.sinosoft.stukpisys.dao.ScoreDao;
 import com.sinosoft.stukpisys.dao.UserDao;
 import com.sinosoft.stukpisys.entity.*;
 import com.sinosoft.stukpisys.servsce.FileService;
-import com.sinosoft.stukpisys.untils.ExcelReader;
 import com.sinosoft.stukpisys.untils.GetExcelMessage;
-import com.sinosoft.stukpisys.untils.Is211;
+import com.sinosoft.stukpisys.untils.LeadTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -25,7 +24,9 @@ public class FileServiceImpl implements FileService{
     @Autowired
     private InfoDao infoDao;
 
+
     @Override
+    @Transactional
     public String readExcel(File excel, String type) {
         List<List<Object>> data = null;
         try {
@@ -43,17 +44,20 @@ public class FileServiceImpl implements FileService{
         return null;
     }
 
+
     private String saveUser(List<List<Object>> excel){
-/*        for(int i=0;i<excel.size();i++){
+/*
+       for(int i=0;i<excel.size();i++){
             for(int j=0;j<excel.get(i).size();j++){
                 System.out.print(Integer.toString(i)+excel.get(i).get(j)+"  ");
             }
             System.out.println();
-        }*/
+        }
+*/
 
         //todo1、插入user表；2、插入education表；3、插入userinfo表*//*
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        for(int i=0;i<excel.size();i++){
+        for(int i=1;i<excel.size();i++){
             //1
             if (userDao.getByName((String)excel.get(i).get(0)) != null) {
                 continue;
@@ -62,18 +66,24 @@ public class FileServiceImpl implements FileService{
                 //调用插入user表的方法
                 userDao.insert(user);
             }
+            System.out.println((String)excel.get(i).get(13));
             //2
             //构造函数中学校地点为空
-            Education education =new Education((String)excel.get(i).get(9),(String)excel.get(i).get(10),(String)excel.get(i).get(11),"", Is211.is211((String)excel.get(i).get(11)),GetExcelMessage.strToDate((String) excel.get(i).get(12)));
+
+            Education education =new Education((String)excel.get(i).get(9),(String)excel.get(i).get(10),(String)excel.get(i).get(11),"", LeadTo.is211((String)excel.get(i).get(11)),GetExcelMessage.strToDate((String) excel.get(i).get(12)));
             //调用插入education表的方法
-            userDao.insertEducation(education);
+            Long eduId=userDao.selectEduIdByEMessage(education);
+            if (eduId==null){
+                userDao.insertEducation(education);
+            }
+
             //3
             UserInfo userInfo =new UserInfo();
             userInfo.setUserName((String)excel.get(i).get(0));
             userInfo.setState((String)excel.get(i).get(1));
             userInfo.setJob((String)excel.get(i).get(2));
             userInfo.setHrName((String)excel.get(i).get(3));
-            userInfo.setDept((String)excel.get(i).get(4));
+            userInfo.setDept("");
             if ("男".equals((String)excel.get(i).get(5))){
                 userInfo.setGender(0);
             }else if ("女".equals((String)excel.get(i).get(5))){
@@ -84,7 +94,7 @@ public class FileServiceImpl implements FileService{
             userInfo.setNativePlace((String)excel.get(i).get(8));
             userInfo.setPhone((String)excel.get(i).get(13));
             userInfo.setEnterTime(GetExcelMessage.strToDate((String)excel.get(i).get(14)));
-            userInfo.setEduId(infoDao.selectEduIdBySchoolName(((String)excel.get(i).get(11))));
+            userInfo.setEduId(userDao.selectEduIdByEMessage(education));
             //调用插入userinfo表的方法
             userDao.insertUserInfo(userInfo);
             //判断user中是否有该面试官，如果没有则要添加,
@@ -97,6 +107,9 @@ public class FileServiceImpl implements FileService{
         }
         return "成功";
     }
+
+
+
     private String saveCourses(List<List<Object>> excel){
         //todo
         return null;
@@ -131,6 +144,7 @@ public class FileServiceImpl implements FileService{
                 str4="评价阶段";
             }
         }
+
         //
         //第一阶段信息
         for(int j=a;j<b;j++){
@@ -141,19 +155,34 @@ public class FileServiceImpl implements FileService{
             if (((String)excel.get(1).get(j)).equals("")&&j!=a){
                 excel.get(1).set(j,excel.get(1).get(j-1));
             }
-            String labelName=(String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j);
-            if (scoreDao.selectLabelByLabelNameAndType(labelName,1)==null){
+            String labelName=((String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j)).trim();
+            ScoreLabel scoreLabel1= scoreDao.selectLabelByLabelNameAndType(labelName,1);
+            if (scoreLabel1==null){
+                long labelIndex = scoreDao.selectMaxLabelIndex();
+                if (labelIndex!=0){
+                    labelIndex=scoreDao.selectMaxLabelIndex();
+                }
+                labelIndex=labelIndex+1;
+
+
+
                 if(((String)excel.get(1).get(j)).equals("第一阶段成绩")){
-                    scoreLabel=new ScoreLabel(labelName,j,0,1,"sum");
+                    scoreLabel=new ScoreLabel(labelName,labelIndex,0,1,"sum");
                 }else if(((String)excel.get(1).get(j)).contains("评价")){
-                    scoreLabel=new ScoreLabel(labelName,j,0,1,"judge");
+                    scoreLabel=new ScoreLabel(labelName,labelIndex,1,1,"judge");
+                }else if(labelName.contains("标准分")){
+                    scoreLabel=new ScoreLabel(labelName,labelIndex,0,1,"score");
+                }else if(labelName.contains("章")){
+                    scoreLabel=new ScoreLabel(labelName,labelIndex,0,1,"seal");
+                }else if(labelName.contains("请假，天数")){
+                    scoreLabel=new ScoreLabel(labelName,labelIndex,0,1,"absence");
                 }else{
-                    scoreLabel=new ScoreLabel(labelName,j,0,1,"");
+                    scoreLabel=new ScoreLabel(labelName,labelIndex,0,1,"");
                 }
                 //调用插入score_label表中
                 scoreDao.insertScore_label(scoreLabel);
-            }
 
+            }
         }
         //第二阶段信息
         for(int j=b;j<c;j++){
@@ -163,17 +192,28 @@ public class FileServiceImpl implements FileService{
             if (((String)excel.get(1).get(j)).equals("")&&j!=b){
                 excel.get(1).set(j,excel.get(1).get(j-1));
             }
-            String labelName=(String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j);
-            if (scoreDao.selectLabelByLabelNameAndType(labelName,2)==null) {
+            String labelName=((String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j)).trim();
+            ScoreLabel scoreLabel1= scoreDao.selectLabelByLabelNameAndType(labelName, 2);
+            if (scoreLabel1==null){
+
+
+                long labelIndex = scoreDao.selectMaxLabelIndex();
+                if (labelIndex!=0){
+                    labelIndex=scoreDao.selectMaxLabelIndex();
+                }
+                labelIndex=labelIndex+1;
+
+
                 if (((String) excel.get(1).get(j)).equals("第二阶段成绩")) {
-                    scoreLabel = new ScoreLabel(labelName, j, 0, 2, "sum");
+                    scoreLabel = new ScoreLabel(labelName, labelIndex, 0, 2, "sum");
                 } else if (((String) excel.get(1).get(j)).contains("评价")) {
-                    scoreLabel = new ScoreLabel(labelName, j, 0, 2, "judge");
+                    scoreLabel = new ScoreLabel(labelName, labelIndex, 1, 2, "judge");
                 } else {
-                    scoreLabel = new ScoreLabel(labelName, j, 0, 2, "");
+                    scoreLabel = new ScoreLabel(labelName, labelIndex, 0, 2, "");
                 }
                 //调用插入score_label表中
                 scoreDao.insertScore_label(scoreLabel);
+
             }
         }
         //第三阶段信息
@@ -184,18 +224,28 @@ public class FileServiceImpl implements FileService{
             if (((String)excel.get(1).get(j)).equals("")&&j!=c){
                 excel.get(1).set(j,excel.get(1).get(j-1));
             }
-            String labelName=(String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j);
-            if (scoreDao.selectLabelByLabelNameAndType(labelName,3)==null) {
+            String labelName=((String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j)).trim();
+            ScoreLabel scoreLabel1= scoreDao.selectLabelByLabelNameAndType(labelName, 3);
+            if (scoreLabel1==null){
+
+                long labelIndex = scoreDao.selectMaxLabelIndex();
+                if (labelIndex!=0){
+                    labelIndex=scoreDao.selectMaxLabelIndex();
+                }
+                labelIndex=labelIndex+1;
+
+
                 if (((String) excel.get(1).get(j)).equals("第三阶段成绩")) {
-                    scoreLabel = new ScoreLabel(labelName, j, 0, 3, "sum");
+                    scoreLabel = new ScoreLabel(labelName, labelIndex, 0, 3, "sum");
                 } else if (((String) excel.get(1).get(j)).contains("评价")) {
-                    scoreLabel = new ScoreLabel(labelName, j, 0, 3, "judge");
+                    scoreLabel = new ScoreLabel(labelName, labelIndex, 1, 3, "judge");
                 } else {
-                    scoreLabel = new ScoreLabel(labelName, j, 0, 3, "");
+                    scoreLabel = new ScoreLabel(labelName, labelIndex, 0, 3, "");
                 }
                 //调用插入score_label表中
                 scoreDao.insertScore_label(scoreLabel);
             }
+
         }
         //评价阶段
         for(int j=d;j<excel.get(0).size();j++){
@@ -205,16 +255,31 @@ public class FileServiceImpl implements FileService{
             if (((String)excel.get(1).get(j)).equals("")&&j!=d){
                 excel.get(1).set(j,excel.get(1).get(j-1));
             }
-            String labelName=(String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j);
-            if(((String)excel.get(1).get(j)).equals("严重不符合项")){
-                scoreLabel=new ScoreLabel(labelName,j,0,0,"err");
-            }else{
-                scoreLabel=new ScoreLabel(labelName,j,0,0,"judge");
+            String labelName=((String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j)).trim();
+            ScoreLabel scoreLabel1= scoreDao.selectLabelByLabelNameAndType(labelName, 0);
+            if (scoreLabel1==null){
+
+                long labelIndex = scoreDao.selectMaxLabelIndex();
+                if (labelIndex!=0){
+                    labelIndex=scoreDao.selectMaxLabelIndex();
+                }
+                labelIndex=labelIndex+1;
+
+
+                if (((String) excel.get(1).get(j)).equals("严重不符合项")) {
+                    scoreLabel = new ScoreLabel(labelName, labelIndex, 1, 0, "err");
+                } else {
+                    scoreLabel = new ScoreLabel(labelName, labelIndex, 1, 0, "judge");
+                }
+                //调用插入score_label表中
+                scoreDao.insertScore_label(scoreLabel);
             }
-            //调用插入score_label表中
-            scoreDao.insertScore_label(scoreLabel);
         }
+
         //插入表内容
+        long [] labelIndex =new long [excel.get(1).size()];
+        int[] isUpdate=new int[excel.get(1).size()];
+
         for(int i=3;i<excel.size();i++){
             long userId=0;
             String userName=(String)excel.get(i).get(1);
@@ -222,28 +287,43 @@ public class FileServiceImpl implements FileService{
             userId=userDao.selectIdByName(userName);
 
             for(int j=a;j<excel.get(i).size();j++){
-                long labelIndex=j;
+                String labelName= (String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j);
+                //System.out.print(labelName);
+                //
+                if(i==3){
+                    long labelIndex1=scoreDao.selectLabelIndexByLabelName(labelName);
+                    labelIndex[j]=labelIndex1;
+                }
+
                 long valueInt=0;
                 String valueString="";
                 String value=(String)excel.get(i).get(j);
                 boolean isIntOrString=false;
                 for (int z=0;z<value.length();z++){
                     if(value.charAt(z)>=48 && value.charAt(z)<=57){
-                        System.out.println(value);
                         isIntOrString=true;
                     }
                 }
-                if(isIntOrString){
-                    valueInt=Long.parseLong(value);
+                if(("".equals((String)excel.get(i).get(j))) || isIntOrString){
+                    if (value.equals("")){
+                        value="0";
+                    }
+                    valueInt=Long.parseLong(value.split("\\.", 2)[0]);
                     valueString=null;
                 }else{
                     //update label表中的type类型为1，即type为String  根据labelIndex
                     //可以优化
-                    scoreDao.updateScoreLabel(labelIndex);
-                    valueInt=0;//接口搜索时应该搜索valueString不是nul
+                    if (isUpdate[j]==0){
+                        long type=scoreDao.selectTypeis1(labelIndex[j]);
+                        if (type==0){
+                            scoreDao.updateScoreLabel(labelIndex[j]);
+                            isUpdate[j]=1;
+                        }
+                    }
+                    valueInt=0;//接口搜索时应该搜索valueString!=nul
                     valueString=value;
                 }
-                ScoreValue scoreValue=new ScoreValue(userId,labelIndex,valueInt,valueString,null);
+                ScoreValue scoreValue=new ScoreValue(userId,labelIndex[j],valueInt,valueString,null);
                 //调用插入value表信息
                 scoreDao.insertScoreValue(scoreValue);
             }
