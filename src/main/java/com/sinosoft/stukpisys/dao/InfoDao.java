@@ -1,13 +1,11 @@
 package com.sinosoft.stukpisys.dao;
 
 import com.sinosoft.stukpisys.entity.Education;
+import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.SqlProvider;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -61,61 +59,68 @@ public interface InfoDao {
             "where user_name= #{0})")
     Education getEduInfoByUserName(String userName);
     //根据性别差异来查询人数
-    @Select("SELECT COUNT(*) FROM user_info WHERE gender=#{0};")
-    int getPopulationBySexDiffer(int gender);
+    @Select("SELECT gender name,COUNT(gender) value FROM user_info GROUP BY gender")
+    List<Map<String,Integer>> getPopulationBySexDiffer();
     //更具学历来差异来查询人数
-    @Select("SELECT COUNT(*) FROM education WHERE highest_educate=#{0}")
-    int getPopulationByEducationDiffer(String education);
+    @Select("SELECT highest_educate name ,COUNT(highest_educate) value  FROM education GROUP BY highest_educate ")
+    List<Map<String,Integer>> getPopulationByEducationDiffer();
+    //输出所有学历名称
     @Select("SELECT DISTINCT highest_educate FROM education ")
     List<String> getDifferEducateName();
     //更具专业来差异来查询人数
-    @Select("SELECT COUNT(*) FROM education WHERE  major=#{0}")
-    int getPopulationByMajorDiffer(String major);
-    @Select("SELECT DISTINCT major FROM education ")
+    @Select("SELECT major name ,COUNT(major) value  FROM education GROUP BY major  ")
+    List<Map<String,Integer>> getPopulationByMajorDiffer();
+    //获取所有不同专业的名称
+    @Select("SELECT DISTINCT major FROM education")
     List<String> getDifferMajorName();
     //获取211学校的数量
-    @Select("SELECT COUNT(*) FROM education WHERE  is211=#{0};")
-    int getPopulationByIs211(int is211);
+    @Select("SELECT is211 name ,COUNT(is211) value FROM education GROUP BY is211 ;")
+    Map<String,Integer>  getPopulationByIs211();
     //更具地点来差异来查询人数
-    @Select("SELECT COUNT(*) FROM education WHERE  location=#{0}")
-    int getPopulationByLocationDiffer(String location);
+    @Select("SELECT location name ,COUNT(location) value  FROM education GROUP BY location ")
+    List<Map<String,Integer>> getPopulationByLocationDiffer();
+    //获取不同的学校的地点
     @Select("SELECT DISTINCT location FROM education")
     List<String> getDifferLocationName();
-
-
-
-  /* @Select("\t<script> \" +\n" +
-           "            \"SELECT education.*,d.* \" +\n" +
-           "            \"from education,\n" +
-           "\t\t\t\t\t\t(SELECT user_info.*,c.* FROM user_info ,\n" +
-           "\t\t\t\t\t\t(SELECT user.name,b.* from user, \n" +
-           "\t\t\t\t\t\t(select score_value.user_id,a.* from score_value,\n" +
-           "\t\t\t\t\t\t(select * from score_label where belong='err') a\n" +
-           "\t\t\t\t\t\t\twhere a.label_index=score_value.label_index) b\n" +
-           "\t\t\t\t\t\t\twhere user.user_id=b.user_id) c\n" +
-           "\t\t\t\t\t\t\twhere user_info.user_name=c.name) d\" +\n" +
-           "            \" <where> \" +\n" +
-           "            \" <if test=\\\"hr_name != null\\\">hr_name=#{HRName}</if> \" +\n" +
-           "            \" <if test=\\\"job != null\\\"> AND job=#{job}</if> \" +\n" +
-           "            \" <if test=\\\"school_name != null\\\"> AND school_name=#{school}</if> \" +\n" +
-           "\t\t\t\t\t\t\" <if test=\\\"highest_educate != null\\\"> AND highest_educate=#{education}</if> \" +\n" +
-           "\t\t\t\t\t\t\" <if test=\\\"major != null\\\"> AND major=#{major}</if> \" +\n" +
-           "\t\t\t\t\t\t\" <if test=\\\"sex != null\\\"> AND sex=#{sex}</if> \" +\n" +
-           "\t\t\t\t\t\t\" <if test=\\\"state != null\\\"> AND state=#{state }</if> \" +\n" +
-           "\t\t\t\t\t\t\" <if test=\\\"is211 != null\\\"> AND is211=#{is211}</if> \" +\n" +
-           "\t\t\t      \" <if test=\\\"belong != null\\\"> AND belong=#{belong}</if> \" +\n" +
-           "\t\t\t\t\t\t\"  and education.edu_id=d.edu_id\"\n" +
-           "            \" </where> \" +\n" +
-           "            \n" +
-           "            \" </script> ")
-    List<List<Object>> getUserInfoByParam(String HRName, String job, String school, String education, String major, boolean sex, String state, String belong, boolean is211);
-
-*/
-//    @Select("SELECT edu_id FROM education WHERE school_name=#{schoolName}")
-//    long selectEduIdBySchoolName(String schoolName);
+   //获取评价
+   @SelectProvider(type = SqlProvider.class, method = "getUserParam")
+    List<ScoreValue> getJudgeByParam(String HRName ,String job,String school,String Education,String major,String sex, String state,String belong,String is211);
+   //获取分数
     @SelectProvider(type = SqlProvider.class, method = "getUserScoreParam")
-    List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,boolean sex, String state,String belong,boolean is211);
+    List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,String sex, String state,String belong,String is211);
+    //分配部门
+    @Update("update user_info set dept=#{dept} where user_name=#{userName}")
+    int setDept(@Param("userName")String userName,@Param("dept") String dept);
 
-    @Update("update user_info set dept=#{dept} where user_id=#{userId}")
-    int setDept(int userId,String dept);
+
+    //获取筛选条件(hr_name)
+    @Select("select hr_name from user_info GROUP BY hr_name")
+    List<UserInfo> gethrName();
+    //获取筛选条件(job)
+    @Select("select job from user_info GROUP BY job")
+    List<UserInfo> getJob();
+    //获取筛选条件(school_name)
+    @Select("select school_name from education GROUP BY school_name")
+    List<Education> getschoolName();
+    //获取筛选条件(highest_education)
+    @Select("select highest_educate from education GROUP BY highest_educate")
+    List<Education> getHighestEducate();
+    //获取筛选条件(major)
+     @Select("select major from education GROUP BY major")
+     List<Education> getMajor();
+
+     @Select("SELECT score_label.*,b.value_int from score_label,\n" +
+             "(select score_value.label_index,score_value.value_int from  score_value,(select user.user_id from user where name=#{name}) a\n" +
+             "where score_value.user_id=a.user_id)b\n" +
+             "WHERE score_label.label_index=b.label_index and belong in('','sum')\n" +
+             "and score_label.type='0'")
+      List<ScoreLabel> getTraineeScore(String name);
+
+
+     @Select("SELECT score_label.*,b.value_string from score_label,\n" +
+             "(select score_value.label_index,score_value.value_string from  score_value,(select user.user_id from user where name=#{name}) a\n" +
+             "where score_value.user_id=a.user_id)b\n" +
+             "WHERE score_label.label_index=b.label_index and belong='judge'\n" +
+             "and score_label.type='1'")
+     List<ScoreLabel> getTraineeJudge(String name);
 }

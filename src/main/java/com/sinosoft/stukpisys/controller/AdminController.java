@@ -3,7 +3,12 @@ package com.sinosoft.stukpisys.controller;
 import com.sinosoft.stukpisys.servsce.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.sql.Date;
 
 @RestController
 @RequestMapping(value = "/admin", produces = "application/json;charset=UTF-8")
@@ -26,7 +31,7 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value = "/changeJudge")
-    public String changeJudge(@RequestParam String userName,@RequestParam  String labelName,@RequestParam String judge){
+    public String changeJudge( String userName,  String labelName, String judge){
         int count=adminService.changeJudgeByUserNameAndLabelName(userName,labelName,judge);
         if(count!=0){
             return "error";
@@ -36,9 +41,12 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value = "/changeInfo")
-    public String changeInfo(String userName,String key,String value){
-        //todo
-        return null;
+    public String changeInfo(String state, String hrName, String job, long gender, String email, Date birth, String nativePlace, String phone, Date enterTime, long eduId, String dept, String userName) {
+        int count = adminService.changeInfoByUsernameAndKeyValue(state,  hrName, job, gender, email, birth, nativePlace, phone, enterTime, eduId, dept, userName);
+        if (count != 0) {
+            return "error";
+        }
+        return "success";
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -46,9 +54,9 @@ public class AdminController {
     public String setDept(String userName,String dept){
         int count=adminService.setDept(userName,dept);
         if(count!=0){
-            return "error";
+            return "success";
         }
-        return  "success";
+        return  "error";
     }
 
 

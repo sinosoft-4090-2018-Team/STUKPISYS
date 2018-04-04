@@ -23,6 +23,10 @@ public interface UserDao{
     //将读取到的信息插入到UserInfo表中——米晓锐
     @Insert("INSERT INTO user_info(user_name,state,hr_name,job,gender,email,birth,native_place,phone,enter_time,edu_id,dept) VALUES(#{userName},#{state},#{hrName},#{job},#{gender},#{email},#{birth},#{nativePlace},#{phone},#{enterTime},#{eduId},#{dept})")
     void insertUserInfo(UserInfo userInfo);
+
+    //修改用户密码
+    @Update("update user set password=#{password} where name=#{username}")
+    void UpdatePassword(String username,String password);
     //--米晓锐
     @Select("SELECT user_id FROM user WHERE name=#{name}")
     long selectIdByName(String name);

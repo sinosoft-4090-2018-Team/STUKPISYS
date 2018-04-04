@@ -6,10 +6,45 @@ public class ScoreLabel {
   private long labelId;
   private String labelName;
   private long labelIndex;
+  private String name;
   private long type;
   private long stage;
   private String belong;
+  private Object value;
+   private long valueInt;
+   private String valueString;
 
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Object getValue() {
+    return value;
+  }
+
+  public void setValue(Object value) {
+    this.value = value;
+  }
+
+  public String getValueString() {
+    return valueString;
+  }
+
+  public void setValueString(String valueString) {
+    this.valueString = valueString;
+  }
+
+  public long getValueInt() {
+    return valueInt;
+  }
+
+  public void setValueInt(long valueInt) {
+    this.valueInt = valueInt;
+  }
 
   public long getLabelId() {
     return labelId;
@@ -63,6 +98,8 @@ public class ScoreLabel {
   public void setBelong(String belong) {
     this.belong = belong;
   }
+
+  public  ScoreLabel(){}
 
   public ScoreLabel(String labelName, long labelIndex, long type, long stage, String belong) {
     this.labelName = labelName;

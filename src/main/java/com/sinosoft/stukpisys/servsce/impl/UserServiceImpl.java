@@ -1,6 +1,5 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.dao.UserDao;
 import com.sinosoft.stukpisys.entity.User;
@@ -69,6 +68,11 @@ public class UserServiceImpl implements UserService {
         return "error";
     }
 
+    @Override
+    public String changePassword(String username, String password) {
+        userDao.UpdatePassword(username,password);
+        return "修改密码成功";
+    }
 
 
 }

@@ -2,12 +2,12 @@ $(function () {
     fakeGeoData();
 });
 function randomData() {
-    return Math.round(Math.random()*1000);
+    return Math.round(Math.random()*100);
 }
 function fakeGeoData() {
     var data={};
-    data.title="";
-    data.series="";
+    data.title="地区分布";
+    data.max=100;
     data.data=[
         {name: '北京',value: randomData() },
         {name: '天津',value: randomData() },
@@ -45,10 +45,10 @@ function fakeGeoData() {
         {name: '澳门',value: randomData() }
     ];
     creatGeoView(data);
-    console.log(data.data);
+    // console.log(Object.keys(name));
 }
 function creatGeoView(data) {
-
+    initGeo( echarts.init(document.getElementById("mapView"),'macarons'),data);
 }
 
 function initGeo(chart,data) {
@@ -80,11 +80,11 @@ function initGeo(chart,data) {
             text: ['多', '少'],           // 文本，默认为数值文本
             calculable: true,
             inRange: {
-                color: ['lightskyblue', 'yellow', 'orangered']
+                color: ['#2ec7c9','#5ab1ef', '#b6a2de','#ffb980','#d87a80']
             }
         },
         series: {
-            name: 'iphone3',
+            name:'地区分布',
             type: 'map',
             mapType: 'china',
             roam: true,

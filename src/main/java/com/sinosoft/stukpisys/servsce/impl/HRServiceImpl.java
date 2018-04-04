@@ -3,17 +3,14 @@ package com.sinosoft.stukpisys.servsce.impl;
 import com.sinosoft.stukpisys.dao.InfoDao;
 import com.sinosoft.stukpisys.dao.ScoreDao;
 import com.sinosoft.stukpisys.dao.UserDao;
-import com.sinosoft.stukpisys.entity.Education;
-import com.sinosoft.stukpisys.entity.ScoreValue;
-import com.sinosoft.stukpisys.entity.User;
-import com.sinosoft.stukpisys.entity.UserInfo;
+import com.sinosoft.stukpisys.entity.*;
 import com.sinosoft.stukpisys.servsce.HRService;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class HRServiceImpl implements HRService{
@@ -69,12 +66,83 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
+    public List<Long> getScoreInbackByStage2(int stage) {
+        List<Long> l1=scoreDao.getScoreInbackByStage(1);
+        List<Long> l2=scoreDao.getScoreInbackByStage(2);
+        List<Long> l3=scoreDao.getScoreInbackByStage(3);
+
+        List<Long> l4=new ArrayList();
+        l4.addAll(l1);
+        l4.addAll(l2);
+        l4.addAll(l3);
+        Set<Long> set = new HashSet<>(l4);
+        Collection rs = CollectionUtils.disjunction(l4,set);
+        List<Long> list1 = new ArrayList<>(rs);
+        Set<Long> set2 = new HashSet<>(list1);
+        List<Long> list2 = new ArrayList<>(set2);
+        return list2;
+    }
+
+    @Override
+    public List<Long> getScoreInbackByStage(int stage) {
+        List<Long> l1=scoreDao.getScoreInbackByStage(1);
+        List<Long> l2=scoreDao.getScoreInbackByStage(2);
+        List<Long> l3=scoreDao.getScoreInbackByStage(3);
+        l1.retainAll(l2);
+        l1.retainAll(l3);
+
+
+        return l1;
+    }
+
+    @Override
+    public List<Object> getScoreById(long id) {
+        return scoreDao.getScoreById(id);
+    }
+
+    @Override
+    public List<ScoreValue> getScoreInback(int stages) {
+        return null;
+    }
+
+    @Override
+    public List<List<Object>> getJudgeInback(long id) {
+        return scoreDao.getJudgeById(id);
+    }
+
+    @Override
+    public List<ScoreLabel> getTraineeScore(String name) {
+        return infoDao.getTraineeScore(name);
+    }
+
+    @Override
+    public List<ScoreLabel> getTraineeJudge(String name) {
+        return infoDao.getTraineeJudge(name);
+    }
+
+
+    @Override
+    public List<ScoreValue> getFirstSealScore() {
+        return scoreDao.getFirstSealScore();
+    }
+
+    @Override
+    public List<ScoreValue> getGoodSealScore() {
+        return scoreDao.getGoodSealScore();
+    }
+
+    @Override
+    public List<ScoreValue> getUsualPerformance() {
+        return scoreDao.getUsualPerformance();
+    }
+
+    @Override
     public List<UserInfo> getUserByHighestEducate(String educate) {
         return infoDao.getUserByHighestEducate(educate);
     }
 
     @Override
-    public Map<String,Integer> getPopulationBySexDiffer() {
+    public List<Map<String,Integer>> getPopulationBySexDiffer() {
         return  infoDao.getPopulationBySexDiffer();
     }
 
@@ -115,15 +183,17 @@ public class HRServiceImpl implements HRService{
 
 
     @Override
-    public List<ScoreValue> getJudgeByParam(String HRName,String job,String school,String Education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211)
+    public List<ScoreValue> getJudgeByParam(String HRName,String job,String school,String Education,String major,String sex,boolean isFired,boolean isSimple,boolean isNew,boolean hasErr,String is211)
     {
         String state=null;
         if (isFired==true){
-             state="淘汰";
+            state="淘汰";
         }else if(isNew==true){
             state="特殊";
-        }else{
+        }else if(isSimple==true) {
             state="正常";
+        }else{
+            state=null;
         }
         String belong=null;
         if(hasErr==true){
@@ -133,14 +203,16 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public List<ScoreValue> getUserScoreParam(String HRName, String job, String school, String Education, String major, boolean sex, boolean isFired, boolean isNew, boolean hasErr, boolean is211) {
+    public List<ScoreValue> getUserScoreParam(String HRName, String job, String school, String Education, String major, String sex,boolean isSimple, boolean isFired, boolean isNew, boolean hasErr, String is211) {
         String state=null;
         if (isFired==true){
             state="淘汰";
         }else if(isNew==true){
             state="特殊";
-        }else{
+        }else if(isSimple==true) {
             state="正常";
+        }else{
+            state=null;
         }
         String belong=null;
         if(hasErr==true){
@@ -167,6 +239,31 @@ public class HRServiceImpl implements HRService{
     @Override
     public User getByName(String name) {
         return userDao.getByName(name);
+    }
+
+    @Override
+    public List<UserInfo> gethrName() {
+        return infoDao.gethrName();
+    }
+
+    @Override
+    public List<UserInfo> getJob() {
+        return infoDao.getJob();
+    }
+
+    @Override
+    public List<Education> getschoolName() {
+        return infoDao.getschoolName();
+    }
+
+    @Override
+    public List<Education> getHighestEducate() {
+        return infoDao.getHighestEducate();
+    }
+
+    @Override
+    public List<Education> getMajor() {
+        return infoDao.getMajor();
     }
 
     @Override

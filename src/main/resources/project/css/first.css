@@ -26,7 +26,7 @@ margin-left:2%;
     border-radius: 6px;
 }
 .passin{
-    height:300px;
+    height:320px;
     background:rgba(255,255,255,0.8);
     margin-top:150px;
     border-radius:6px;
@@ -51,7 +51,7 @@ margin-left:2%;
     outline: none;
 }
 .next-input{
-    margin-top:30px;
+    margin-top:25px;
     width:80%;
     border-bottom:1px solid #ffab66;
 }
@@ -69,9 +69,10 @@ margin-left:2%;
 .enter-in{
     text-align:center;
     width:80%;
-    margin-top:35px;
+    margin-top:50px;
 }
 .pwd{
+    display:inline-block;
     width:100%;
     background:#ffab66;
     border:0;
@@ -79,9 +80,12 @@ margin-left:2%;
     height:35px;
     line-height: 35px;
     color:#fff;
+
 }
 .pwd:hover{
     cursor:pointer;
+    color:#fff;
+    text-decoration: none;
 }
 .rember{
     text-align:center;
