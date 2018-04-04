@@ -3,6 +3,7 @@ package com.sinosoft.stukpisys.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.entity.Education;
+import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
@@ -76,7 +77,7 @@ public class siftController {
     public String getJudgeInBack(int stage)
     {
 
-        List<List<Object>> lll=new ArrayList<>();
+        List<List<ScoreLabel>> lll=new ArrayList<>();
         List<Long> l2=new ArrayList<>();
 
         if(stage==2) {
@@ -84,7 +85,7 @@ public class siftController {
             if (l2.size() != 0) {
                 for (int i = 0; i < l2.size(); i++) {
 
-                    lll.addAll(hrService.getJudgeInback(l2.get(i)));
+                    lll.add(hrService.getJudgeInback(l2.get(i)));
 
                 }
             }
@@ -93,7 +94,7 @@ public class siftController {
             if (l2.size() != 0) {
                 for (int i = 0; i < l2.size(); i++) {
 
-                    lll.addAll(hrService.getJudgeInback(l2.get(i)));
+                    lll.add(hrService.getJudgeInback(l2.get(i)));
 
                 }
             }

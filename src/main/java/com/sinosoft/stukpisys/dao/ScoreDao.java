@@ -172,8 +172,9 @@ public interface ScoreDao {
 
 
     //根据id的返回
-    @Select("")
-    List<List<Object>> getJudgeById(long id);
+    @Select("select v.name,d.label_name,d.value_string from (select name,user_id from user where user_id=#{id}) v left join (select b.user_id,a.label_name,b.value_string from(select label_name,label_index from score_label where belong='judge' and type=1) a left join \n" +
+            "(SELECT user_id,value_string,label_index from score_value where user_id=#{id}) b on a.label_index=b.label_index) d on v.user_id=d.user_id")
+    List<ScoreLabel> getJudgeById(long id);
 
    //获取第一名章的得分（个数*2）
     @Select("select score_value.*,value_int*2 as score from score_value,\n" +
@@ -191,5 +192,11 @@ public interface ScoreDao {
             "where score_value.label_index=a.label_index  \n" +
             " GROUP BY score_value.user_id")
     List<ScoreValue> getUsualPerformance();
+
+    //通过id获得合不合格和请假天数
+    @Select("(select s.label_name,a.value_string as value from score_label s join (select user_id,label_index,value_string from score_value where user_id=#{id} and (value_string='合格' or '不合格')) a on s.label_index=a.label_index)\n" +
+            "union all\n" +
+            "(select s.label_name,a.value_int as value from score_label s join (SELECT value_int,label_index from score_value where label_index=(SELECT label_index from score_label where belong='absence') and user_id=37)a on a.label_index=s.label_index)")
+    List<ScoreLabel> getTraineePass(Long id);
 
 }

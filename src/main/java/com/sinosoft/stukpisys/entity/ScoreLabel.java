@@ -109,7 +109,5 @@ public class ScoreLabel {
     this.belong = belong;
   }
 
-  public ScoreLabel() {
-    super();
-  }
+
 }
