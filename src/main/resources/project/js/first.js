@@ -19,13 +19,4 @@
 			}
 		})
 	});
-	var sex1 = new Vue({
-		el: '#sexs',
-		data: {
-			items: [
-				{ message: 'ÄÐ' },
-				{ message: 'Å®' }
-			]
-		}
-	});
 })();
