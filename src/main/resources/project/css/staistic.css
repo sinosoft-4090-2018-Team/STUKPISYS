@@ -249,7 +249,7 @@ margin-left:16px;
     color:#fff;
 }
 .table1{
-    height:565px;
+   width:800px;
     overflow: scroll;
 }
 table{
@@ -262,6 +262,9 @@ th:not(:first-child){
 }
 th:last-child{
     padding-left:55px;
+}
+td span{
+    margin-top:10px;
 }
 td:not(:first-child){
     padding-left:60px;
