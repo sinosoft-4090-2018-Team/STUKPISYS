@@ -181,7 +181,6 @@ public class FileServiceImpl implements FileService{
                 }
                 //调用插入score_label表中
                 scoreDao.insertScore_label(scoreLabel);
-
             }
         }
         //第二阶段信息
