@@ -140,7 +140,12 @@ public interface ScoreDao {
     //--mixiaorui
     @Update("UPDATE score_label SET label_name=#{newLabelName} WHERE label_name=#{labelName}")
     int updateLabelName(@Param("newLabelName") String newLabelName,@Param("labelName") String labelName);
-
+    //--mixiaorui
+    @Select("SELECT * FROM score_value WHERE user_id=#{userId}")
+    List<ScoreValue> selectMessageByUserId(long userId);
+    //--mixiaoru
+    @Update("UPDATE score_value SET value_int=#{valueInt},value_string=#{valueString} WHERE user_id=#{userId} and label_index=#{labelIndex1}")
+    int updateScoreValue(@Param("userId") long userId,@Param("labelIndex1")long labelIndex1,@Param("valueInt")long valueInt,@Param("valueString")String valueString);
 
     // List<List<Object>> getScoreFromStageByUser_id(long userId,int stage);
 

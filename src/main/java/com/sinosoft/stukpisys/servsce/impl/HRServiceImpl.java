@@ -143,6 +143,12 @@ public class HRServiceImpl implements HRService{
 
     @Override
     public int insertScoreLabel(ScoreLabel scoreLabel) {
+        long labelIndex = scoreDao.selectMaxLabelIndex();
+        if (labelIndex!=0){
+            labelIndex=scoreDao.selectMaxLabelIndex();
+        }
+        scoreLabel.setLabelIndex(labelIndex+1);
+        System.out.print(labelIndex);
         return scoreDao.insertScoreLabel(scoreLabel);
     }
 

@@ -232,8 +232,6 @@ public class FileServiceImpl implements FileService{
                     labelIndex=scoreDao.selectMaxLabelIndex();
                 }
                 labelIndex=labelIndex+1;
-
-
                 if (((String) excel.get(1).get(j)).equals("第三阶段成绩")) {
                     scoreLabel = new ScoreLabel(labelName, labelIndex, 0, 3, "sum");
                 } else if (((String) excel.get(1).get(j)).contains("评价")) {
@@ -284,47 +282,76 @@ public class FileServiceImpl implements FileService{
             String userName=(String)excel.get(i).get(1);
             //调用根据username得出userId方法
             userId=userDao.selectIdByName(userName);
-
-            for(int j=a;j<excel.get(i).size();j++){
-                String labelName= (String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j);
-                //System.out.print(labelName);
-                //
-                if(i==3){
+            System.out.print(userId);
+            if ((scoreDao.selectMessageByUserId(userId))!=null){
+                for(int j=a;j<excel.get(i).size();j++){
+                    String labelName= (String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j);
                     long labelIndex1=scoreDao.selectLabelIndexByLabelName(labelName);
-                    labelIndex[j]=labelIndex1;
-                }
 
-                long valueInt=0;
-                String valueString="";
-                String value=(String)excel.get(i).get(j);
-                boolean isIntOrString=false;
-                for (int z=0;z<value.length();z++){
-                    if(value.charAt(z)>=48 && value.charAt(z)<=57){
-                        isIntOrString=true;
-                    }
-                }
-                if(("".equals((String)excel.get(i).get(j))) || isIntOrString){
-                    if (value.equals("")){
-                        value="0";
-                    }
-                    valueInt=Long.parseLong(value.split("\\.", 2)[0]);
-                    valueString=null;
-                }else{
-                    //update label表中的type类型为1，即type为String  根据labelIndex
-                    //可以优化
-                    if (isUpdate[j]==0){
-                        long type=scoreDao.selectTypeis1(labelIndex[j]);
-                        if (type==0){
-                            scoreDao.updateScoreLabel(labelIndex[j]);
-                            isUpdate[j]=1;
+                    long valueInt=0;
+                    String valueString="";
+                    String value=(String)excel.get(i).get(j);
+                    boolean isIntOrString=false;
+                    for (int z=0;z<value.length();z++){
+                        if(value.charAt(z)>=48 && value.charAt(z)<=57){
+                            isIntOrString=true;
                         }
                     }
-                    valueInt=0;//接口搜索时应该搜索valueString!=nul
-                    valueString=value;
+                    if(("".equals((String)excel.get(i).get(j))) || isIntOrString){
+                        if (value.equals("")){
+                            value="0";
+                        }
+                        valueInt=Long.parseLong(value.split("\\.", 2)[0]);
+                        valueString=null;
+                    }else{
+                        valueInt=0;//接口搜索时应该搜索valueString!=nul
+                        valueString=value;
+                    }
+                    scoreDao.updateScoreValue(userId,labelIndex1,valueInt,valueString);
                 }
-                ScoreValue scoreValue=new ScoreValue(userId,labelIndex[j],valueInt,valueString,null);
-                //调用插入value表信息
-                scoreDao.insertScoreValue(scoreValue);
+            }else{
+                for(int j=a;j<excel.get(i).size();j++){
+
+                    String labelName= (String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j);
+                    //System.out.print(labelName);
+                    //
+                    if(i==3){
+                        long labelIndex1=scoreDao.selectLabelIndexByLabelName(labelName);
+                        labelIndex[j]=labelIndex1;
+                    }
+
+                    long valueInt=0;
+                    String valueString="";
+                    String value=(String)excel.get(i).get(j);
+                    boolean isIntOrString=false;
+                    for (int z=0;z<value.length();z++){
+                        if(value.charAt(z)>=48 && value.charAt(z)<=57){
+                            isIntOrString=true;
+                        }
+                    }
+                    if(("".equals((String)excel.get(i).get(j))) || isIntOrString){
+                        if (value.equals("")){
+                            value="0";
+                        }
+                        valueInt=Long.parseLong(value.split("\\.", 2)[0]);
+                        valueString=null;
+                    }else{
+                        //update label表中的type类型为1，即type为String  根据labelIndex
+                        //可以优化
+                        if (isUpdate[j]==0){
+                            long type=scoreDao.selectTypeis1(labelIndex[j]);
+                            if (type==0){
+                                scoreDao.updateScoreLabel(labelIndex[j]);
+                                isUpdate[j]=1;
+                            }
+                        }
+                        valueInt=0;//接口搜索时应该搜索valueString!=nul
+                        valueString=value;
+                    }
+                    ScoreValue scoreValue=new ScoreValue(userId,labelIndex[j],valueInt,valueString,null);
+                    //调用插入value表信息
+                    scoreDao.insertScoreValue(scoreValue);
+                }
             }
         }
         return "成功";
