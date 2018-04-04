@@ -100,6 +100,7 @@ public class ScoreLabel {
   }
 
 
+  public ScoreLabel(){}
   public ScoreLabel(String labelName, long labelIndex, long type, long stage, String belong) {
     this.labelName = labelName;
     this.labelIndex = labelIndex;
