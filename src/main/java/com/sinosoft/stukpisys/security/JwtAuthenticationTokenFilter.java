@@ -1,6 +1,6 @@
 package com.sinosoft.stukpisys.security;
 
-import com.sinosoft.stukpisys.untils.JwtToken;
+import com.sinosoft.stukpisys.untils.JWTtoken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,10 +20,10 @@ import java.io.IOException;
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     private UserDetailsService userDetailsService;
-    private JwtToken jwtToken;
+    private JWTtoken jwtToken;
 
     @Autowired
-    public JwtAuthenticationTokenFilter(UserDetailsService userDetailsService, JwtToken jwtTokenUtil) {
+    public JwtAuthenticationTokenFilter(UserDetailsService userDetailsService, JWTtoken jwtTokenUtil) {
         this.userDetailsService = userDetailsService;
         this.jwtToken = jwtTokenUtil;
     }
