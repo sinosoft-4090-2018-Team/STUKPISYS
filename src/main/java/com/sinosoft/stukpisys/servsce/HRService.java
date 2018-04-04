@@ -120,4 +120,8 @@ public interface HRService {
     List<ScoreValue> getGoodSealScore();
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<ScoreValue> getUsualPerformance();
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    int insertScoreLabel(ScoreLabel scoreLabel);
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    List<ScoreLabel> selectScoreLabel();
 }

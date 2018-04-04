@@ -3,13 +3,7 @@ package com.sinosoft.stukpisys.dao;
 import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Repository;
-import sun.reflect.generics.tree.VoidDescriptor;
-import org.apache.ibatis.annotations.Update;
 
 import java.sql.Date;
 import java.util.List;
@@ -118,6 +112,9 @@ public interface ScoreDao {
     //插入Score_label表--米晓锐
     @Insert("INSERT INTO score_label(label_name,label_index,type,stage,belong) VALUES(#{labelName},#{labelIndex},#{type},#{stage},#{belong})")
     void insertScore_label(ScoreLabel scoreLabel);
+    //插入Score_label表--米晓锐
+    @Insert("INSERT INTO score_label(label_name,label_index,type,stage,belong) VALUES(#{labelName},#{labelIndex},#{type},#{stage},#{belong})")
+    int insertScoreLabel(ScoreLabel scoreLabel);
     //--米晓锐
     @Update("UPDATE score_label SET type=1 WHERE label_index=#{labelIndex}")
     void updateScoreLabel(long labelIndex);
@@ -137,7 +134,9 @@ public interface ScoreDao {
     long selectLabelIndexByLabelName(String labelName);
 //    @Select("SELECT * FROM score_label WHERE label_name=#{labelName}")
 //    ScoreLabel selectByLabelName(String labelName);
-
+    //--mixiaorui
+    @Select("SELECT * FROM score_label")
+    List<ScoreLabel> selectScoreLabel();
 
 
     // List<List<Object>> getScoreFromStageByUser_id(long userId,int stage);

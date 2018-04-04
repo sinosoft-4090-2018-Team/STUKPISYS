@@ -142,6 +142,16 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
+    public int insertScoreLabel(ScoreLabel scoreLabel) {
+        return scoreDao.insertScoreLabel(scoreLabel);
+    }
+
+    @Override
+    public List<ScoreLabel> selectScoreLabel() {
+        return scoreDao.selectScoreLabel();
+    }
+
+    @Override
     public List<UserInfo> getUserByHighestEducate(String educate) {
         return infoDao.getUserByHighestEducate(educate);
     }

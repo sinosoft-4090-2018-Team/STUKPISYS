@@ -8,8 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import java.util.List;
-
 @Mapper
 public interface UserDao{
     @Select("select * from user where name=#{name}")
@@ -33,4 +31,5 @@ public interface UserDao{
     //--mxr
     @Select("SELECT edu_id FROM education WHERE highest_educate=#{highestEducate} and major=#{major} and school_name=#{schoolName} and location=#{location} and is211=#{is211} and graduation_time=#{graduationTime}" )
     Long selectEduIdByEMessage(Education education);
+
 }
