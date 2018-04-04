@@ -28,8 +28,11 @@ public class AdminServiceImpl implements AdminService{
           long labelIndex=scoreLabel.getLabelIndex();
           int count=scoreDao.changeJudgeByUserNameAndLabelName((int)(userId),labelIndex,judge);
       //System.out.println(count);
+          return  1;
+      }else{
+          return 0;
       }
-        return 0;
+
     }
 
     @Override

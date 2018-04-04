@@ -1,6 +1,44 @@
 package com.sinosoft.stukpisys.untils;
 
-public class Is211 {
+import com.sinosoft.stukpisys.dao.ScoreDao;
+import com.sinosoft.stukpisys.servsce.FileService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
+
+public class LeadTo {
+
+    //private ScoreDao scoreDao;
+
+
+/*    private static FileService fileService;
+    @Autowired
+    public void setscoreDao(FileService fileService){
+        this.fileService=fileService;
+    }*/
+
+//    public static ApplicationContext applicationContext = new ClassPathXmlApplicationContext("/spring-*.xml");
+//    private static FileService fileService = (FileService)applicationContext.getBean(FileService.class);
+//    private static AlarmInfoService alarmInfoService = (AlarmInfoService)applicationContext.getBean(AlarmInfoService.class);
+
+   /* public ScoreDao getScoreDao() {
+        return scoreDao;
+    }
+
+    public void setScoreDao(ScoreDao scoreDao) {
+        this.scoreDao = scoreDao;
+    }
+
+    public LeadTo(ScoreDao scoreDao) {
+        this.scoreDao = scoreDao;
+    }
+    public LeadTo(){}*/
+
     public static long is211(String school){
         String school211="北京大学\n" +
                 "清华大学\n" +
@@ -125,4 +163,15 @@ public class Is211 {
         }
         return bb;
     }
+
+/*    public long getLabelIndex(){
+        long MaxLabelIndex =0;
+        //System.out.print(scoreDao.selectMaxLabelIndex());
+
+        int maxLabelIndex = fileService.selectMaxLabelIndex();
+        if (maxLabelIndex!=0){
+            MaxLabelIndex=fileService.selectMaxLabelIndex();
+        }
+        return (MaxLabelIndex+1);
+    }*/
 }

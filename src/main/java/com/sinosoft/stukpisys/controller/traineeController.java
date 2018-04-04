@@ -2,6 +2,7 @@ package com.sinosoft.stukpisys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.sinosoft.stukpisys.dao.UserDao;
 import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.entity.UserInfo;
@@ -49,11 +50,11 @@ public class traineeController {
         return null;
     }
 
-    @GetMapping(value ="/pass")//合格与不合格的
+    @GetMapping(value ="/pass")//合格与不合格与请假天数
     public String getTraineePass(String name)
     {
-        //todo
-        return null;
+        List<ScoreLabel> listList= hrService.getTraineePass(hrService.getByName(name).getUserId());
+        return JSON.toJSONString(listList);
     }
 
     @GetMapping(value ="/score")//小分，阶段总成绩 sum

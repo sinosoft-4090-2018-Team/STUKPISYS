@@ -94,14 +94,19 @@ public interface HRService {
      * @return
      */
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
-    List<ScoreValue> getScoreInback(int stages);
+    List<ScoreLabel> getScoreInback(int stages);
     /**
      * 通过id查三个阶段评价
      * @param id
      * @return
      */
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
-    List<List<Object>> getJudgeInback(long id);
+    List<ScoreLabel> getJudgeInback(long id);
+    /**
+     * 通过id查合格不合格和请假天数
+     * @param id
+     * @return
+     */
+    List<ScoreLabel> getTraineePass(Long id);
 
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<ScoreLabel> getTraineeScore(String name);
@@ -115,4 +120,10 @@ public interface HRService {
     List<ScoreValue> getGoodSealScore();
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<ScoreValue> getUsualPerformance();
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    int insertScoreLabel(ScoreLabel scoreLabel);
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    List<ScoreLabel> selectScoreLabel();
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    int updateLabelName(String newLabelName,String labelName);
 }

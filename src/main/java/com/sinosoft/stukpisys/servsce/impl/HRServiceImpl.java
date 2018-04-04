@@ -101,13 +101,18 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public List<ScoreValue> getScoreInback(int stages) {
+    public List<ScoreLabel> getScoreInback(int stages) {
         return null;
     }
 
     @Override
-    public List<List<Object>> getJudgeInback(long id) {
+    public List<ScoreLabel> getJudgeInback(long id) {
         return scoreDao.getJudgeById(id);
+    }
+
+    @Override
+    public List<ScoreLabel> getTraineePass(Long id) {
+        return scoreDao.getTraineePass(id);
     }
 
     @Override
@@ -119,6 +124,7 @@ public class HRServiceImpl implements HRService{
     public List<ScoreLabel> getTraineeJudge(String name) {
         return infoDao.getTraineeJudge(name);
     }
+
 
     @Override
     public List<ScoreValue> getFirstSealScore() {
@@ -133,6 +139,21 @@ public class HRServiceImpl implements HRService{
     @Override
     public List<ScoreValue> getUsualPerformance() {
         return scoreDao.getUsualPerformance();
+    }
+
+    @Override
+    public int insertScoreLabel(ScoreLabel scoreLabel) {
+        return scoreDao.insertScoreLabel(scoreLabel);
+    }
+
+    @Override
+    public List<ScoreLabel> selectScoreLabel() {
+        return scoreDao.selectScoreLabel();
+    }
+
+    @Override
+    public int updateLabelName(String newLabelName, String labelName) {
+        return scoreDao.updateLabelName(newLabelName,labelName);
     }
 
     @Override

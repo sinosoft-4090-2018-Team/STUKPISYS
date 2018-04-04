@@ -16,7 +16,7 @@ import java.util.Map;
  * JWT工具类
  */
 @Component
-public class JWTtoken implements Serializable {
+public class JwtToken implements Serializable {
 
     /**
      * 密钥

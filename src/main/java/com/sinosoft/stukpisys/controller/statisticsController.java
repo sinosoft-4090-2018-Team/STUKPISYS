@@ -27,72 +27,86 @@ public class statisticsController {
     private HRService hrService;
 
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
-    @GetMapping(value ="/sex")
-    public String sexStatistics()
-    {
-        List<Map<String,Integer>> map=hrService.getPopulationBySexDiffer();
+    @GetMapping(value = "/sex")
+    public String sexStatistics() {
+        List<Map<String, Integer>> map = hrService.getPopulationBySexDiffer();
         return JSON.toJSONString(map);
     }
 
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
-    @GetMapping(value ="/education")//OK
-    public String educationStatistics()
-    {
-        List<Map<String,Integer>>map=hrService.getPopulationByEducationDiffer();
+    @GetMapping(value = "/education")//OK
+    public String educationStatistics() {
+        List<Map<String, Integer>> map = hrService.getPopulationByEducationDiffer();
 
         return JSON.toJSONString(map);
     }
 
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
-    @GetMapping(value ="/major")//OK
-    public String majorStatistics()
-    {
-        List<Map<String,Integer>>map=hrService.getPopulationByMajorDiffer();
+    @GetMapping(value = "/major")//OK
+    public String majorStatistics() {
+        List<Map<String, Integer>> map = hrService.getPopulationByMajorDiffer();
         return JSON.toJSONString(map);
     }
 
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
-    @GetMapping(value ="/211")//ok
-    public String schoolStatistics()
-    {
-        Map<String,Integer>map=hrService.getPopulationByIs211();
+    @GetMapping(value = "/211")//ok
+    public String schoolStatistics() {
+        Map<String, Integer> map = hrService.getPopulationByIs211();
         return JSON.toJSONString(map);
     }
 
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
-    @GetMapping(value ="/locat")//OK
-    public String locationStatistics()
-    {
-        List<Map<String,Integer>>map=hrService.getPopulationByLocationDiffer();
+    @GetMapping(value = "/locat")//OK
+    public String locationStatistics() {
+        List<Map<String, Integer>> map = hrService.getPopulationByLocationDiffer();
         return JSON.toJSONString(map);
     }
 
 
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
-    @GetMapping(value ="/calculate")//OK
-    public String calculateScore()
-    {
-       List<ScoreValue> listFirstSeal=hrService.getFirstSealScore();
-       List<ScoreValue> listGoodSeal=hrService.getGoodSealScore();
-       List<ScoreValue> listUsualPerformance=hrService.getUsualPerformance();
-       long sum=0;
-       JSONObject jsonObject=new JSONObject();
-       List<JSONObject> jsonObjectList=new LinkedList<>();
-        for (int i=0;i<listFirstSeal.size();i++){
-            for (int j=0;j<listGoodSeal.size();j++){
-                for (int k=0;k<listUsualPerformance.size();k++){
-                    if(listFirstSeal.get(i).getUserId()==listGoodSeal.get(j).getUserId()&&listFirstSeal.get(i).getUserId()==listUsualPerformance.get(k).getUserId()&&listUsualPerformance.get(k).getUserId()==listGoodSeal.get(j).getUserId()){
-                        sum=listFirstSeal.get(i).getScore()+listFirstSeal.get(j).getScore()+listUsualPerformance.get(k).getScore();
-                        jsonObject.put("userId",listFirstSeal.get(i).getUserId());
-                        jsonObject.put("sum",sum);
-                        jsonObjectList.add(jsonObject);
+    @GetMapping(value = "/calculate")//OK
+    public String calculateScore() {
+        List<ScoreValue> listFirstSeal = hrService.getFirstSealScore();
+      //  System.out.println(listFirstSeal.toString());
+        List<ScoreValue> listGoodSeal = hrService.getGoodSealScore();
+        //System.out.println(listGoodSeal.toString());
+        List<ScoreValue> listUsualPerformance = hrService.getUsualPerformance();
+       // System.out.println(listUsualPerformance.toString());
+        long sum = 0;
+
+        List<List<Object>> listList = new LinkedList<>();
+
+        for (int i = 0; i < listFirstSeal.size(); i++) {
+            for (int j = 0; j < listGoodSeal.size(); j++) {
+                for (int k = 0; k < listUsualPerformance.size(); k++) {
+                    if (listFirstSeal.get(i).getUserId() == listGoodSeal.get(j).getUserId() && listFirstSeal.get(i).getUserId() == listUsualPerformance.get(k).getUserId() && listUsualPerformance.get(k).getUserId() == listGoodSeal.get(j).getUserId()) {
+                        sum = listFirstSeal.get(i).getScore() + listGoodSeal.get(j).getScore() + listUsualPerformance.get(k).getScore();
+                        // JSONObject jsonObject=new JSONObject();
+                        List<Object> listTmp = new LinkedList<>();
+                        listTmp.add(listFirstSeal.get(i).getUserId());
+                        listTmp.add(sum);
+                        //    jsonObject.clear();
+                        listList.add(listTmp);
+
                     }
+
+
+                }
 
             }
 
-           }
-
         }
+
+     //   JSON.toJSONString(listList);
+        List<JSONObject> jsonObjectList=new LinkedList<>();
+
+        for(int n=0;n<listList.size();n++){
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("userId",listList.get(n).get(0));
+            jsonObject.put("score",listList.get(n).get(1));
+            jsonObjectList.add(jsonObject);
+        }
+
 
         return jsonObjectList.toString();
     }
