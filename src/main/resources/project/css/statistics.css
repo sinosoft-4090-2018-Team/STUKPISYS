@@ -4,6 +4,9 @@ body{
 .container{
     width:100%;
 }
+.bg-color1{
+    background:#ffa478;
+}
 .nav1{
     height:40px;
     background:#ffc28f;

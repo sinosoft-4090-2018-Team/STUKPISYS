@@ -7,6 +7,9 @@ body{
 .show1{
     display:block;
 }
+.bg-color1{
+    background:#ffa478;
+}
 .container{
     width:100%;
 }
