@@ -23,12 +23,12 @@ var sift = new Vue({
             { message: '2018-3' },
             { message: '2018-4' }
         ],
-        sift_sex: '',
-        sift_hr: '',
-        sift_job: '',
-        sift_major: '',
-        sift_highest_educate: '',
-        sift_school_name: '',
+        sift_sex: '全部',
+        sift_hr: '全部',
+        sift_job: '全部',
+        sift_major: '全部',
+        sift_highest_educate: '全部',
+        sift_school_name: '全部',
 
     },
     mounted: function () {
