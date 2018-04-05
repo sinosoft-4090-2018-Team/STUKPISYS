@@ -41,11 +41,11 @@ public interface HRService {
     User getByName(String name);
 
 
-    List<UserInfo> gethrName();
-    List<UserInfo> getJob();
-    List<Education> getschoolName();
-    List<Education> getHighestEducate();
-    List<Education> getMajor();
+    List<String> gethrName();
+    List<String> getJob();
+    List<String> getschoolName();
+    List<String> getHighestEducate();
+    List<String> getMajor();
 
 
 
@@ -54,7 +54,6 @@ public interface HRService {
      * 通过id查询label的index和数值
      * @return
      */
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<Integer> getScoreList(Integer id);
 
     /**
@@ -63,7 +62,6 @@ public interface HRService {
      * @param enter_time
      * @return
      */
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<List<Object>> getUserScoreByStageAndTime(int stage, java.sql.Date enter_time);
 
     /**
@@ -71,7 +69,6 @@ public interface HRService {
      * @param stage
      * @return
      */
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<Long> getScoreInbackByStage2(int stage);
     /**
      * 根据id查成绩,返回姓名和各个阶段的成绩
@@ -83,9 +80,7 @@ public interface HRService {
      * @param stage
      * @return
      */
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<Long> getScoreInbackByStage(int stage);
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<Object> getScoreById(long id);
 
     /**
@@ -93,7 +88,6 @@ public interface HRService {
      * @param stages
      * @return
      */
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<ScoreLabel> getScoreInback(int stages);
     /**
      * 通过id查三个阶段评价
@@ -108,22 +102,14 @@ public interface HRService {
      */
     List<ScoreLabel> getTraineePass(Long id);
 
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<ScoreLabel> getTraineeScore(String name);
 
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<ScoreLabel> getTraineeJudge(String name);
 
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<ScoreValue> getFirstSealScore();
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<ScoreValue> getGoodSealScore();
-    @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     List<ScoreValue> getUsualPerformance();
-    @PreAuthorize("hasAnyRole('ADMIN')")
     int insertScoreLabel(ScoreLabel scoreLabel);
-    @PreAuthorize("hasAnyRole('ADMIN')")
     List<ScoreLabel> selectScoreLabel();
-    @PreAuthorize("hasAnyRole('ADMIN')")
     int updateLabelName(String newLabelName,String labelName);
 }

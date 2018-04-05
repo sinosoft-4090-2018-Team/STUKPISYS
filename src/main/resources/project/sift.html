@@ -34,8 +34,8 @@
             </ul>
         </div>
     </div>
-    <div class="row content" id="content">
-        <div class="col-xs-3  content-L " id="content-L">
+    <div class="row content">
+        <div id="sift" class="col-xs-3  content-L " id="content-L">
             <div class="top">
                 <span>查看汇总图标</span>
                 <span> > </span>
@@ -49,8 +49,8 @@
                    <span>性别</span>
                    <div class="input-group">
                        <div class="input-group-btn">
-                           <select id="sexs" class="form-control style1 " style="font-size:10px">
-                               <option v-for="item in items">{{item.message}}</option>
+                           <select v-model="sift_sex" id="sexs" class="form-control style1 " style="font-size:10px">
+                               <option v-for="item in sex">{{item}}</option>
                            </select>
                            <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
                        </div>
@@ -60,8 +60,8 @@
                     <span>面试官</span>
                     <div class="input-group">
                         <div class="input-group-btn">
-                            <select name=""  class="form-control style1" style="font-size:10px">
-                                <option v-for="item in items1">{{item.message}}</option>
+                            <select v-model="sift_hr" name=""  class="form-control style1" style="font-size:10px">
+                                <option v-for="item in hr">{{item}}</option>
                             </select>
                             <span class="arrow2 "><img src="img/bot2.png" alt=""/></span>
                         </div>
@@ -73,8 +73,8 @@
                     <span>岗位</span>
                     <div class="input-group ">
                         <div class="input-group-btn">
-                            <select  class="form-control style1" style="font-size:10px">
-                                <option  v-for="item in items2">{{item.message}}</option>
+                            <select v-model="sift_job" class="form-control style1" style="font-size:10px">
+                                <option  v-for="item in job">{{item}}</option>
                             </select>
                             <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
                         </div>
@@ -84,8 +84,8 @@
                     <span>专业</span>
                     <div class="input-group right-go">
                         <div class="input-group-btn ">
-                            <select name=""  class="form-control style1"style="font-size:10px">
-                                <option v-for="item in items3">{{item.message}}</option>
+                            <select v-model="sift_major"  class="form-control style1"style="font-size:10px">
+                                <option v-for="item in major">{{item}}</option>
                             </select>
                             <span class="arrow3 "><img src="img/bot2.png" alt=""/></span>
                         </div>
@@ -101,8 +101,8 @@
                     <span>学历</span>
                     <div class="input-group right-go">
                         <div class="input-group-btn ">
-                            <select name=""  class="form-control style1" style="font-size:10px">
-                                <option v-for="item in items4">{{item.message}}</option>
+                            <select v-model="sift_highest_educate"  class="form-control style1" style="font-size:10px">
+                                <option v-for="item in highest_educate">{{item}}</option>
                             </select>
                             <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
                         </div>
@@ -113,8 +113,8 @@
                 <span>学校</span>
                 <div class="input-group right-go2">
                     <div class="input-group-btn ">
-                        <select name=""  class="form-control style1" style="font-size:10px">
-                            <option v-for="item in items5">{{item.message}}</option>
+                        <select v-model="sift_school_name"  class="form-control style1" style="font-size:10px">
+                            <option v-for="item in school_name">{{item}}</option>
                         </select>
                         <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
                     </div>
@@ -156,7 +156,7 @@
                 <button class="btn staistic  col-xs-offset-2 col-xs-10 "> 筛选</button>
             </div>
         </div>
-        <div class="col-xs-8 content-M">
+        <div id="table" class="col-xs-8 content-M">
             <div class="row">
                 <div class="col-xs-offset-8 col-xs-4 doit">
                     <button class="btn btn1">编辑</button>
@@ -238,6 +238,8 @@
 <script src="js/macarons.js"></script>
 <script src="js/mainView.js"></script>
 <script src="js/vue.min.js"></script>
-<script src="js/statistic.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/http.js"></script>
+<script src="js/sift.js"></script>
 </body>
 </html>

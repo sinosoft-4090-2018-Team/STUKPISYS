@@ -1,9 +1,77 @@
-$(function () {
-    fakeSexData();
-    fakeEduData();
-    fake211Data();
-    fakeMajorData();
+// $(function () {
+    // fakeSexData();
+    // fakeEduData();
+    // fake211Data();
+    // fakeMajorData();
+// });
+let statistics = new Vue({
+    el:'#statistics',
+    mounted: function () {
+        this.$http.get('/statistics/sex').then((response) => {
+            console.log(response);
+            let data = response.data;
+            let res = {
+                title:"男女分布",
+                series:"男女分布",
+                data:[]
+            }
+            res.data = Object.keys(data).map(function (key) {
+                var sex;
+                if(data[key].name)
+                    sex='女';
+                else
+                    sex='男';
+                return {
+                    name: sex,
+                    value: data[key].value
+                }
+            });
+            creatSexView(res);
+        }).catch(function (error) {
+            alert("载入信息出错，"+error)
+        });
+
+        this.$http.get('/statistics/education').then((response) => {
+            console.log(response);
+            let data = response.data;
+            let res = {
+                title:"学历分布",
+                series:"学历分布",
+                data:data
+            }
+            creatEduView(res);
+        }).catch(function (error) {
+            alert("载入信息出错，"+error)
+        });
+
+        this.$http.get('/statistics/211').then((response) => {
+            console.log(response);
+            let data = response.data;
+            let res = {
+                title:"211分布",
+                series:"211分布",
+                data:data
+            }
+            creat211View(res);
+        }).catch(function (error) {
+            alert("载入信息出错，"+error)
+        });
+
+        this.$http.get('/statistics/major').then((response) => {
+            console.log(response);
+            let data = response.data;
+            let res = {
+                title:"专业分布",
+                series:"专业分布",
+                data:data
+            }
+            creatMajorView(res);
+        }).catch(function (error) {
+            alert("载入信息出错，"+error)
+        });
+    }
 });
+
 function randomData() {
     return Math.round(Math.random()*100);
 }
@@ -17,26 +85,26 @@ function fakeSexData() {
     ]
     creatSexView(data);
 }
-function getRealSex() {
-    $.get({
-        url:"/statistics/sex",
-        headers: {
-            token: localStorage.getItem("token")
-        },
-        success: function (data) {
-            var res = Object.keys(data).map(function (key) {
-                var sex;
-                if(data[key].name)
-                    sex='女';
-                return {
-                    name: sex,
-                    value: data[key].value
-                }
-            });
-            creatSexView(res);
-        }
-    });
-}
+// function getRealSex() {
+//     $.get({
+//         url:baseURL+"statistics/sex",
+//         headers: {
+//             token: localStorage.getItem("token")
+//         },
+//         success: function (data) {
+//             var res = Object.keys(data).map(function (key) {
+//                 var sex;
+//                 if(data[key].name)
+//                     sex='女';
+//                 return {
+//                     name: sex,
+//                     value: data[key].value
+//                 }
+//             });
+//             creatSexView(res);
+//         }
+//     });
+// }
 function creatSexView(data) {
     initPie( echarts.init(document.getElementById("sexView"),'macarons'),data);
 }
@@ -83,6 +151,7 @@ function creatMajorView(data) {
     initPie( echarts.init(document.getElementById("majorView"),'macarons'),data);
 }
 function initPie(chart,data) {
+    console.log(data);
     chart.setOption({
         title: {
             text: data.title,

@@ -18,19 +18,27 @@ function fakeMainData() {
 
     var data = {};
     data.x=xAxisData;
+    data.xName='分数';
     data.a=data1.sort().reverse();
     data.b=data2.sort().reverse();
     data.c=data3.sort().reverse();
     data.d=data4.sort().reverse();
-
+    data.lable=['第一阶段','第二阶段','第三阶段'];
+    data.avg=[getSUM(data.a),getSUM(data.b),getSUM(data.c)];
     showMainView(data);
 }
-
+function getSUM(array){
+    let sum = 0;
+    array.forEach(function (i) {
+        sum+=i;
+    });
+    return sum;
+}
 function showMainView(data) {
     var chart = echarts.init(document.getElementById("mainView"),'macarons');
     chart.setOption({
         legend: {
-            data: ['bar', 'bar2', 'bar3', 'bar4'],
+            data: data.lable,
             align: 'left',
             left: 10
         },
@@ -60,7 +68,7 @@ function showMainView(data) {
         },
         xAxis: {
             data: data.x,
-            name: 'X Axis',
+            name: data.xName,
             // silent: false,
             // axisLine: {onZero: true},
             // splitLine: {show: false},
@@ -79,7 +87,7 @@ function showMainView(data) {
             text: ['High', 'Low'],
             itemHeight: 200,
             calculable: true,
-            max:400,
+            max:300,
             min:0,
             top: 60,
             left: 10,
@@ -97,26 +105,36 @@ function showMainView(data) {
         },
         series: [
             {
-                name: 'bar',
+                name: data.lable[0],
                 type: 'bar',
                 stack: 'one',
                 markLine: {
                     data: [
-                        {yAxis:200, name: '平均值'}
+                        {yAxis:data.avg[0], name: data.lable[0]+'平均值'}
                     ]
                 },
                 data: data.a
             },
             {
-                name: 'bar2',
+                name: data.lable[1],
                 type: 'bar',
                 stack: 'one',
+                markLine: {
+                    data: [
+                        {yAxis:data.avg[1], name: data.lable[1]+'平均值'}
+                    ]
+                },
                 data: data.b
             },
             {
-                name: 'bar3',
+                name: data.lable[2],
                 type: 'bar',
                 stack: 'one',
+                markLine: {
+                    data: [
+                        {yAxis:data.avg[2], name: data.lable[2]+'平均值'}
+                    ]
+                },
                 data: data.c
             },
             // {
@@ -128,4 +146,8 @@ function showMainView(data) {
         ]
     });
 
+    chart.on('click', function (params) {
+        console.log(params);
+        // window.open("trainee.html?user=" + params.name);
+    });
 }

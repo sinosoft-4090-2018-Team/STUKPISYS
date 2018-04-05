@@ -3,6 +3,7 @@ package com.sinosoft.stukpisys.controller;
 import com.sinosoft.stukpisys.servsce.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.UUID;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/file", produces = "text/html;charset=UTF-8")
 public class FileController {

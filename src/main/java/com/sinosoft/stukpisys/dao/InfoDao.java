@@ -95,19 +95,19 @@ public interface InfoDao {
 
     //获取筛选条件(hr_name)
     @Select("select hr_name from user_info GROUP BY hr_name")
-    List<UserInfo> gethrName();
+    List<String> gethrName();
     //获取筛选条件(job)
     @Select("select job from user_info GROUP BY job")
-    List<UserInfo> getJob();
+    List<String> getJob();
     //获取筛选条件(school_name)
     @Select("select school_name from education GROUP BY school_name")
-    List<Education> getschoolName();
+    List<String> getschoolName();
     //获取筛选条件(highest_education)
     @Select("select highest_educate from education GROUP BY highest_educate")
-    List<Education> getHighestEducate();
+    List<String> getHighestEducate();
     //获取筛选条件(major)
      @Select("select major from education GROUP BY major")
-     List<Education> getMajor();
+     List<String> getMajor();
 
      @Select("SELECT score_label.*,b.value_int from score_label,\n" +
              "(select score_value.label_index,score_value.value_int from  score_value,(select user.user_id from user where name=#{name}) a\n" +

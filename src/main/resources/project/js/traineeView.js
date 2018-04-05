@@ -1,6 +1,6 @@
-$(function () {
-    fakeTrainee();
-});
+// $(function () {
+//     fakeTrainee();
+// });
 function randomData() {
     return Math.round(Math.random()*100);
 }

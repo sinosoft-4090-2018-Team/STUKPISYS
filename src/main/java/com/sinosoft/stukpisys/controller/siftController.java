@@ -9,6 +9,7 @@ import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ import java.util.List;
  * @author: ZRTZRT
  * @create: 2018-03-28 21:16
  **/
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/sift", produces = "application/json;charset=UTF-8")
 public class siftController {
@@ -144,11 +146,11 @@ public class siftController {
     @GetMapping(value ="/getSiftTerms")
     public String getSiftTerms()
     {
-        List<UserInfo> listHr=hrService.gethrName();
-        List<UserInfo>  listJob=hrService.getJob();
-        List<Education> listSchoolName=hrService.getschoolName();
-        List<Education> listHighestEducate=hrService.getHighestEducate();
-        List<Education> listMajor=hrService.getMajor();
+        List<String> listHr=hrService.gethrName();
+        List<String>  listJob=hrService.getJob();
+        List<String> listSchoolName=hrService.getschoolName();
+        List<String> listHighestEducate=hrService.getHighestEducate();
+        List<String> listMajor=hrService.getMajor();
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("hr",listHr);

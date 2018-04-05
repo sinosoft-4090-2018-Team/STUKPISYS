@@ -8,6 +8,8 @@ import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +22,7 @@ import java.util.List;
  * @author: ZRTZRT
  * @create: 2018-03-28 21:27
  **/
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/trainee", produces = "application/json;charset=UTF-8")
 public class traineeController {
@@ -31,6 +34,7 @@ public class traineeController {
      * @param name
      * @return 请查info和education，不要直接调用dao返回
      */
+    @PreAuthorize("hasAnyRole('USER','HR','MG','ADMIN')")
     @GetMapping(value ="/info")
     public String getTraineeInfo(String name)
     {
@@ -42,6 +46,7 @@ public class traineeController {
         return JSON.toJSONString(jsonObject);
     }
 
+    @PreAuthorize("hasAnyRole('USER','HR','MG','ADMIN')")
     @GetMapping(value ="/leave")//请假先不写
     public String getTraineeLeave(String name)
     {
@@ -50,6 +55,7 @@ public class traineeController {
         return null;
     }
 
+    @PreAuthorize("hasAnyRole('USER','HR','MG','ADMIN')")
     @GetMapping(value ="/pass")//合格与不合格与请假天数
     public String getTraineePass(String name)
     {
@@ -57,6 +63,7 @@ public class traineeController {
         return JSON.toJSONString(listList);
     }
 
+    @PreAuthorize("hasAnyRole('USER','HR','MG','ADMIN')")
     @GetMapping(value ="/score")//小分，阶段总成绩 sum
     public String getTraineeScore(String name)
     {
@@ -79,6 +86,7 @@ public class traineeController {
      * @return
      * 第一阶段观察与评价、、第三阶段观察与评价、责任心、主动性、 抗压性、团队意识、学习能力、沟通、 严重不符合项
      */
+    @PreAuthorize("hasAnyRole('USER','HR','MG','ADMIN')")
     @GetMapping(value ="/judge")
     public String getTraineeJudge(String name)
     {
