@@ -74,13 +74,13 @@ public interface InfoDao {
     @Select("SELECT DISTINCT major FROM education")
     List<String> getDifferMajorName();
     //获取211学校的数量
-    @Select("SELECT is211 name ,COUNT(is211) value FROM education GROUP BY is211 ;")
+    @Select("SELECT is211 name ,COUNT(is211) value FROM education GROUP BY is211")
     List<Map<String,Integer>>  getPopulationByIs211();
     //更具地点来差异来查询人数
-    @Select("SELECT location name ,COUNT(location) value  FROM education GROUP BY location ")
+    @Select("SELECT LEFT(native_place,2) name ,COUNT(native_place) value  FROM user_info GROUP BY LEFT(native_place,2)")
     List<Map<String,Integer>> getPopulationByLocationDiffer();
     //获取不同的学校的地点
-    @Select("SELECT DISTINCT location FROM education")
+    @Select("SELECT DISTINCT LEFT(native_place,2) FROM user_info")
     List<String> getDifferLocationName();
    //获取评价
    @SelectProvider(type = SqlProvider.class, method = "getUserParam")

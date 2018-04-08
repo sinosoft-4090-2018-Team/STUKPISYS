@@ -205,5 +205,11 @@ public interface ScoreDao {
             "union all\n" +
             "(select s.label_name,a.value_int as value from score_label s join (SELECT value_int,label_index from score_value where label_index=(SELECT label_index from score_label where belong='absence') and user_id=37)a on a.label_index=s.label_index)")
     List<ScoreLabel> getTraineePass(Long id);
+    //--mixiaorui  获取labelName通过belong 是socre 或sum
+    @Select("SELECT label_name from score_label WHERE belong in ('score','sum')")
+    List<ScoreLabel> getLabelName();
+
+    @Select("select label_name from score_label where belong='judge'")
+    List<ScoreLabel> getJudgeLabelName();
 
 }

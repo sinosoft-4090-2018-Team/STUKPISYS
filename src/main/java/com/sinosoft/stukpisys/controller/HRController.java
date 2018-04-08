@@ -132,5 +132,23 @@ public class HRController {
         }else
             return "修改失败";
     }
+    @PreAuthorize("hasAnyRole('ADMIN','HR','MG')")
+    @GetMapping(value ="/getLabelName")
+    public String getLabelName() {
+        List<ScoreLabel> labelList=hrService.getLabelName();
+        return JSON.toJSONString(labelList);
+    }
+
+
+    @PreAuthorize("hasAnyRole('ADMIN','HR','MG')")
+    @GetMapping(value ="/getJudgeLabelName")
+    public String getJudgeLabelName() {
+        List<ScoreLabel> labelList=hrService.getJudgeLabelName();
+        return JSON.toJSONString(labelList);
+    }
+
+
+
+
 
 }

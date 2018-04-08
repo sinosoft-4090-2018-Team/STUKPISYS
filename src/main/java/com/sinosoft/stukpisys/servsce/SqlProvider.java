@@ -1,6 +1,7 @@
 package com.sinosoft.stukpisys.servsce;
 
 public class SqlProvider {
+
     public String getUserParam(String HRName, String job, String school, String education, String major, String sex, String state, String belong, String is211,String enterTime) {
         String sql="SELECT d.user_name,d.label_name,d.value_string from education,\n" +
                 "(SELECT user_info.*,c.* FROM user_info ,\n" +
