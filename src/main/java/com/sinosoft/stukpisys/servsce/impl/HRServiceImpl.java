@@ -163,6 +163,11 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
+    public List<ScoreLabel> getLabelName() {
+        return scoreDao.getLabelName();
+    }
+
+    @Override
     public List<UserInfo> getUserByHighestEducate(String educate) {
         return infoDao.getUserByHighestEducate(educate);
     }
@@ -268,6 +273,11 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
+    public List<ScoreLabel> getJudgeLabelName() {
+        return scoreDao.getJudgeLabelName();
+    }
+
+    @Override
     public List<String> gethrName() {
         return infoDao.gethrName();
     }
@@ -290,6 +300,11 @@ public class HRServiceImpl implements HRService{
     @Override
     public List<String> getMajor() {
         return infoDao.getMajor();
+    }
+
+    @Override
+    public List<String> getEnterTime() {
+        return infoDao.getEnterTime();
     }
 
     @Override
