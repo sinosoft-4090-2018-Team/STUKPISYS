@@ -73,6 +73,8 @@
                     sex = 0;
                 else if(this.sift_sex=='女')
                     sex = 1;
+                else if(this.sift_sex=='全部')
+                    sex='全部';
                 this.$http.get('/sift/score?HRName=' + this.sift_hr +
                     "&job=" + this.sift_job +
                     "&school=" + this.sift_school_name +
