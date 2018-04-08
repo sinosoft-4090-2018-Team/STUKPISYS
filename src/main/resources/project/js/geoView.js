@@ -1,9 +1,9 @@
-$(function () {
-    fakeGeoData();
-});
+// $(function () {
+//     fakeGeoData();
+// });
 
-let statistics = new Vue({
-    el: '#statistics',
+let mapView = new Vue({
+    el: '#mapView',
     mounted: function () {
         this.$http.get('/statistics/locat').then((response) => {
             console.log(response);
