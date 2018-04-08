@@ -42,11 +42,16 @@ var sift = new Vue({
             this.$http.get('/sift/getSiftTerms').then((response) => {
                 console.log(response);
                 let data = response.data;
-                this.hr.push(data.hr);
-                this.job.push(data.job);
-                this.major.push(data.major);
-                this.highest_educate.push(data.highest_educate);
-                this.school_name.push(data.school_name);
+                for(let k in data.hr)
+                    this.hr.push(data.hr[k]);
+                for(let k in data.job)
+                    this.job.push(data.job[k]);
+                for(let k in data.major)
+                this.major.push(data.major[k]);
+                for(let k in data.highest_educate)
+                this.highest_educate.push(data.highest_educate[k]);
+                for(let k in data.school_name)
+                this.school_name.push(data.school_name[k]);
             }).catch(function (error) {
                 alert("载入信息出错，"+error)
             });
