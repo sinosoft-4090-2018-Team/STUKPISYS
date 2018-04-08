@@ -193,7 +193,7 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public Map<String,Integer>  getPopulationByIs211() {
+    public List<Map<String,Integer>>  getPopulationByIs211() {
         return infoDao.getPopulationByIs211( );
     }
 
@@ -209,7 +209,7 @@ public class HRServiceImpl implements HRService{
 
 
     @Override
-    public List<ScoreValue> getJudgeByParam(String HRName,String job,String school,String Education,String major,String sex,boolean isFired,boolean isSimple,boolean isNew,boolean hasErr,String is211)
+    public List<ScoreValue> getJudgeByParam(String HRName,String job,String school,String Education,String major,String sex,boolean isFired,boolean isSimple,boolean isNew,boolean hasErr,String is211,String enterTime)
     {
         String state=null;
         if (isFired==true){
@@ -225,11 +225,11 @@ public class HRServiceImpl implements HRService{
         if(hasErr==true){
             belong="err";
         }
-        return infoDao.getJudgeByParam( HRName,job,school,Education,major, sex,state,belong,is211);
+        return infoDao.getJudgeByParam( HRName,job,school,Education,major, sex,state,belong,is211,enterTime);
     }
 
     @Override
-    public List<ScoreValue> getUserScoreParam(String HRName, String job, String school, String Education, String major, String sex,boolean isSimple, boolean isFired, boolean isNew, boolean hasErr, String is211) {
+    public List<ScoreValue> getUserScoreParam(String HRName, String job, String school, String Education, String major, String sex,boolean isSimple, boolean isFired, boolean isNew, boolean hasErr, String is211,String enterTime) {
         String state=null;
         if (isFired==true){
             state="淘汰";
@@ -244,7 +244,7 @@ public class HRServiceImpl implements HRService{
         if(hasErr==true){
             belong="err";
         }
-         return infoDao.getUserScoreParam( HRName,job,school,Education,major, sex,state,belong,is211);
+         return infoDao.getUserScoreParam( HRName,job,school,Education,major, sex,state,belong,is211,enterTime);
     }
     @Override
     public Education getEduInfoByUserName(String userName) {

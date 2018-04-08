@@ -1,7 +1,6 @@
 package com.sinosoft.stukpisys.servsce;
 
 import com.sinosoft.stukpisys.entity.*;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 import java.util.Map;
@@ -29,15 +28,15 @@ public interface HRService {
     List<String> getDifferEducateName();
     List<Map<String,Integer>> getPopulationByMajorDiffer();
     List<String> getDifferMajorName();
-    Map<String,Integer>  getPopulationByIs211();
+    List<Map<String,Integer>>  getPopulationByIs211();
     List<Map<String,Integer>> getPopulationByLocationDiffer();
     List<String> getDifferLocationName();
 //    List<List<Object>> getUserInfoByParam(String HRName,String job,String school,String education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211);
     //3-29 服务traineeController
     Education getEduInfoByUserName(String userName);
     List<List<Object>> getScoreFromStageByUser_id(int userId,int stage);
-    List<ScoreValue>  getJudgeByParam(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211);
-    List<ScoreValue> getUserScoreParam(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple, boolean isFired,boolean isNew,boolean hasErr,String is211);
+    List<ScoreValue>  getJudgeByParam(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime);
+    List<ScoreValue> getUserScoreParam(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple, boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime);
     User getByName(String name);
 
 
