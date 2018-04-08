@@ -1,5 +1,5 @@
 (() => {
-    
+
 
     var sift = new Vue({
         el: '#sift',
@@ -20,7 +20,11 @@
             sift_highest_educate: '全部',
             sift_school_name: '全部',
             sift_enterTime: '全部',
-
+            isFired:false,
+            isNew:false,
+            hasErr:false,
+            back2:false,
+            back3:false
         },
         mounted: function () {
             this.initialization();
@@ -55,17 +59,64 @@
 
             },
             siftScore() {
+                let sex = '';
+                if(this.sift_sex=='男')
+                    sex = 0;
+                else if(this.sift_sex=='女')
+                    sex = 1;
                 this.$http.get('/sift/score?HRName=' + this.sift_hr +
-                    "&job" + this.sift_job +
-                    "&school" + this.sift_school_name +
-                    "&Education" + this.sift_highest_educate +
-                    "&major" + this.sift_major +
-                    "&sex" + this.sift_sex +
-                    "&enterTime" + this.enterTime
+                    "&job=" + this.sift_job +
+                    "&school=" + this.sift_school_name +
+                    "&Education=" + this.sift_highest_educate +
+                    "&major=" + this.sift_major +
+                    "&sex=" + sex +
+                    "&enterTime=" + this.enterTime +
+                    "&isFired=" + this.isFired +
+                    "&isNew=" + this.isNew +
+                    "&hasErr=" + this.hasErr
                 ).then((response) => {
                     console.log(response);
-                    let data = response.data.score;
-                    //todo
+                    let data = response.data;
+                    data = Object.keys(data).map(function (key) {
+                        return {
+                            x: data[key].name,
+                            a: parseInt(data[key].firstStageScore),
+                            b: parseInt(data[key].secondStageScore),
+                            c: parseInt(data[key].thirdStageScore),
+                            sum: parseInt(data[key].firstStageScore)
+                            + parseInt(data[key].secondStageScore)
+                            + parseInt(data[key].thirdStageScore)
+                        }
+                    });
+                    var colId = "sum"
+                    var desc = function (x, y) {
+                        return (x[colId] < y[colId]) ? 1 : -1
+                    }
+                    //对json进行升序排序函数
+                    var asc = function (x, y) {
+                        return (x[colId] > y[colId]) ? 1 : -1
+                    }
+                    data = data.sort(desc); //升序排序
+                    // console.log(data);
+                    let res = {
+                        x: Object.keys(data).map(function (key) {
+                            return data[key].x;
+                        }),
+                        a: Object.keys(data).map(function (key) {
+                            return data[key].a;
+                        }),
+                        b: Object.keys(data).map(function (key) {
+                            return data[key].b;
+                        }),
+                        c: Object.keys(data).map(function (key) {
+                            return data[key].c;
+                        }),
+                        xName:'分数',
+                        lable:['第一阶段','第二阶段','第三阶段']
+                    };
+                    res.avg=[getSUM(res.a)/res.a.length,getSUM(res.b)/res.b.length+getSUM(res.a)/res.a.length,getSUM(res.c)/res.c.length+getSUM(res.a)/res.a.length+getSUM(res.b)/res.b.length];
+                    console.log(res.avg);
+                    showMainView(res);
                 }).catch(function (error) {
                     alert("载入信息出错，" + error)
                 });

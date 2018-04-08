@@ -135,27 +135,27 @@
             </div>
             <div class="row student">
                 <div class="col-xs-6" style="font-size:10px">
-                    <input type="checkbox"/> 淘汰实习生
+                    <input v-model="isFired" type="checkbox"/> 淘汰实习生
                 </div>
                 <div class="col-xs-6" style="font-size:10px">
-                    <input type="checkbox"/> 特殊实习生
+                    <input v-model="isNew" type="checkbox"/> 特殊实习生
                 </div>
             </div>
             <div class="row low-student">
                 <div class="col-xs-6" style="font-size:10px">
-                    <input type="checkbox"/>存在严重不符合项
+                    <input v-model="hasErr" type="checkbox"/>存在严重不符合项
                 </div>
             </div>
             <div class="row rank">
                 <div class="col-xs-6" style="font-size:10px">
-                    <input type="radio"/> 三阶段倒数第五
+                    <input v-model="back2" type="radio"/> 三阶段倒数第五
                 </div>
                 <div class="col-xs-6" style="font-size:10px">
-                    <input type="radio"/> 三阶段倒数第五
+                    <input v-model="back3" type="radio"/> 三阶段倒数第五
                 </div>
             </div>
             <div class="row">
-                <button class="btn staistic  col-xs-offset-2 col-xs-10 "> 筛选</button>
+                <button class="btn staistic  col-xs-offset-2 col-xs-10 " @click="siftScore()"> 筛选</button>
             </div>
         </div>
         <div id="table" class="col-xs-8 content-M">
@@ -165,7 +165,7 @@
                     <!--<input type="file" name="file" onclick="upload(event)" value="上传文件"/>-->
                     <button class="btn btn2" id="Start1" style="display:block" onclick="startLottery1()">查看视图表</button>
                     <button class="btn btn5" id="End1" style="display:none" onclick="endGift1()">查看数据表</button>
-                    <button class="btn btn1" id="Start" style="display:block" onclick="startLottery()">编辑</button>
+                    <button class="btn btn1" id="Start" style="display:block" onclick="startLottery()" v-show="isActive">编辑</button>
                     <button class="btn btn4 " id="End" onclick="endGift()" style="display:none">提交</button>
                     <button class="btn btn3">上传个人信息<input type="file" style="opacity: 0;"/></button>
                     <button class="btn btn3s">上传成绩<input type="file" style="opacity: 0;"/></button>
