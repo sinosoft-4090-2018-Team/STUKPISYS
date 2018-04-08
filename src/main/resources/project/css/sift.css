@@ -258,7 +258,7 @@ margin-left:16px;
     color:#fff;
     float:right;
 }
-.btn1{
+.btn1, .btn4{
     margin-right:10px;
 }
 .btn3{
@@ -305,6 +305,10 @@ td{
 td:last-child{
     padding-right:30px;
     padding-left:55px;
+}
+td input{
+    width:100px;
+    text-align:center;
 }
 
 .see1{
