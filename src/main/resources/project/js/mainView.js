@@ -1,6 +1,6 @@
-$(function () {
-    fakeMainData();
-});
+// $(function () {
+//     fakeMainData();
+// });
 function fakeMainData() {
     var xAxisData = [];
     var data1 = [];
@@ -24,7 +24,8 @@ function fakeMainData() {
     data.c=data3.sort().reverse();
     data.d=data4.sort().reverse();
     data.lable=['第一阶段','第二阶段','第三阶段'];
-    data.avg=[getSUM(data.a),getSUM(data.b),getSUM(data.c)];
+    data.avg=[getSUM(data.a)/data.a.length,getSUM(data.b)/data.b.length+getSUM(data.a)/data.a.length,getSUM(data.c)/data.c.length+getSUM(data.a)/data.a.length+getSUM(data.b)/data.b.length];
+    // console.log(data.avg);
     showMainView(data);
 }
 function getSUM(array){
@@ -36,6 +37,8 @@ function getSUM(array){
 }
 function showMainView(data) {
     var chart = echarts.init(document.getElementById("mainView"),'macarons');
+    chart.off('click');
+    chart.clear();
     chart.setOption({
         legend: {
             data: data.lable,
@@ -148,6 +151,6 @@ function showMainView(data) {
 
     chart.on('click', function (params) {
         console.log(params);
-        // window.open("trainee.html?user=" + params.name);
+        window.open("trainee.html?user=" + params.name);
     });
 }

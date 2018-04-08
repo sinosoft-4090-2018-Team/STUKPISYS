@@ -135,27 +135,27 @@
             </div>
             <div class="row student">
                 <div class="col-xs-6" style="font-size:10px">
-                    <input type="checkbox"/> 淘汰实习生
+                    <input v-model="isFired" type="checkbox"/> 淘汰实习生
                 </div>
                 <div class="col-xs-6" style="font-size:10px">
-                    <input type="checkbox"/> 特殊实习生
+                    <input v-model="isNew" type="checkbox"/> 特殊实习生
                 </div>
             </div>
             <div class="row low-student">
                 <div class="col-xs-6" style="font-size:10px">
-                    <input type="checkbox"/>存在严重不符合项
+                    <input v-model="hasErr" type="checkbox"/>存在严重不符合项
                 </div>
             </div>
             <div class="row rank">
                 <div class="col-xs-6" style="font-size:10px">
-                    <input type="radio"/> 三阶段倒数第五
+                    <input v-model="back2" type="radio"/> 三阶段倒数第五
                 </div>
                 <div class="col-xs-6" style="font-size:10px">
-                    <input type="radio"/> 三阶段倒数第五
+                    <input v-model="back3" type="radio"/> 三阶段倒数第五
                 </div>
             </div>
             <div class="row">
-                <button class="btn staistic  col-xs-offset-2 col-xs-10 "> 筛选</button>
+                <button class="btn staistic  col-xs-offset-2 col-xs-10 " @click="siftScore()"> 筛选</button>
             </div>
         </div>
         <div id="table" class="col-xs-8 content-M">
