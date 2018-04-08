@@ -75,7 +75,7 @@ public interface InfoDao {
     List<String> getDifferMajorName();
     //获取211学校的数量
     @Select("SELECT is211 name ,COUNT(is211) value FROM education GROUP BY is211 ;")
-    Map<String,Integer>  getPopulationByIs211();
+    List<Map<String,Integer>>  getPopulationByIs211();
     //更具地点来差异来查询人数
     @Select("SELECT location name ,COUNT(location) value  FROM education GROUP BY location ")
     List<Map<String,Integer>> getPopulationByLocationDiffer();

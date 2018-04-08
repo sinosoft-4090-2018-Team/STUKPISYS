@@ -28,7 +28,7 @@ public interface HRService {
     List<String> getDifferEducateName();
     List<Map<String,Integer>> getPopulationByMajorDiffer();
     List<String> getDifferMajorName();
-    Map<String,Integer>  getPopulationByIs211();
+    List<Map<String,Integer>>  getPopulationByIs211();
     List<Map<String,Integer>> getPopulationByLocationDiffer();
     List<String> getDifferLocationName();
 //    List<List<Object>> getUserInfoByParam(String HRName,String job,String school,String education,String major,boolean sex,boolean isFired,boolean isNew,boolean hasErr,boolean is211);
