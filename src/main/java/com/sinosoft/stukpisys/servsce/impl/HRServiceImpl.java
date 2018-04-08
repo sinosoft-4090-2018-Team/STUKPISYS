@@ -1,5 +1,6 @@
 package com.sinosoft.stukpisys.servsce.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.dao.InfoDao;
 import com.sinosoft.stukpisys.dao.ScoreDao;
 import com.sinosoft.stukpisys.dao.UserDao;
@@ -168,6 +169,16 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
+    public List<JSONObject> getScore() {
+        return scoreDao.getScore();
+    }
+
+    @Override
+    public List<String> getName() {
+        return scoreDao.getName();
+    }
+
+    @Override
     public List<UserInfo> getUserByHighestEducate(String educate) {
         return infoDao.getUserByHighestEducate(educate);
     }
@@ -214,7 +225,7 @@ public class HRServiceImpl implements HRService{
 
 
     @Override
-    public List<ScoreValue> getJudgeByParam(String HRName,String job,String school,String Education,String major,String sex,boolean isFired,boolean isSimple,boolean isNew,boolean hasErr,String is211,String enterTime)
+    public List<JSONObject> getJudgeByParam(String HRName,String job,String school,String Education,String major,String sex,boolean isFired,boolean isSimple,boolean isNew,boolean hasErr,String is211,String enterTime)
     {
         String state=null;
         if (isFired==true){
@@ -230,11 +241,12 @@ public class HRServiceImpl implements HRService{
         if(hasErr==true){
             belong="err";
         }
+
         return infoDao.getJudgeByParam( HRName,job,school,Education,major, sex,state,belong,is211,enterTime);
     }
 
     @Override
-    public List<ScoreValue> getUserScoreParam(String HRName, String job, String school, String Education, String major, String sex,boolean isSimple, boolean isFired, boolean isNew, boolean hasErr, String is211,String enterTime) {
+    public List<JSONObject> getUserScoreParam(String HRName, String job, String school, String Education, String major, String sex,boolean isSimple, boolean isFired, boolean isNew, boolean hasErr, String is211,String enterTime) {
         String state=null;
         if (isFired==true){
             state="淘汰";

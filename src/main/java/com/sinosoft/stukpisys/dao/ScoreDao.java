@@ -1,5 +1,6 @@
 package com.sinosoft.stukpisys.dao;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.User;
@@ -7,6 +8,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.sql.Date;
 import java.util.List;
+
 @Mapper
 public interface ScoreDao {
 
@@ -174,6 +176,19 @@ public interface ScoreDao {
             "(select value_int from score_value where user_id=#{id} and (label_index=(select label_index from score_label where belong='sum' and stage=1) \n" +
             "or label_index=(select label_index from score_label where belong='sum' and stage=2) or label_index=(select label_index from score_label where belong='sum' and stage=3)))")
     List<Object> getScoreById(long id);
+    //查三阶段的成绩
+    @Select("select b.*  from (SELECT  sum(value_int),user.name,value_int,stage FROM score_label,score_value,user where score_label.belong='sum' and score_label.label_index=score_value.label_index and user.user_id=score_value.user_id \n" +
+            "            GROUP BY user.name,stage ORDER BY sum(value_int) desc) a  INNER JOIN  \n" +
+            "(SELECT  sum(value_int),user.name,value_int,stage FROM score_label,score_value,user where score_label.belong='sum' and score_label.label_index=score_value.label_index and user.user_id=score_value.user_id \n" +
+            "            GROUP BY user.name,stage ORDER BY sum(value_int) desc) b\n" +
+            " on a.name=b.name\n" +
+            "\n" +
+            "GROUP BY b.name,b.stage\n")
+    List<JSONObject> getScore();
+    //获取所有人姓名
+    @Select("select name from user,\n" +
+            "(select user_id from score_value GROUP BY user_id) a where user.user_id=a.user_id ")
+    List<String> getName();
 
 
 
@@ -208,7 +223,7 @@ public interface ScoreDao {
     //--mixiaorui  获取labelName通过belong 是socre 或sum
     @Select("SELECT label_name from score_label WHERE belong in ('score','sum')")
     List<ScoreLabel> getLabelName();
-
+   //查看评价表头
     @Select("select label_name from score_label where belong='judge'")
     List<ScoreLabel> getJudgeLabelName();
 
