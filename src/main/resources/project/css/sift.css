@@ -243,11 +243,23 @@ margin-left:16px;
 /**************/
 .doit{
     margin-top:10px;
-    margin-left:73%;
+    /*margin-left:73%;*/
+}
+.doit input{
+    float:left;
+    background:#ffa478;
+    color:#fff;
+    border:1px solid #fff;
+    margin-top:5px;
+    cursor:pointer;
 }
 .doit button{
     background:#ffa478;
     color:#fff;
+    float:right;
+}
+.btn1{
+    margin-right:10px;
 }
 .doit button:focus,.doit button:hover{
     color:#fff;
