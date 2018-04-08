@@ -24,9 +24,18 @@
             isNew:false,
             hasErr:false,
             back2:false,
-            back3:false
+            back3:false,
+
+            isActive: false,
+            label: [],
+            row: []
         },
         mounted: function () {
+            // console.log(this.isActive);
+            if ("ROLE_ADMIN" == localStorage.getItem("role")) {
+                this.isActive = true;
+                // console.log(this.isActive);
+            }
             this.initialization();
         },
         methods: {
@@ -121,6 +130,42 @@
                     alert("载入信息出错，" + error)
                 });
             },
+            siftJudge() {
+                let sex = '';
+                if(this.sift_sex=='男')
+                    sex = 0;
+                else if(this.sift_sex=='女')
+                    sex = 1;
+                this.$http.get('/sift/judge?HRName=' + this.sift_hr +
+                    "&job=" + this.sift_job +
+                    "&school=" + this.sift_school_name +
+                    "&Education=" + this.sift_highest_educate +
+                    "&major=" + this.sift_major +
+                    "&sex=" + sex +
+                    "&enterTime=" + this.enterTime +
+                    "&isFired=" + this.isFired +
+                    "&isNew=" + this.isNew +
+                    "&hasErr=" + this.hasErr
+                ).then((response) => {
+                    console.log(response);
+                    let data = response.data;
+                    for(let label in data[0]){
+                        this.label.push(label)
+                    }
+                    Object.keys(data).map((key)=> {
+                        console.log(this.row);
+                        this.row[key]=[];
+                        // let i = 0;
+                        // console.log(data[key]);
+                        for(let cell in data[key]){
+                            this.row[key].push(data[key][cell]);
+                            // i++;
+                        }
+                    });
+                }).catch(function (error) {
+                    alert("载入信息出错，" + error)
+                });
+            },
             upload(e) {
                 console.log(e.target);
                 let file = e.target.files[0]
@@ -144,68 +189,25 @@
         }
     });
 
-    var table = new Vue({
-        el: '#table',
-        data: {
-            //todo
-            isActive: false,
-            items7: [
-                {message: '面试官所在部门'},
-                {message: '阶段一成绩↓'},
-                {message: '阶段二成绩↓'},
-                {message: '阶段三成绩↓'},
-                {message: '个人信息'},
-                {message: '详细信息'}
-            ],
-            items8: [
-                {message: '电子政务'},
-                {message: '89'},
-                {message: '91'},
-                {message: '90'},
-                {message: '91'},
-                {message: '90'}
-            ],
-            items9: [
-                {message: '电子政务'},
-                {message: '89'},
-                {message: '91'},
-                {message: '90'},
-                {message: '91'},
-                {message: '90'}
-            ],
-            items10: [
-                {message: '电子政务'},
-                {message: '89'},
-                {message: '91'},
-                {message: '90'},
-                {message: '91'},
-                {message: '90'}
-            ],
-            items11: [
-                {message: '电子政务'},
-                {message: '89'},
-                {message: '91'},
-                {message: '90'},
-                {message: '91'},
-                {message: '90'}
-            ],
-            items12: [
-                {message: '电子政务'},
-                {message: '89'},
-                {message: '91'},
-                {message: '90'},
-                {message: '91'},
-                {message: '90'},
-            ]
-        },
-        mounted: function () {
-            console.log(this.isActive);
-            if ("ROLE_ADMIN" == localStorage.getItem("role")) {
-                this.isActive = true;
-                console.log(this.isActive);
-            }
-        }
-    });
+    // var table = new Vue({
+    //     el: '#table',
+    //     data: {
+    //         //todo
+    //         isActive: false,
+    //         label: [],
+    //         row: []
+    //     },
+    //     mounted: function () {
+    //         console.log(this.isActive);
+    //         if ("ROLE_ADMIN" == localStorage.getItem("role")) {
+    //             this.isActive = true;
+    //             console.log(this.isActive);
+    //         }
+    //     },
+    //     methods: {
+    //
+    //     }
+    // });
 
     $(".btn1").on("click", function () {
         $(this).parent().parent().next().children(":first").removeClass("none1").next().addClass("none1");
