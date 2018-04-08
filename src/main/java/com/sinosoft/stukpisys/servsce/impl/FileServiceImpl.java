@@ -66,7 +66,7 @@ public class FileServiceImpl implements FileService{
                 //调用插入user表的方法
                 userDao.insert(user);
             }
-            System.out.println((String)excel.get(i).get(13));
+           // System.out.println((String)excel.get(i).get(13));
             //2
             //构造函数中学校地点为空
 
@@ -92,7 +92,7 @@ public class FileServiceImpl implements FileService{
             userInfo.setEmail((String)excel.get(i).get(6));
             userInfo.setBirth(GetExcelMessage.strToDate((String)excel.get(i).get(7)));
             userInfo.setNativePlace((String)excel.get(i).get(8));
-            userInfo.setPhone((String)excel.get(i).get(13));
+            userInfo.setPhone(excel.get(i).get(13).toString());
             userInfo.setEnterTime(GetExcelMessage.strToDate((String)excel.get(i).get(14)));
             userInfo.setEduId(userDao.selectEduIdByEMessage(education));
             //调用插入userinfo表的方法
@@ -282,8 +282,8 @@ public class FileServiceImpl implements FileService{
             String userName=(String)excel.get(i).get(1);
             //调用根据username得出userId方法
             userId=userDao.selectIdByName(userName);
-            System.out.print(userId);
-            if ((scoreDao.selectMessageByUserId(userId))!=null){
+            //System.out.print(userId);
+            if ((scoreDao.selectMessageByUserId(userId)).size()!=0){
                 for(int j=a;j<excel.get(i).size();j++){
                     String labelName= (String)excel.get(0).get(j)+"，"+(String)excel.get(1).get(j)+"，"+(String)excel.get(2).get(j);
                     long labelIndex1=scoreDao.selectLabelIndexByLabelName(labelName);

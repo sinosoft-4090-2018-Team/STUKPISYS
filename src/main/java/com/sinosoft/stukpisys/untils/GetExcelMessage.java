@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class GetExcelMessage {
@@ -87,7 +86,8 @@ public class GetExcelMessage {
     }
     private static  Object getCellValue(Cell cell){
         Object value = null;
-        DecimalFormat df = new DecimalFormat("0");  //格式化number String字符
+
+        DecimalFormat df = new DecimalFormat("#");  //格式化number String字符
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");  //日期格式化
         DecimalFormat df2 = new DecimalFormat("0.00");  //格式化数
         switch (cell.getCellType()) {
@@ -103,9 +103,10 @@ public class GetExcelMessage {
                         || "dd-mm-yy".equals(cell.getCellStyle().getDataFormatString())|| "yyyy/m/d".equals(cell.getCellStyle().getDataFormatString())|| "yyyy.mm.dd".equals(cell.getCellStyle().getDataFormatString())){
                     value = sdf.format(cell.getDateCellValue());
                 }else{
-                    Date date = new Date();
-                    date=cell.getDateCellValue();
-                    value =sdf.format(date);;
+                    /*Date date = new Date();
+                    date=cell.getDateCellValue();*/
+                    //value =sdf.format(date);
+                    value = df.format(cell.getNumericCellValue());
                 }
                 break;
             case Cell.CELL_TYPE_BOOLEAN:
