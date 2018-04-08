@@ -163,6 +163,11 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
+    public List<ScoreLabel> getLabelName() {
+        return scoreDao.getLabelName();
+    }
+
+    @Override
     public List<UserInfo> getUserByHighestEducate(String educate) {
         return infoDao.getUserByHighestEducate(educate);
     }

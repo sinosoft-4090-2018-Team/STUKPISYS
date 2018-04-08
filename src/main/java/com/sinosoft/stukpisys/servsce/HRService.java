@@ -111,4 +111,6 @@ public interface HRService {
     int insertScoreLabel(ScoreLabel scoreLabel);
     List<ScoreLabel> selectScoreLabel();
     int updateLabelName(String newLabelName,String labelName);
+    List<ScoreLabel> getLabelName();
+
 }
