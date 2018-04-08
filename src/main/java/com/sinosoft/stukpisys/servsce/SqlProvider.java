@@ -11,7 +11,7 @@ public class SqlProvider {
                 " where a.label_index=score_value.label_index) b\n" +
                 "where user.user_id=b.user_id) c\n" +
                 "where user_info.user_name=c.name) d";
-        if(HRName!="全部"||job != "全部"||school != "全部"||education != "全部"||major != "全部"||state != null||belong != null||sex!="全部"||is211!=null||enterTime!=null)
+        if(HRName!="全部"||job != "全部"||school != "全部"||education != "全部"||major != "全部"||state != null||belong != null||sex!="全部"||is211!=null||enterTime!="全部")
         {
         if(true){
             sql+= "   where 1=1";
@@ -52,7 +52,7 @@ public class SqlProvider {
             //WHERE("is211 = 0");
             sql+="and is211"+"="+"'"+is211+"'";
         }
-        if (enterTime != null) {
+        if (!"全部".equals(enterTime)&&enterTime != null) {
                 //WHERE("is211 = 0");
             sql+="and enterTime"+"="+"'"+enterTime+"'";
         }
@@ -77,7 +77,7 @@ public class SqlProvider {
                 "where user.user_id=b.user_id) c\n" +
                 "where user_info.user_name=c.name) d  ";
 
-        if(HRName!="全部"||job != "全部"||school != "全部"||education != "全部"||major != "全部"||state != null||belong != null||sex!="全部"||is211!=null||enterTime!=null)
+        if(HRName!="全部"||job != "全部"||school != "全部"||education != "全部"||major != "全部"||state != null||belong != null||sex!="全部"||is211!=null||enterTime!="全部")
         {
             if(true){
                 sql+= "   where 1=1";
@@ -118,7 +118,7 @@ public class SqlProvider {
                 //WHERE("is211 = 0");
                 sql+="and is211"+"="+"'"+is211+"'";
             }
-            if (enterTime != null) {
+            if (!"全部".equals(enterTime)&&enterTime != null) {
                 //WHERE("is211 = 0");
                 sql+="and enterTime"+"="+"'"+enterTime+"'";
             }

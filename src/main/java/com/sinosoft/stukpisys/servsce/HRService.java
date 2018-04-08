@@ -47,6 +47,7 @@ public interface HRService {
     List<String> getschoolName();
     List<String> getHighestEducate();
     List<String> getMajor();
+    List<String> getEnterTime();
 
 
 

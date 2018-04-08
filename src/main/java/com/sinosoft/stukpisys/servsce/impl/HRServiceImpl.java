@@ -303,6 +303,11 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
+    public List<String> getEnterTime() {
+        return infoDao.getEnterTime();
+    }
+
+    @Override
     public List<Integer> getScoreList(Integer id) {
         return null;
     }
