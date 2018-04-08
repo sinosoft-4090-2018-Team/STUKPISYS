@@ -165,7 +165,7 @@
                     <!--<input type="file" name="file" onclick="upload(event)" value="上传文件"/>-->
                     <button class="btn btn2" id="Start1" style="display:block" onclick="startLottery1()">查看视图表</button>
                     <button class="btn btn5" id="End1" style="display:none" onclick="endGift1()">查看数据表</button>
-                    <button class="btn btn1" id="Start" style="display:block" onclick="startLottery()">编辑</button>
+                    <button class="btn btn1" id="Start" style="display:block" onclick="startLottery()" v-show="isActive">编辑</button>
                     <button class="btn btn4 " id="End" onclick="endGift()" style="display:none">提交</button>
                     <button class="btn btn3">选择类型<input type="file" style="opacity: 0;"/></button>
                 </div>
