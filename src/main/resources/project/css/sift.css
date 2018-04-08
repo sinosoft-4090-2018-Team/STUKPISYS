@@ -7,65 +7,65 @@ body{
 .show1{
     display:block;
 }
-.bg-color1{
-    background:#ffa478;
-}
-.container{
-    width:100%;
-}
-.nav1{
-    height:40px;
-    background:#ffc28f;
-    display:flex;
-    justify-content: space-between;
-}
-.nav1 ul{
-     display:flex;
- }
-.nav1 ul li{
-    list-style: none;
-    color:#fff;
-    text-align: center;
-}
-.T4090 li:first-child{
-    padding-top:2px;
-    height:40px;
-}
-.T4090 li:first-child img{
-    width:40px;
-    height:40px;
-}
-
-.T4090 li:last-child{
-    height:40px;
-    width:190px;
-    line-height: 40px;
-    font-size:15px;
-}
-.info-select{
-    margin-left:140px;
-}
-.info-select li{
-    width:150px;
-    height:40px;
-    line-height:40px;
-    font-size:15px;
-}
-.info-select li a{
-    text-decoration: none;
-    color:#fff;
-}
-/*.xiaTing{*/
-    /*margin-left:25%;*/
+/*.bg-color1{*/
+    /*background:#ffa478;*/
 /*}*/
-.xiaTing li{
-    height:40px;
-    width:30px;
-    line-height: 40px;
-}
-.xiaTing li:not(:first-child){
-    margin-left:5px;
-}
+/*.container{*/
+    /*width:100%;*/
+/*}*/
+/*.nav1{*/
+    /*height:40px;*/
+    /*background:#ffc28f;*/
+    /*display:flex;*/
+    /*justify-content: space-between;*/
+/*}*/
+/*.nav1 ul{*/
+     /*display:flex;*/
+ /*}*/
+/*.nav1 ul li{*/
+    /*list-style: none;*/
+    /*color:#fff;*/
+    /*text-align: center;*/
+/*}*/
+/*.T4090 li:first-child{*/
+    /*padding-top:2px;*/
+    /*height:40px;*/
+/*}*/
+/*.T4090 li:first-child img{*/
+    /*width:40px;*/
+    /*height:40px;*/
+/*}*/
+
+/*.T4090 li:last-child{*/
+    /*height:40px;*/
+    /*width:190px;*/
+    /*line-height: 40px;*/
+    /*font-size:15px;*/
+/*}*/
+/*.info-select{*/
+    /*margin-left:140px;*/
+/*}*/
+/*.info-select li{*/
+    /*width:150px;*/
+    /*height:40px;*/
+    /*line-height:40px;*/
+    /*font-size:15px;*/
+/*}*/
+/*.info-select li a{*/
+    /*text-decoration: none;*/
+    /*color:#fff;*/
+/*}*/
+/*/!*.xiaTing{*!/*/
+    /*/!*margin-left:25%;*!/*/
+/*/!*}*!/*/
+/*.xiaTing li{*/
+    /*height:40px;*/
+    /*width:30px;*/
+    /*line-height: 40px;*/
+/*}*/
+/*.xiaTing li:not(:first-child){*/
+    /*margin-left:5px;*/
+/*}*/
 /*********************/
 .content{
     display:flex;
