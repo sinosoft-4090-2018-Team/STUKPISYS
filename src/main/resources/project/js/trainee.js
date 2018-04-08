@@ -17,26 +17,26 @@ let trainee = new Vue({
         getScore(){
             this.$http.get('/trainee/score?name='+this.name).then((response) => {
                 console.log(response);
-                let data = response.data;
-                let res = {
-                    x:[],
-                    bar:[]
+            let data = response.data;
+            let res = {
+                x:[],
+                bar:[]
+            }
+            for (let k in data.score) {
+                // console.log(data.score[k].belong);
+                if ('sum' == data.score[k].belong) {
+                    res.x.push(data.score[k].labelName.split('，')[1].trim());
+                    res.bar.push(data.score[k].valueInt);
                 }
-                for (let k in data.score) {
-                    // console.log(data.score[k].belong);
-                    if ('sum' == data.score[k].belong) {
-                        res.x.push(data.score[k].labelName.split('，')[1].trim());
-                        res.bar.push(data.score[k].valueInt);
-                    }
+            }
+            res.pie=Object.keys(res.bar).map(function (key) {
+                return {
+                    name: res.x[key],
+                    value: res.bar[key]
                 }
-                res.pie=Object.keys(res.bar).map(function (key) {
-                    return {
-                        name: res.x[key],
-                        value: res.bar[key]
-                    }
-                });
-                creatTrainee(res);
-            }).catch(function (error) {
+            });
+            creatTrainee(res);
+        }).catch(function (error) {
                 alert("载入信息出错，"+error)
             });
         },
