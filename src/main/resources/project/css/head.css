@@ -45,6 +45,10 @@
 .info-select li a{
     text-decoration: none;
     color:#fff;
+    /*display:inline-block;*/
+    /*width:150px;*/
+    /*height:40px;*/
+    /*line-height: 40px;*/
 }
 /*.xiaTing{*/
 /*margin-left:25%;*/
@@ -78,4 +82,7 @@
 }
 .none2{
     display:none;
+}
+.info-select li:hover{
+    background:#ffa478;
 }
