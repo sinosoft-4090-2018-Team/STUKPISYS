@@ -261,6 +261,16 @@ margin-left:16px;
 .btn1{
     margin-right:10px;
 }
+.btn3{
+    margin-right:100px;
+    position:relative;
+}
+.btn3 input{
+    width:82px;
+    position: absolute;
+    left:0;
+    top:0;
+}
 .doit button:focus,.doit button:hover{
     color:#fff;
 }
