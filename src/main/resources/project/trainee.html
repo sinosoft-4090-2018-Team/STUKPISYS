@@ -141,19 +141,19 @@
                                 <span><img src="img/write.png" alt=""/></span>
                             </div>
                         </div>
-                    <div class="row">
+                    <div class="row" v-for="">
                             <div class="col-xs-12 info-content">
                                 <div class="left-content">
-                                    <span>第一阶成绩</span>
+                                    <span>{{labelName}}</span>
                                     <input type="text" value="99"/>
                                 </div >
                                 <div class="right-content">
-                                    <span>ISO9001</span>
+                                    <span>{{labelName}}</span>
                                     <input type="text" value="99"/>
                                 </div>
                             </div>
                         </div>
-                    <div class="row">
+                    <!--<div class="row">
                             <div class="col-xs-12 info-content">
                                 <div class="left-content">
                                     <span>第二阶段成绩</span>
@@ -260,7 +260,7 @@
                                     <input type="text" value="99"/>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                 </div>
                 <div class="col-xs-4 bg-color3">
                     <div class="row">
@@ -269,15 +269,15 @@
                                 <span><img src="img/write.png" alt=""/></span>
                             </div>
                         </div>
-                    <div class="row">
+                    <div class="row" v-for="">
                         <div class="col-xs-12 tech-say">
                             <div class="say-content">
-                                   <span>主动性-第一章</span>
+                                   <span>{{judge}}</span>
                                    <input type="text" value="99"/>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-xs-12 tech-say">
                             <div class="say-content">
                                 <span>主动性-good章</span>
@@ -388,7 +388,7 @@
                                 <input type="text" value="99"/>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
