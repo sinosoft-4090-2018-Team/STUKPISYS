@@ -54,13 +54,14 @@ public class siftController {
 
         for (int i = 0; i < stringList.size(); i++) {
 
-            Map<String, String> stringMap = new HashMap<>();
-            stringMap.put("name", stringList.get(i));
+            Map<String, String> stringMap = new LinkedHashMap<>();
+            stringMap.put("姓名", stringList.get(i));
             for ( int j=0;j<list.size();j++) {
                 if (stringList.get(i).equals(list.get(j).getString("user_name"))) {
                     stringMap.put(list.get(j).getString("label_name"), list.get(j).getString("value_string"));
                 }
             }
+
             jsonObjectList.add(stringMap);
         }
         return jsonObjectList;
