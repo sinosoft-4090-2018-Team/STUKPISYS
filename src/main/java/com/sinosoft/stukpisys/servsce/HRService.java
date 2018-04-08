@@ -39,6 +39,8 @@ public interface HRService {
     List<ScoreValue> getUserScoreParam(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple, boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime);
     User getByName(String name);
 
+    List<ScoreLabel> getJudgeLabelName();
+
 
     List<String> gethrName();
     List<String> getJob();

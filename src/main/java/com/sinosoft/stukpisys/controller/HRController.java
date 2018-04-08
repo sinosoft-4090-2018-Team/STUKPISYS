@@ -140,4 +140,15 @@ public class HRController {
     }
 
 
+    @PreAuthorize("hasAnyRole('ADMIN','HR','MG')")
+    @GetMapping(value ="/getJudgeLabelName")
+    public String getJudgeLabelName() {
+        List<ScoreLabel> labelList=hrService.getJudgeLabelName();
+        return JSON.toJSONString(labelList);
+    }
+
+
+
+
+
 }

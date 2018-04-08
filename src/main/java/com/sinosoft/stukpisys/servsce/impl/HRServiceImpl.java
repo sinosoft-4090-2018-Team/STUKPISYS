@@ -273,6 +273,11 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
+    public List<ScoreLabel> getJudgeLabelName() {
+        return scoreDao.getJudgeLabelName();
+    }
+
+    @Override
     public List<String> gethrName() {
         return infoDao.gethrName();
     }
