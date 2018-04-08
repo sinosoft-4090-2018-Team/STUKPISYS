@@ -209,10 +209,38 @@
 
     $(".btn1").on("click", function () {
         $(this).parent().parent().next().children(":first").removeClass("none1").next().addClass("none1");
+        $(this).parent().parent().next().children(":first").children("table").children("tbody").children().children("td").children().attr("disabled",false);
+    });
+    $(".btn5").on("click", function () {
+        $(this).parent().parent().next().children(":first").removeClass("none1").next().addClass("none1");
+        //console.log($(this).parent().parent().next().children(":first"));
+        $(this).parent().parent().next().children(":first").children("table").children("tbody").children().children("td").children().attr("disabled",true);
     });
 
     $(".btn2").on("click", function () {
         $(this).parent().parent().next().children(":first").addClass("none1").next().removeClass("none1");
     });
+
+    $(".btn4").on("click", function () {
+        $(this).parent().parent().next().children(":first").addClass("none1").next().removeClass("none1");
+    });
+
+
 })();
+function startLottery() {
+    $("#Start").css("display","none");
+    $("#End").css("display","block");
+}
+function endGift() {
+    $("#Start").css("display","block");
+    $("#End").css("display","none");
+}
+function startLottery1() {
+    $("#Start1").css("display","none");
+    $("#End1").css("display","block");
+}
+function endGift1() {
+    $("#Start1").css("display","block");
+    $("#End1").css("display","none");
+}
 

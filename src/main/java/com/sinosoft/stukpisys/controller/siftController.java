@@ -46,40 +46,20 @@ public class siftController {
      */
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/judge" )
-    public String siftUserJudge(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime)  {
+    public  List<Map> siftUserJudge(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime)  {
 
 
        List<JSONObject> list=hrService.getJudgeByParam(HRName,job,school,Education,major, sex,isSimple,isFired,isNew, hasErr, is211,enterTime);
         List<Map> jsonObjectList=new LinkedList<>();
-        //LinkedHashSet<String> hs =new LinkedHashSet<>();
-        //List<ScoreLabel> judgeList=hrService.getJudgeLabelName();
-   //     Map<String, String> stringMapNew = new HashMap<>();
+
         List<String> stringList=hrService.getName();
 
-        /*for ( int i=0;i<list.size();i++) {
-            //   JSONObject res = new JSONObject();
-            Map<String, String> stringMap = new HashMap<>();
-            stringMap.put("name", list.get(i).getString("user_name"));
-            for (int j = 0; j < stringList.size(); j++) {
-                if (stringList.get(j).equals(list.get(i).getString("user_name"))) {
-                    stringMap.put(list.get(i).getString("label_name"), list.get(i).getString("value_string"));
-                    // res.put("name",list.get(i).getString("user_name"));
-                    //res.put("label_name1", list.get(i).getString("label_name"));
 
-                    //res.put("value_string", list.get(i).getString("value_string"));
-                    // res.put("thirdStageJudge", list.get(i+2).getString("value_string"));
-                }
-              *//*  res.put("secondStageScore", list.get(i ).getString("value_int"));
-                //res.put("thirdStageScore", list.get(i+1).getString("value_int"));
-            *//*
-            }
-            jsonObjectList.add(stringMap);
-        }*/
 
         for (int i = 0; i < stringList.size(); i++) {
-            System.out.print(stringList.size());
+
             Map<String, String> stringMap = new HashMap<>();
-            stringMap.put("name", list.get(i).getString("user_name"));
+            stringMap.put("name", stringList.get(i));
             for ( int j=0;j<list.size();j++) {
                 if (stringList.get(i).equals(list.get(j).getString("user_name"))) {
                     stringMap.put(list.get(j).getString("label_name"), list.get(j).getString("value_string"));
@@ -87,11 +67,9 @@ public class siftController {
             }
             jsonObjectList.add(stringMap);
         }
-        return jsonObjectList.toString();
+        return jsonObjectList;
 
-     //   System.out.println(list.get(0).getUserId());
-      // return JSON.toJSONString(list);
-       // return "success";
+
     }
 
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")

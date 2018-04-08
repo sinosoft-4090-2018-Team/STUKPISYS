@@ -64,7 +64,7 @@
 .reset{
     clear:both;
     width:60px;
-    padding-right:15px;
+    margin-left:-14px;
 }
 .reset p{
     font-size:10px;
@@ -76,9 +76,14 @@
 .xiaTing li:last-child img:hover {
     cursor:pointer;
 }
+.reset{
+    background: #fff;
+    /*border:1px solid #000;*/
+}
 .reset p a{
     text-decoration: none;
     cursor:pointer;
+    color:#000;
 }
 .none2{
     display:none;

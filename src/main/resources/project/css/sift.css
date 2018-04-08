@@ -243,11 +243,33 @@ margin-left:16px;
 /**************/
 .doit{
     margin-top:10px;
-    margin-left:73%;
+    /*margin-left:73%;*/
+}
+.doit input{
+    float:left;
+    background:#ffa478;
+    color:#fff;
+    border:1px solid #fff;
+    margin-top:5px;
+    cursor:pointer;
 }
 .doit button{
     background:#ffa478;
     color:#fff;
+    float:right;
+}
+.btn1, .btn4{
+    margin-right:10px;
+}
+.btn3{
+    margin-right:100px;
+    position:relative;
+}
+.btn3 input{
+    width:82px;
+    position: absolute;
+    left:0;
+    top:0;
 }
 .doit button:focus,.doit button:hover{
     color:#fff;
@@ -283,6 +305,10 @@ td{
 td:last-child{
     padding-right:30px;
     padding-left:55px;
+}
+td input{
+    width:100px;
+    text-align:center;
 }
 
 .see1{
