@@ -1,6 +1,6 @@
 // $(function () {
 //     fakeGeoData();
-// });
+//   });
 
 let mapView = new Vue({
     el: '#mapView',
