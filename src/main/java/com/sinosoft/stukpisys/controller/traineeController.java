@@ -2,7 +2,6 @@ package com.sinosoft.stukpisys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.sinosoft.stukpisys.dao.UserDao;
 import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.entity.UserInfo;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -36,14 +36,15 @@ public class traineeController {
      */
     @PreAuthorize("hasAnyRole('USER','HR','MG','ADMIN')")
     @GetMapping(value ="/info")
-    public String getTraineeInfo(String name)
+    public JSONObject getTraineeInfo(String name)
     {
         UserInfo userInfo=hrService.getPersonInfoByName(name);
         Education education=hrService.getEduInfoByUserName(name);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("userInfo",userInfo);
         jsonObject.put("education",education);
-        return JSON.toJSONString(jsonObject);
+        //return JSON.toJSONString(jsonObject);
+        return jsonObject;
     }
 
     @PreAuthorize("hasAnyRole('USER','HR','MG','ADMIN')")
