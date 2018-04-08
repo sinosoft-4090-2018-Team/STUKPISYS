@@ -108,6 +108,9 @@ public interface InfoDao {
     //获取筛选条件(major)
      @Select("select major from education GROUP BY major")
      List<String> getMajor();
+    //获取筛选条件(enter_time)
+    @Select("select enter_time from user_info GROUP BY enter_time")
+    List<String> getEnterTime();
 
      @Select("SELECT score_label.*,b.value_int from score_label,\n" +
              "(select score_value.label_index,score_value.value_int from  score_value,(select user.user_id from user where name=#{name}) a\n" +

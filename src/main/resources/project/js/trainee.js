@@ -2,7 +2,7 @@
 let trainee = new Vue({
     el: '#trainee',
     data: {
-        name: '',
+        name: ''
         //todo
     },
     mounted: function () {

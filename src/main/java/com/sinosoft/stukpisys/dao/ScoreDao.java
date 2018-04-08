@@ -209,4 +209,7 @@ public interface ScoreDao {
     @Select("SELECT label_name from score_label WHERE belong in ('score','sum')")
     List<ScoreLabel> getLabelName();
 
+    @Select("select label_name from score_label where belong='judge'")
+    List<ScoreLabel> getJudgeLabelName();
+
 }

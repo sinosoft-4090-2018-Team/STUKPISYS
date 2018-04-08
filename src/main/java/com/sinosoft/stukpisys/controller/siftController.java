@@ -150,6 +150,7 @@ public class siftController {
         List<String> listSchoolName=hrService.getschoolName();
         List<String> listHighestEducate=hrService.getHighestEducate();
         List<String> listMajor=hrService.getMajor();
+        List<String> listEnterTime=hrService.getEnterTime();
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("hr",listHr);
@@ -157,6 +158,7 @@ public class siftController {
         jsonObject.put("school_name",listSchoolName);
         jsonObject.put("highest_educate",listHighestEducate);
         jsonObject.put("major",listMajor);
+        jsonObject.put("enterTime",listEnterTime);
 
         return jsonObject.toJSONString();
     }
