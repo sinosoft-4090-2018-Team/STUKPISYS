@@ -2,10 +2,8 @@ package com.sinosoft.stukpisys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.ScoreLabel;
 import com.sinosoft.stukpisys.entity.ScoreValue;
-import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -39,6 +37,7 @@ public class siftController {
      * @param major 专业
      * @param sex   性别
      * @param isFired   淘汰
+     * @param enterTime   入司时间
      * @param isNew 特殊
      * @param hasErr    严重不符合项
      * @param is211 211
@@ -49,10 +48,10 @@ public class siftController {
      */
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/judge" )
-    public String siftUserJudge(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211)  {
+    public String siftUserJudge(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime)  {
 
 
-       List<ScoreValue> list=hrService.getJudgeByParam(HRName,job,school,Education,major, sex,isSimple,isFired,isNew, hasErr, is211);
+       List<ScoreValue> list=hrService.getJudgeByParam(HRName,job,school,Education,major, sex,isSimple,isFired,isNew, hasErr, is211,enterTime);
 
 
      //   System.out.println(list.get(0).getUserId());
@@ -62,9 +61,9 @@ public class siftController {
 
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/score")
-    public String siftUserScore(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211) {
+    public String siftUserScore(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime) {
 
-        List<ScoreValue> list = hrService.getUserScoreParam(HRName, job, school, Education, major, sex,isSimple, isFired, isNew, hasErr, is211);
+        List<ScoreValue> list = hrService.getUserScoreParam(HRName, job, school, Education, major, sex,isSimple, isFired, isNew, hasErr, is211,enterTime);
         return JSON.toJSONString(list);
         // return "success";
     }
