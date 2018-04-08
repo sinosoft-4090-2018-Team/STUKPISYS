@@ -75,7 +75,7 @@ public interface InfoDao {
     List<String> getDifferMajorName();
     //获取211学校的数量
     @Select("SELECT is211 name ,COUNT(is211) value FROM education GROUP BY is211 ;")
-    Map<String,Integer>  getPopulationByIs211();
+    List<Map<String,Integer>>  getPopulationByIs211();
     //更具地点来差异来查询人数
     @Select("SELECT location name ,COUNT(location) value  FROM education GROUP BY location ")
     List<Map<String,Integer>> getPopulationByLocationDiffer();
@@ -84,10 +84,10 @@ public interface InfoDao {
     List<String> getDifferLocationName();
    //获取评价
    @SelectProvider(type = SqlProvider.class, method = "getUserParam")
-    List<ScoreValue> getJudgeByParam(String HRName ,String job,String school,String Education,String major,String sex, String state,String belong,String is211);
+    List<ScoreValue> getJudgeByParam(String HRName ,String job,String school,String Education,String major,String sex, String state,String belong,String is211,String enterTime);
    //获取分数
     @SelectProvider(type = SqlProvider.class, method = "getUserScoreParam")
-    List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,String sex, String state,String belong,String is211);
+    List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,String sex, String state,String belong,String is211,String enterTime);
     //分配部门
     @Update("update user_info set dept=#{dept} where user_name=#{userName}")
     int setDept(@Param("userName")String userName,@Param("dept") String dept);

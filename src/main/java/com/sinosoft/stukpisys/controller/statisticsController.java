@@ -53,7 +53,7 @@ public class statisticsController {
     @PreAuthorize("hasAnyRole('MG','ADMIN')")
     @GetMapping(value = "/211")//ok
     public String schoolStatistics() {
-        Map<String, Integer> map = hrService.getPopulationByIs211();
+        List<Map<String, Integer>> map = hrService.getPopulationByIs211();
         return JSON.toJSONString(map);
     }
 
