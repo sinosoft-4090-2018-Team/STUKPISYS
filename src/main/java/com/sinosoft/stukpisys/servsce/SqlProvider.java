@@ -3,7 +3,7 @@ package com.sinosoft.stukpisys.servsce;
 public class SqlProvider {
 
     public String getUserParam(String HRName, String job, String school, String education, String major, String sex, String state, String belong, String is211,String enterTime) {
-        String sql="SELECT d.user_name,d.label_name,d.value_string from education,\n" +
+        String sql="SELECT d.user_name,d.label_name,d.value_string  from education,\n" +
                 "(SELECT user_info.*,c.* FROM user_info ,\n" +
                 "(SELECT user.name,b.* from user, \n" +
                 "(select score_value.user_id,score_value.value_string,a.* from score_value,\n" +
@@ -57,18 +57,19 @@ public class SqlProvider {
             sql+="and enterTime"+"="+"'"+enterTime+"'";
         }
 
-        sql += " and education.edu_id=d.edu_id";
+        sql += " and education.edu_id=d.edu_id  ";
 
 
     }else {
-        sql+="  where education.edu_id=d.edu_id";
-    }
+
+            sql += "  where education.edu_id=d.edu_id   GROUP BY  d.user_name,d.stage";
+        }
         System.out.print(sql);
         return sql ;
     }
 
     public String   getUserScoreParam(String HRName, String job, String school, String education, String major, String sex, String state, String belong, String is211,String enterTime){
-        String sql="SELECT d.user_name,d.label_name,d.value_int from education,\n" +
+        String sql="SELECT d.user_name,d.label_name,d.value_int,d.stage from education,\n" +
                 "(SELECT user_info.*,c.* FROM user_info ,\n" +
                 "(SELECT user.name,b.* from user, \n" +
                 "(select score_value.user_id,score_value.value_int,a.* from score_value,\n" +
@@ -123,7 +124,7 @@ public class SqlProvider {
                 sql+="and enterTime"+"="+"'"+enterTime+"'";
             }
 
-            sql += " and education.edu_id=d.edu_id";
+            sql += " and education.edu_id=d.edu_id  GROUP BY  d.user_name,d.stage";
         }
         System.out.print(sql);
         return sql ;

@@ -127,7 +127,7 @@
                 <div class="input-group right-go1">
                     <div class="input-group-btn ">
                         <select name=""  class="form-control style1" style="font-size:10px">
-                            <option v-for="item in items6">{{item.message}}</option>
+                            <option v-for="item in enterTime">{{item}}</option>
                         </select>
                         <span class="arrow1 "><img src="img/bot2.png" alt=""/></span>
                     </div>
@@ -135,7 +135,7 @@
             </div>
             <div class="row student">
                 <div class="col-xs-6" style="font-size:10px">
-                    <input type="checkbox"/> 淘太实习生
+                    <input type="checkbox"/> 淘汰实习生
                 </div>
                 <div class="col-xs-6" style="font-size:10px">
                     <input type="checkbox"/> 特殊实习生
@@ -160,9 +160,12 @@
         </div>
         <div id="table" class="col-xs-8 content-M">
             <div class="row">
-                <div class="col-xs-offset-8 col-xs-4 doit ">
-                    <button class="btn btn1"  v-if="isActive">编辑</button>
+                <div class="col-xs-offset-2 col-xs-10 doit ">
+                    <!--<button class="btn btn1"  v-if="isActive">编辑</button>-->
+                    <!--<input type="file" name="file" onclick="upload(event)" value="上传文件"/>-->
                     <button class="btn btn2 " >查看可视图表</button>
+                    <button class="btn btn1" >编辑</button>
+                    <button class="btn btn3">选择类型<input type="file" style="opacity: 0;"/></button>
                 </div>
             </div>
             <div class="row">

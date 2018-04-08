@@ -37,11 +37,11 @@
         <!--</div>-->
     <!--</div>-->
     <div class="row content">
-        <div class="col-xs-7 select">
+        <div class="col-xs-7 select" id="trainee">
             <div class="row">
                 <div class="col-xs-12 man-work">
                     <span><</span>
-                    <span>小明</span>
+                    <span>{{name}}</span>
                     <span>分配部门</span>
                 </div>
             </div>
@@ -57,11 +57,11 @@
                             <div class="col-xs-12 info-content">
                                 <div class="left-content">
                                     <span>目前状态</span>
-                                    <input type="text" value="正常"/>
+                                    <input v-model="state" type="text"/>
                                 </div >
                                 <div class="right-content">
                                     <span>籍贯</span>
-                                    <input type="text" value="江苏南京"/>
+                                    <input v-model="locat" type="text"/>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             <div class="col-xs-12 info-content">
                                 <div class="left-content">
                                     <span>应聘方向</span>
-                                    <input type="text" value="开发"/>
+                                    <input v-model="job" type="text"/>
                                 </div >
                                 <div class="right-content">
                                     <span>最高学历</span>
@@ -143,18 +143,18 @@
                                 <span><img src="img/write.png" alt=""/></span>
                             </div>
                         </div>
-                    <div class="row" v-for="">
-                            <div class="col-xs-12 info-content">
-                                <div class="left-content">
-                                    <span>{{labelName}}</span>
-                                    <input type="text" value="99"/>
-                                </div >
-                                <div class="right-content">
-                                    <span>{{labelName}}</span>
-                                    <input type="text" value="99"/>
-                                </div>
-                            </div>
-                        </div>
+                    <!--<div class="row" v-for="">-->
+                            <!--<div class="col-xs-12 info-content">-->
+                                <!--<div class="left-content">-->
+                                    <!--<span>{{labelName}}</span>-->
+                                    <!--<input type="text" value="99"/>-->
+                                <!--</div >-->
+                                <!--<div class="right-content">-->
+                                    <!--<span>{{labelName}}</span>-->
+                                    <!--<input type="text" value="99"/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     <!--<div class="row">
                             <div class="col-xs-12 info-content">
                                 <div class="left-content">
@@ -271,14 +271,14 @@
                                 <span><img src="img/write.png" alt=""/></span>
                             </div>
                         </div>
-                    <div class="row" v-for="">
-                        <div class="col-xs-12 tech-say">
-                            <div class="say-content">
-                                   <span>{{judge}}</span>
-                                   <input type="text" value="99"/>
-                            </div>
-                        </div>
-                    </div>
+                    <!--<div class="row" v-for="">-->
+                        <!--<div class="col-xs-12 tech-say">-->
+                            <!--<div class="say-content">-->
+                                   <!--<span>{{judge}}</span>-->
+                                   <!--<input type="text" value="99"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <!--<div class="row">
                         <div class="col-xs-12 tech-say">
                             <div class="say-content">

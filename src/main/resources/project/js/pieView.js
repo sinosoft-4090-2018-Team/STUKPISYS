@@ -51,7 +51,18 @@ let statistics = new Vue({
                 title:"211分布",
                 series:"211分布",
                 data:data
-            }
+            };
+            res.data = Object.keys(data).map(function (key) {
+                var sex;
+                if(data[key].name)
+                    sex='是';
+                else
+                    sex='否';
+                return {
+                    name: sex,
+                    value: data[key].value
+                }
+            });
             creat211View(res);
         }).catch(function (error) {
             alert("载入信息出错，"+error)
