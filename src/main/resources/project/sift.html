@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -164,7 +164,7 @@
                     <!--<button class="btn btn1"  v-if="isActive">编辑</button>-->
                     <!--<input type="file" name="file" onclick="upload(event)" value="上传文件"/>-->
                     <button class="btn btn2 " >查看可视图表</button>
-                    <button class="btn btn1" >编辑</button>
+                    <button class="btn btn1" v-if="isActive" v-on:@click="">编辑</button>
                     <button class="btn btn3">选择类型<input type="file" style="opacity: 0;"/></button>
                 </div>
             </div>
