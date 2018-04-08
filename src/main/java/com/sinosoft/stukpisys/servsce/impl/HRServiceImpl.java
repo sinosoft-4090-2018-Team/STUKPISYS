@@ -193,7 +193,7 @@ public class HRServiceImpl implements HRService{
     }
 
     @Override
-    public Map<String,Integer>  getPopulationByIs211() {
+    public List<Map<String,Integer>>  getPopulationByIs211() {
         return infoDao.getPopulationByIs211( );
     }
 
