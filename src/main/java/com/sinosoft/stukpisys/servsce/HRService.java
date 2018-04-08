@@ -1,5 +1,6 @@
 package com.sinosoft.stukpisys.servsce;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.entity.*;
 
 import java.util.List;
@@ -35,8 +36,8 @@ public interface HRService {
     //3-29 服务traineeController
     Education getEduInfoByUserName(String userName);
     List<List<Object>> getScoreFromStageByUser_id(int userId,int stage);
-    List<ScoreValue>  getJudgeByParam(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime);
-    List<ScoreValue> getUserScoreParam(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple, boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime);
+    List<JSONObject>  getJudgeByParam(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime);
+    List<JSONObject> getUserScoreParam(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple, boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime);
     User getByName(String name);
 
     List<ScoreLabel> getJudgeLabelName();
@@ -115,5 +116,9 @@ public interface HRService {
     List<ScoreLabel> selectScoreLabel();
     int updateLabelName(String newLabelName,String labelName);
     List<ScoreLabel> getLabelName();
+
+
+    List<JSONObject> getScore();
+    List<String> getName();
 
 }

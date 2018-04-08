@@ -1,8 +1,8 @@
 package com.sinosoft.stukpisys.dao;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.entity.Education;
 import com.sinosoft.stukpisys.entity.ScoreLabel;
-import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.entity.UserInfo;
 import com.sinosoft.stukpisys.servsce.SqlProvider;
 import org.apache.ibatis.annotations.*;
@@ -84,10 +84,10 @@ public interface InfoDao {
     List<String> getDifferLocationName();
    //获取评价
    @SelectProvider(type = SqlProvider.class, method = "getUserParam")
-    List<ScoreValue> getJudgeByParam(String HRName ,String job,String school,String Education,String major,String sex, String state,String belong,String is211,String enterTime);
+    List<JSONObject> getJudgeByParam(String HRName , String job, String school, String Education, String major, String sex, String state, String belong, String is211, String enterTime);
    //获取分数
     @SelectProvider(type = SqlProvider.class, method = "getUserScoreParam")
-    List<ScoreValue> getUserScoreParam(String HRName ,String job,String school,String Education,String major,String sex, String state,String belong,String is211,String enterTime);
+    List<JSONObject> getUserScoreParam(String HRName ,String job,String school,String Education,String major,String sex, String state,String belong,String is211,String enterTime);
     //分配部门
     @Update("update user_info set dept=#{dept} where user_name=#{userName}")
     int setDept(@Param("userName")String userName,@Param("dept") String dept);

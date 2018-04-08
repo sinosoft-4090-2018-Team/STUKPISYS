@@ -3,7 +3,6 @@ package com.sinosoft.stukpisys.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosoft.stukpisys.entity.ScoreLabel;
-import com.sinosoft.stukpisys.entity.ScoreValue;
 import com.sinosoft.stukpisys.servsce.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,8 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @program: stukpisys
@@ -51,11 +49,48 @@ public class siftController {
     public String siftUserJudge(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime)  {
 
 
-       List<ScoreValue> list=hrService.getJudgeByParam(HRName,job,school,Education,major, sex,isSimple,isFired,isNew, hasErr, is211,enterTime);
+       List<JSONObject> list=hrService.getJudgeByParam(HRName,job,school,Education,major, sex,isSimple,isFired,isNew, hasErr, is211,enterTime);
+        List<Map> jsonObjectList=new LinkedList<>();
+        //LinkedHashSet<String> hs =new LinkedHashSet<>();
+        //List<ScoreLabel> judgeList=hrService.getJudgeLabelName();
+   //     Map<String, String> stringMapNew = new HashMap<>();
+        List<String> stringList=hrService.getName();
 
+        /*for ( int i=0;i<list.size();i++) {
+            //   JSONObject res = new JSONObject();
+            Map<String, String> stringMap = new HashMap<>();
+            stringMap.put("name", list.get(i).getString("user_name"));
+            for (int j = 0; j < stringList.size(); j++) {
+                if (stringList.get(j).equals(list.get(i).getString("user_name"))) {
+                    stringMap.put(list.get(i).getString("label_name"), list.get(i).getString("value_string"));
+                    // res.put("name",list.get(i).getString("user_name"));
+                    //res.put("label_name1", list.get(i).getString("label_name"));
+
+                    //res.put("value_string", list.get(i).getString("value_string"));
+                    // res.put("thirdStageJudge", list.get(i+2).getString("value_string"));
+                }
+              *//*  res.put("secondStageScore", list.get(i ).getString("value_int"));
+                //res.put("thirdStageScore", list.get(i+1).getString("value_int"));
+            *//*
+            }
+            jsonObjectList.add(stringMap);
+        }*/
+
+        for (int i = 0; i < stringList.size(); i++) {
+            System.out.print(stringList.size());
+            Map<String, String> stringMap = new HashMap<>();
+            stringMap.put("name", list.get(i).getString("user_name"));
+            for ( int j=0;j<list.size();j++) {
+                if (stringList.get(i).equals(list.get(j).getString("user_name"))) {
+                    stringMap.put(list.get(j).getString("label_name"), list.get(j).getString("value_string"));
+                }
+            }
+            jsonObjectList.add(stringMap);
+        }
+        return jsonObjectList.toString();
 
      //   System.out.println(list.get(0).getUserId());
-       return JSON.toJSONString(list);
+      // return JSON.toJSONString(list);
        // return "success";
     }
 
@@ -63,8 +98,26 @@ public class siftController {
     @GetMapping(value ="/score")
     public String siftUserScore(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime) {
 
-        List<ScoreValue> list = hrService.getUserScoreParam(HRName, job, school, Education, major, sex,isSimple, isFired, isNew, hasErr, is211,enterTime);
-        return JSON.toJSONString(list);
+        List<JSONObject> list = hrService.getUserScoreParam(HRName, job, school, Education, major, sex,isSimple, isFired, isNew, hasErr, is211,enterTime);
+        List<JSONObject> jsonObjectList=new LinkedList<>();
+        LinkedHashSet<String> hs =new LinkedHashSet<>();
+
+        for ( int i=0;i<list.size()-2;i++) {
+            JSONObject res = new JSONObject();
+            if (hs.add(list.get(i).getString("user_name"))){
+                res.put("name",list.get(i).getString("user_name"));
+                res.put("firstStageScore", list.get(i).getString("value_int"));
+                res.put("secondStageScore", list.get(i+1).getString("value_int"));
+                res.put("thirdStageScore", list.get(i+2).getString("value_int"));
+            }
+              /*  res.put("secondStageScore", list.get(i ).getString("value_int"));
+                //res.put("thirdStageScore", list.get(i+1).getString("value_int"));
+            */
+            if(!res.isEmpty()){
+                jsonObjectList.add(res);
+            }
+        }
+        return jsonObjectList.toString();
         // return "success";
     }
 
@@ -162,14 +215,68 @@ public class siftController {
 
         return jsonObject.toJSONString();
     }
-    //测试用的接口
+    //
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
-    @GetMapping(value ="/getScoreById")
-    public String getScoreById(int id)
+    @GetMapping(value ="/getScore")
+    public String getScore()
     {
-        List<Object> list=hrService.getScoreById(id);
-        //todo
-        return JSON.toJSONString(list);
+        List<JSONObject> list=hrService.getScore();
+
+        List<JSONObject> jsonObjectList=new LinkedList<>();
+
+      //  List<String> stringList=hrService.getName();
+
+        /*for (int i=0;i<list.size();i++){
+            for (int j=0;j<3;j++){
+                System.out.print(list.get(i).getString("name"));
+            }
+            System.out.println();
+        }*/
+
+   /*     for (int j=0;j<stringList.size();j++){
+            for (int i=0 ;i<list.size();i++){
+              if(stringList.get(j).contains(list.get(i).getString("name"))) {
+                  JSONObject jsonObject = new JSONObject();
+                  jsonObject.put("name", list.get(i).getString("name"));
+                  if ("1".equals(list.get(i).getString("stage"))) {
+                      jsonObject.put("firstStageScore", list.get(i).getString("value_int"));
+                  }
+                  if ("2".equals(list.get(i).getString("stage"))) {
+                      jsonObject.put("secondStageScore", list.get(i ).getString("value_int"));
+                  }
+                  if ("3".equals(list.get(i).getString("stage"))) {
+                      jsonObject.put("thirdStageScore", list.get(i ).getString("value_int"));
+                  }
+
+                    jsonObjectList.add(jsonObject);
+
+              }
+
+            }
+        }*/
+        LinkedHashSet<String> hs =new LinkedHashSet<>();
+
+        for ( int i=0;i<list.size()-2;i++) {
+            JSONObject res = new JSONObject();
+            if (hs.add(list.get(i).getString("name"))){
+                res.put("name",list.get(i).getString("name"));
+                res.put("firstStageScore", list.get(i).getString("value_int"));
+                res.put("secondStageScore", list.get(i+1).getString("value_int"));
+                res.put("thirdStageScore", list.get(i+2).getString("value_int"));
+            }
+              /*  res.put("secondStageScore", list.get(i ).getString("value_int"));
+                //res.put("thirdStageScore", list.get(i+1).getString("value_int"));
+            */
+              if(!res.isEmpty()){
+                  jsonObjectList.add(res);
+              }
+        }
+        return jsonObjectList.toString();
     }
+
+
+
+
+
 
 }
