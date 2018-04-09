@@ -167,7 +167,7 @@
                     <button class="btn btn5" id="End1" style="display:none" onclick="endGift1()">查看数据表</button>
                     <button class="btn btn1" id="Start" style="display:block" onclick="startLottery()" v-show="isActive">编辑</button>
                     <button class="btn btn4 " id="End" onclick="endGift()" style="display:none">提交</button>
-                    <button class="btn btn3">上传个人信息<input type="file" style="opacity: 0;"/></button>
+                    <button class="btn btn3">上传个人信息<input type="file" @click="upload(event,'a')" style="opacity: 0;"/></button>
                     <button class="btn btn3s">上传成绩<input type="file" style="opacity: 0;"/></button>
                 </div>
             </div>
@@ -187,17 +187,17 @@
                         </tr>
 
                     </table>
-                    <div class="page-count" style="text-align:center">
-                        <ul class="pagination">
-                            <li><a href="#">&laquo;</a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>
-                    </div>
+                    <!--<div class="page-count" style="text-align:center">-->
+                        <!--<ul class="pagination">-->
+                            <!--<li><a href="#">&laquo;</a></li>-->
+                            <!--<li class="active"><a href="#">1</a></li>-->
+                            <!--<li><a href="#">2</a></li>-->
+                            <!--<li><a href="#">3</a></li>-->
+                            <!--<li><a href="#">4</a></li>-->
+                            <!--<li><a href="#">5</a></li>-->
+                            <!--<li><a href="#">&raquo;</a></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
                 </div>
                 <div id="mainView" ></div>
             </div>

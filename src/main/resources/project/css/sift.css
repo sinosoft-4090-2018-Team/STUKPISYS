@@ -328,14 +328,14 @@ td input{
     cursor:pointer;
 }
 #mainView{
-    width:1300px;
+    width:1397px;
     height:860px;
     margin-top:6px;
 }
 .scor{
-    width:991px;
+    width:1395px;
     overflow: scroll;
-    height:900px;
+    height:874px;
 }
 
 

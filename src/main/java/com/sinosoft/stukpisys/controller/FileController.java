@@ -45,7 +45,7 @@ public class FileController {
      * @return
      */
 //    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping(value = "/upload", params = {"type"})
+    @PostMapping(value = "/upload")
     public String upload(HttpServletRequest request,MultipartFile file,String type)
     {
         try {

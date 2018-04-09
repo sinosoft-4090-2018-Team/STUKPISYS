@@ -138,6 +138,8 @@
                     sex = 0;
                 else if(this.sift_sex=='女')
                     sex = 1;
+                else if(this.sift_sex=='全部')
+                    sex = '全部';
                 this.$http.get('/sift/judge?HRName=' + this.sift_hr +
                     "&job=" + this.sift_job +
                     "&school=" + this.sift_school_name +
@@ -168,18 +170,19 @@
                     alert("载入信息出错，" + error)
                 });
             },
-            upload(e) {
+            upload(e,type) {
                 console.log(e.target);
                 let file = e.target.files[0]
                 /* eslint-disable no-undef */
                 let param = new FormData()  // 创建form对象
-                param.append('file', file, file.name)  // 通过append向form对象添加数据
+                param.append('file', file, file.name);
+                param.append('type',type)// 通过append向form对象添加数据
                 console.log(param.get('file')) // FormData私有类对象，访问不到，可以通过get判断值是否传进去
-                let config = {
-                    headers: {'Content-Type': 'multipart/form-data'}
-                }
+                // let config = {
+                //     headers: {'Content-Type': 'multipart/form-data'}
+                // }
                 // 添加请求头
-                this.$http.post('/file/upload', param, config)
+                this.$http.post('/file/upload', param)
                     .then(response => {
                         console.log(response.data)
                     })
