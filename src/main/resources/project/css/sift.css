@@ -332,5 +332,10 @@ td input{
     height:860px;
     margin-top:6px;
 }
+.scor{
+    width:991px;
+    overflow: scroll;
+    height:900px;
+}
 
 
