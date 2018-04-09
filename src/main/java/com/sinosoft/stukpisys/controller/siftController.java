@@ -47,24 +47,21 @@ public class siftController {
     @PreAuthorize("hasAnyRole('HR','MG','ADMIN')")
     @GetMapping(value ="/judge" )
     public  List<Map> siftUserJudge(String HRName,String job,String school,String Education,String major,String sex,boolean isSimple,boolean isFired,boolean isNew,boolean hasErr,String is211,String enterTime)  {
-
-
        List<JSONObject> list=hrService.getJudgeByParam(HRName,job,school,Education,major, sex,isSimple,isFired,isNew, hasErr, is211,enterTime);
         List<Map> jsonObjectList=new LinkedList<>();
 
         List<String> stringList=hrService.getName();
 
-
-
         for (int i = 0; i < stringList.size(); i++) {
 
-            Map<String, String> stringMap = new HashMap<>();
-            stringMap.put("name", stringList.get(i));
+            Map<String, String> stringMap = new LinkedHashMap<>();
+            stringMap.put("姓名", stringList.get(i));
             for ( int j=0;j<list.size();j++) {
                 if (stringList.get(i).equals(list.get(j).getString("user_name"))) {
                     stringMap.put(list.get(j).getString("label_name"), list.get(j).getString("value_string"));
                 }
             }
+
             jsonObjectList.add(stringMap);
         }
         return jsonObjectList;

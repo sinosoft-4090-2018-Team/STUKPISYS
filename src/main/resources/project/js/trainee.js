@@ -4,12 +4,26 @@ let trainee = new Vue({
     data: {
         name: '',
         state:'正常',
-        locat:'江苏南京',
-        job:'开发',
+        job:'',
         birth:'',
         dept:'',
-
-        //todo
+        email:'',
+        enterTime:'',
+        sex:'',
+        hrName:'',
+        nativePlace:'',
+        phone:'',
+        state:'',
+        graduationTime:'',
+        highestEducate:'',
+        major:'',
+        schoolName:'',
+        judgeLabel:[],
+        judgeValue:[],
+        scoreLabel1:[],
+        scoreValue1:[],
+        scoreLabel2:[],
+        scoreValue2:[],
     },
     mounted: function () {
         this.initialization();
@@ -20,6 +34,8 @@ let trainee = new Vue({
             console.log(this.name);
             this.getScore();
             this.getInfo();
+            this.getJudge();
+            this.getPass();
         },
         getInfo(){
             this.$http.get('/trainee/info?name='+this.name).then((response) => {
@@ -41,11 +57,39 @@ let trainee = new Vue({
                 this.schoolName=data.education.schoolName;
             });
         },
+        getPass(){
+            this.$http.get('/trainee/pass?name='+this.name).then((response) => {
+                console.log(response);
+                let data = response.data;
+                let label = Object.keys(data).map((key)=>{
+                    if(key%2==0)
+                        this.scoreLabel1.push(data[key].labelName);
+                    else
+                        this.scoreLabel2.push(data[key].labelName);
+                    return data[key].labelName;
+                })
+                let value = Object.keys(data).map((key)=>{
+                    if(key%2==0)
+                        this.scoreValue1.push(data[key].value);
+                    else
+                        this.scoreValue2.push(data[key].value);
+                    return data[key].value;
+                })
+
+            }).catch(function (error) {
+                alert("载入信息出错，"+error)
+            });
+        },
         getJudge(){
             this.$http.get('/trainee/judge?name='+this.name).then((response) => {
                 console.log(response);
-                let data = response.data;
-                //todo
+                let data = response.data.judge;
+                this.judgeLabel = Object.keys(data).map((key)=>{
+                    return data[key].labelName;
+                })
+                this.judgeValue = Object.keys(data).map((key)=>{
+                    return data[key].valueString;
+                })
             }).catch(function (error) {
                 alert("载入信息出错，"+error)
             });
